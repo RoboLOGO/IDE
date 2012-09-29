@@ -1,0 +1,147 @@
+﻿<Window x:Class="Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RoboLogo" Height="350" Width="525" WindowState="Maximized">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="Close_Click"/>
+        <CommandBinding Command="ApplicationCommands.Copy"/>
+        <CommandBinding Command="ApplicationCommands.Paste"/>
+        <CommandBinding Command="ApplicationCommands.Cut"/>
+        <CommandBinding Command="ApplicationCommands.Redo"/>
+        <CommandBinding Command="ApplicationCommands.Undo"/>
+        <CommandBinding Command="ApplicationCommands.Save"
+                        Executed="Save_Click"/>
+        <CommandBinding Command="ApplicationCommands.SaveAs"
+                        Executed="SaveAs_Click"/>
+        <CommandBinding Command="ApplicationCommands.Open"
+                        Executed="Open_Click"/>
+        <CommandBinding Command="ApplicationCommands.New"
+                        Executed="New_Click"/>
+    </Window.CommandBindings>
+    <Grid>
+        <StackPanel>
+            <Menu>
+                <MenuItem Header="_Fájl">
+                    <MenuItem Header="Új..." Command="ApplicationCommands.New">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/new_icon.gif" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Megnyitás..." Command="ApplicationCommands.Open">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/open_icon.gif" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Mentés" Command="ApplicationCommands.Save">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/save_icon.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Mentés Másként..." Command="ApplicationCommands.SaveAs">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/save_as_icon.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Kilépés" Command="ApplicationCommands.Close">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/exit_icon.gif" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="_Szerkesztés">
+                    <MenuItem Header="Vissza" Command="ApplicationCommands.Undo">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/undo_icon.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Előre" Command="ApplicationCommands.Redo">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/redo_icon.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Másolás" Command="ApplicationCommands.Copy">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/copy_icon.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Kivágás" Command="ApplicationCommands.Cut">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/cut_icon.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Beillesztés" Command="ApplicationCommands.Paste">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/paste_icon.gif" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Futtatás">
+                    <MenuItem Header="Fut" InputGestureText="F5" Click="Run_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/run_icon.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Kép törlés" Click="Clear_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+            <ToolBar>
+                <Button ToolTip="Új..." Command="ApplicationCommands.New">
+                    <Image Source="/Editor;component/Icon_Images/new_icon.gif" />
+                </Button>
+                <Button ToolTip="Megnyitás" Command="ApplicationCommands.Open">
+                    <Image Source="/Editor;component/Icon_Images/open_icon.gif" />
+                </Button>
+                <Button ToolTip="Mentés" Command="ApplicationCommands.Save">
+                    <Image Source="/Editor;component/Icon_Images/save_icon.png" />
+                </Button>
+                <Separator/>
+                <Button ToolTip="Kivágás" Command="Cut">
+                    <Image Source="/Editor;component/Icon_Images/Cut_icon.png" />
+                </Button>
+                <Button ToolTip="Másolás" Command="ApplicationCommands.Copy">
+                    <Image Source="/Editor;component/Icon_Images/copy_icon.png" />
+                </Button>
+                <Button ToolTip="Beillesztés" Command="ApplicationCommands.Paste">
+                    <Image Source="/Editor;component/Icon_Images/paste_icon.gif" />
+                </Button>
+                <Separator/>
+                <Button ToolTip="Vissza" Command="ApplicationCommands.Undo">
+                    <Image Source="/Editor;component/Icon_Images/undo_icon.png" />
+                </Button>
+                <Button ToolTip="Előre" Command="ApplicationCommands.Redo">
+                    <Image Source="/Editor;component/Icon_Images/redo_icon.png" />
+                </Button>
+                <Separator/>
+                <Button ToolTip="Futtatás" Click="Run_Click">
+                    <Image Source="/Editor;component/Icon_Images/run_icon.png" />
+                </Button>
+                <Button ToolTip="Képernyő törlés" Click="Clear_Click" >
+                    <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
+                </Button>
+            </ToolBar>
+            <Label x:Name="FileName"></Label>
+
+            <Canvas HorizontalAlignment="Center" Margin="25,25,25,25" Name="canvas" VerticalAlignment="Bottom"/>
+        </StackPanel>
+        
+        <Border>
+            <RichTextBox  Height="112" x:Name="Command_line"  VerticalAlignment="Bottom" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
+                <FlowDocument Name="fdtext">
+                    <Paragraph FontSize="10pt" LineHeight="0.1pt" >
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            
+        </Border>
+    </Grid>
+</Window>
