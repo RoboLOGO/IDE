@@ -83,20 +83,21 @@ namespace Editor
             if (pen.IsDown())
             {
 
-                Line myLine = new Line();
-                myLine.Stroke = new SolidColorBrush(pen.color);
-                //myLine.SnapsToDevicePixels = true; //talán?
-                //myLine.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);//talán?
+                Line line = new Line();
+                line.Stroke = new SolidColorBrush(pen.color);
+                //line.SnapsToDevicePixels = true;
+                //line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+                
 
-                myLine.X1 = pos.X;
-                myLine.X2 = newpos.X;
-                myLine.Y1 = pos.Y;
-                myLine.Y2 = newpos.Y;
+                line.X1 = pos.X;
+                line.X2 = newpos.X;
+                line.Y1 = pos.Y;
+                line.Y2 = newpos.Y;
 
 
-                myLine.StrokeThickness = pen.pensize;
+                line.StrokeThickness = pen.pensize;
                 //int canvasindex = 
-                canvas.Children.Add(myLine);
+                canvas.Children.Add(line);
                 
             }
 

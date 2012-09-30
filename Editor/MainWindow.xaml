@@ -128,10 +128,13 @@
                 <Button ToolTip="Képernyő törlés" Click="Clear_Click" >
                     <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                 </Button>
+                <Button ToolTip="Rajzvászon mentése" Click="Save_Image_Click">
+                    <Image Source="/Editor;component/Icon_Images/save_image.png" />
+                </Button>
             </ToolBar>
             <Label x:Name="FileName"></Label>
 
-            <Canvas HorizontalAlignment="Center" Margin="25,25,25,25" Name="canvas" VerticalAlignment="Bottom"/>
+            <Canvas HorizontalAlignment="Center" Margin="25,25,25,25" Name="canvas" VerticalAlignment="Bottom" SnapsToDevicePixels="True"/>
         </StackPanel>
         
         <Border>
