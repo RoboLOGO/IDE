@@ -154,7 +154,7 @@ namespace Editor
         }
         public void SetRTFText(string text, RichTextBox rtb)
         {
-            MemoryStream stream = new MemoryStream(ASCIIEncoding.Default.GetBytes(text));
+            MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(text));
             rtb.Selection.Load(stream, DataFormats.Text);
         }
         private void SaveAs_Click(object sender, ExecutedRoutedEventArgs e)
@@ -163,7 +163,7 @@ namespace Editor
             sfd.ShowDialog();
             try
             {
-                stw = new StreamWriter(File.OpenWrite(sfd.FileName), Encoding.Default);
+                stw = new StreamWriter(File.OpenWrite(sfd.FileName), Encoding.UTF8);
                 stw.Write(GetString(Command_line));
                 stw.Flush();
 
