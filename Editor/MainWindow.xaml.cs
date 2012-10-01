@@ -80,6 +80,45 @@ namespace Editor
             //turtle.Right(90);
             //turtle.Forward(100);
         }
+        private void Save_Image_Click(object sender, RoutedEventArgs e)
+        {
+            sfd = new SaveFileDialog();
+            sfd.DefaultExt = ".png";
+            sfd.FileName = "image";
+            sfd.Filter = "Portable Network Graphics (.png)|*.png";
+            sfd.ShowDialog();
+
+            SaveCanvas(this, canvas, 96, sfd.FileName);
+        }
+
+        public static void SaveCanvas(Window window, Canvas canvas, int dpi, string filename)
+        {
+            Size size = new Size(canvas.RenderSize.Width, canvas.RenderSize.Height);
+            canvas.Measure(size);
+            canvas.Arrange(new Rect(size));
+
+            var rtb = new RenderTargetBitmap(
+                (int)canvas.RenderSize.Width, //width 
+                (int)canvas.RenderSize.Height, //height 
+                dpi, //dpi x 
+                dpi, //dpi y 
+                PixelFormats.Pbgra32 // pixelformat 
+                );
+            rtb.Render(canvas);
+
+            SaveRTB2PNG(rtb, filename);
+        }
+
+        private static void SaveRTB2PNG(RenderTargetBitmap bmp, string filename)
+        {
+            var enc = new System.Windows.Media.Imaging.PngBitmapEncoder();
+            enc.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(bmp));
+
+            using (var stm = System.IO.File.Create(filename))
+            {
+                enc.Save(stm);
+            }
+        } 
         #endregion 
         #region Menu
 
@@ -272,45 +311,7 @@ namespace Editor
         }
         #endregion
 
-        private void Save_Image_Click(object sender, RoutedEventArgs e)
-        {
-            sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".png";
-            sfd.FileName = "image";
-            sfd.Filter = "Portable Network Graphics (.png)|*.png";
-            sfd.ShowDialog();
-
-            SaveCanvas(this, canvas, 96, sfd.FileName); 
-        }
-
-        public static void SaveCanvas(Window window, Canvas canvas, int dpi, string filename)
-        {
-            Size size = new Size(canvas.RenderSize.Width, canvas.RenderSize.Height);
-            canvas.Measure(size);
-            canvas.Arrange(new Rect(size));
-
-            var rtb = new RenderTargetBitmap(
-                (int)canvas.RenderSize.Width, //width 
-                (int)canvas.RenderSize.Height, //height 
-                dpi, //dpi x 
-                dpi, //dpi y 
-                PixelFormats.Pbgra32 // pixelformat 
-                );
-            rtb.Render(canvas);
-
-            SaveRTB2PNG(rtb, filename);
-        }
-
-        private static void SaveRTB2PNG(RenderTargetBitmap bmp, string filename) 
-        { 
-            var enc = new System.Windows.Media.Imaging.PngBitmapEncoder(); 
-            enc.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(bmp));
-
-            using (var stm = System.IO.File.Create(filename)) 
-            { 
-                enc.Save(stm); 
-            } 
-        } 
+       
      
 
         
