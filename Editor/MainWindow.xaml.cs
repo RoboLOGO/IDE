@@ -23,8 +23,8 @@ namespace Editor
     {
         #region Turtle
         //Canvas méretei
-        int cHeight = 600;
-        int cWidth = 800;
+        public static int cHeight = 600;
+        public static int cWidth = 800;
 
         public MainWindow()
         {
@@ -190,15 +190,9 @@ namespace Editor
 
         private void New_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".txt";
-            sfd.Filter = "Text documents (.txt)|*.txt";
-            sfd.ShowDialog();
-            try
-            {
-                File.Create(sfd.FileName);
-            }
-            catch { MessageBox.Show("Nem adtál meg filenevet!"); }
+            CanvasSize cs = new CanvasSize();
+            cs.ShowDialog();
+            InitializeCanvas();
 
         }
         Turtle turtle;
