@@ -304,10 +304,11 @@ namespace Editor
             }
         }
         #endregion
-
-       
-     
-
-        
+        public static Method A;
+        private void Method_Click(object sender, RoutedEventArgs e)
+        {
+            A = new Method();
+            A.Show();
+        }  
     }
 }

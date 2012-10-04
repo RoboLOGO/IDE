@@ -1,0 +1,29 @@
+﻿<Window x:Class="Editor.Method"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Method" Height="300" Width="300">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Eljárások">
+                <GroupBox Margin="12,0,12,36" Header="Eljárások">
+                    <Grid>
+                        <Button Height="25" Width="62" Margin="6,139,164,6" Click="Method_Add_Click">Hozzáadás</Button>
+                        <Button Height="25" Width="59" Margin="74,139,99,6">Eltávolítás</Button>
+                        <RichTextBox x:Name="Method_command_line" TextChanged="TextChangedEventHandler" Margin="85,6,6,37" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Width="141">
+                            <FlowDocument Name="fdtext">
+                                <Paragraph FontSize="10pt" LineHeight="0.1pt" >
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                        <ListBox Margin="6,6,154,37" Width="72" x:Name="Method_List"></ListBox>
+                        <Button Margin="132,182,56,-37" Height="25">OK</Button>
+                        <Button Margin="0,182,0,-37" Height="25" HorizontalAlignment="Right" Width="50" Click="Method_Close_Click">Mégsem</Button>
+                    </Grid>
+                </GroupBox>
+
+            </TabItem>
+            <TabItem Header="Változók"></TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

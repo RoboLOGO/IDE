@@ -92,6 +92,11 @@
                             <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="Eljárás" Click="Method_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBar>
