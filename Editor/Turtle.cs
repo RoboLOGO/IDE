@@ -119,8 +119,11 @@ namespace Editor
         //Teknőst forgatja a Canvason
         private void TurtleRotate(int angle)
         {
-            RotateTransform rotateTransform1 = new RotateTransform(angle-90, turtleimage.size / 2, turtleimage.size / 2);
-            canvas.Children[turtleimage.cPos].RenderTransform = rotateTransform1;
+            if (turtleimage.visible)
+            {
+                RotateTransform rotateTransform1 = new RotateTransform(angle - 90, turtleimage.size / 2, turtleimage.size / 2);
+                canvas.Children[turtleimage.cPos].RenderTransform = rotateTransform1;
+            }
         }
 
         //Balra fordítja a tekőst 'angle' fokkal

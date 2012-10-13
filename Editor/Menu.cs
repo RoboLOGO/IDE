@@ -95,7 +95,7 @@ namespace Editor
         }
         #endregion
         //futtatás
-        public void run(Turtle turtle, Canvas canvas)
+        public void run(ref Turtle turtle, Canvas canvas)
         {
             if (turtle == null)
             {

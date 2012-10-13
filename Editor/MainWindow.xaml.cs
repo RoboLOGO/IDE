@@ -30,7 +30,6 @@ namespace Editor
         {
             InitializeComponent();
             InitializeCanvas();
-            //Proba();
         }
 
         private void InitializeCanvas()
@@ -40,45 +39,6 @@ namespace Editor
             this.Height = canvas.Height + 75;
             this.Width = canvas.Width + 50;
             canvas.Background = new SolidColorBrush(Colors.White);
-        }
-
-
-
-        private void Proba()
-        {
-            Turtle turtle = new Turtle(canvas);
-            int i = 0;
-            while (true)
-            {
-                turtle.Forward(250);
-                turtle.Left(170);
-                if (i > 100)
-                    break;
-                i++;
-            }
-            turtle.Home();
-
-            /*i = 1;
-            while (true)
-            {
-                turtle.Forward(1);
-                turtle.Left(1);
-                if (i == 360)
-                    break;
-                i++;
-            }*/
-
-
-            //turtle.Backward(100);
-            //turtle.PenUp();
-            //turtle.Left(45);
-            //turtle.Forward(100);
-
-            //turtle.PenDown();
-            //turtle.PenColor(Colors.Azure);
-            //turtle.PenSize(10);
-            //turtle.Right(90);
-            //turtle.Forward(100);
         }
        
         #endregion 
@@ -130,7 +90,7 @@ namespace Editor
         private void Run_Click(object sender, RoutedEventArgs e)
         {
             menu.Save(GetString(Command_line));
-            menu.run(turtle, canvas);
+            menu.run(ref turtle, canvas);
         }
         //kép mentés
         private void Save_Image_Click(object sender, RoutedEventArgs e)
