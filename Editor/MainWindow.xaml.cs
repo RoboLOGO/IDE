@@ -30,7 +30,7 @@ namespace Editor
         {
             InitializeComponent();
             InitializeCanvas();
-            Proba();
+            //Proba();
         }
 
         private void InitializeCanvas()
@@ -80,114 +80,44 @@ namespace Editor
             //turtle.Right(90);
             //turtle.Forward(100);
         }
-        private void Save_Image_Click(object sender, RoutedEventArgs e)
-        {
-            sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".png";
-            sfd.FileName = "image";
-            sfd.Filter = "Portable Network Graphics (.png)|*.png";
-            sfd.ShowDialog();
-
-            SaveCanvas(this, canvas, 96, sfd.FileName);
-        }
-
-        public static void SaveCanvas(Window window, Canvas canvas, int dpi, string filename)
-        {
-            Size size = new Size(canvas.RenderSize.Width, canvas.RenderSize.Height);
-            canvas.Measure(size);
-            canvas.Arrange(new Rect(size));
-
-            var rtb = new RenderTargetBitmap(
-                (int)canvas.RenderSize.Width, //width 
-                (int)canvas.RenderSize.Height, //height 
-                dpi, //dpi x 
-                dpi, //dpi y 
-                PixelFormats.Pbgra32 // pixelformat 
-                );
-            rtb.Render(canvas);
-
-            SaveRTB2PNG(rtb, filename);
-        }
-
-        private static void SaveRTB2PNG(RenderTargetBitmap bmp, string filename)
-        {
-            var enc = new System.Windows.Media.Imaging.PngBitmapEncoder();
-            enc.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(bmp));
-
-            using (var stm = System.IO.File.Create(filename))
-            {
-                enc.Save(stm);
-            }
-        } 
+       
         #endregion 
         #region Menu
-
-
+        Menu menu = new Menu();
+        //bezárás
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-        SaveFileDialog sfd = null;
-        StreamWriter stw = null;
+        //mentés
         private void Save_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            save();
+            menu.Save(GetString(Command_line));
         }
-
-        private void save()
-        {
-            if (sfd == null) sfd = new SaveFileDialog();
-            if (sfd.FileName == String.Empty) sfd.ShowDialog();
-            try
-            {
-                stw = new StreamWriter(sfd.FileName, false, Encoding.UTF8);
-                stw.Write(GetString(Command_line));
-                stw.Flush();
-            }
-            catch { }
-            finally { stw.Close(); }
-        }
+        //rtb -> string
         string GetString(RichTextBox rtb)
         {
             var textRange = new TextRange(rtb.Document.ContentStart, rtb.Document.ContentEnd);
             return textRange.Text;
         }
+        //string ->rtb
         public void SetRTFText(string text, RichTextBox rtb)
         {
             MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(text));
             rtb.Selection.Load(stream, DataFormats.Text);
         }
+        //mentés másként
         private void SaveAs_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            if (sfd == null) sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-            try
-            {
-                stw = new StreamWriter(File.OpenWrite(sfd.FileName), Encoding.UTF8);
-                stw.Write(GetString(Command_line));
-                stw.Flush();
-
-            }
-            catch { }
-            finally { stw.Close(); }
+            menu.SaveAs(GetString(Command_line));
         }
+        //megnyitás
         private void Open_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.DefaultExt = ".txt";
-            dlg.Filter = "Text documents (.txt)|*.txt";
-            bool? result = dlg.ShowDialog();
-            //fájlnév
-            if (result == true)
-            {
-                // Doc megnyitás
-                string filename = dlg.FileName;
-                FileName.Content = filename;
-                SetRTFText(File.ReadAllText(filename), Command_line);
-            }
+            menu.Open();
             Format();
         }
-
+        //új
         private void New_Click(object sender, ExecutedRoutedEventArgs e)
         {
             CanvasSize cs = new CanvasSize();
@@ -196,27 +126,32 @@ namespace Editor
 
         }
         Turtle turtle;
+        //futtatás
         private void Run_Click(object sender, RoutedEventArgs e)
         {
-            save();
-            if (turtle == null)
-            {
-                turtle = new Turtle(canvas);
-            }
-            Logo_Run runn = new Logo_Run();
-            runn.Read_line(sfd.FileName);
-            for (int i = 0; i < runn.line.Count; i++)
-            {
-              runn.Spearate(i);  
-            }
-            runn.Draww(turtle, runn.comm);
-            
+            menu.Save(GetString(Command_line));
+            menu.run(turtle, canvas);
         }
+        //kép mentés
+        private void Save_Image_Click(object sender, RoutedEventArgs e)
+        {
+            menu.Image_Save(canvas, this);
+        }
+        //képernyő törlés
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            if (turtle != null)
-                turtle.Clean();
+            menu.clear(turtle);
         }
+
+       
+        #region Eljárás szerksztő
+        public static Method A;
+        private void Method_Click(object sender, RoutedEventArgs e)
+        {
+            A = new Method();
+            A.Show();
+        }
+        #endregion
         #endregion
         #region Syntax
         private void TextChangedEventHandler(object sender, TextChangedEventArgs e)
@@ -304,11 +239,6 @@ namespace Editor
             }
         }
         #endregion
-        public static Method A;
-        private void Method_Click(object sender, RoutedEventArgs e)
-        {
-            A = new Method();
-            A.Show();
-        }  
+       
     }
 }

@@ -59,6 +59,7 @@
       <DependentUpon>CanvasSize.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logo_Run.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Method.xaml.cs">
       <DependentUpon>Method.xaml</DependentUpon>
     </Compile>

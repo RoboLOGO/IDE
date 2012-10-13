@@ -25,7 +25,7 @@ namespace Editor
         {
             InitializeComponent();
         }
-
+        Menu a;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.cHeight = int.Parse(canvasHeight.Text);
@@ -35,6 +35,7 @@ namespace Editor
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.DefaultExt = ".txt";
             sfd.Filter = "Text documents (.txt)|*.txt";
