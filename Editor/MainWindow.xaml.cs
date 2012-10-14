@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
+using System.Data.SQLite;
 
 namespace Editor
 {
@@ -21,6 +22,9 @@ namespace Editor
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region SQLite
+        SQLiteConnection sqLiteConnection;
+        #endregion
         #region Turtle
         //Canvas méretei
         public static int cHeight = 600;
