@@ -11,7 +11,6 @@ namespace Editor
         static SQLiteHelper self = null;
         SQLiteConnection sqliteCon = null;
         SQLiteCommand command = null;
-        private const  string form = ".rlsln";
         protected SQLiteHelper()
         {
 
@@ -31,15 +30,15 @@ namespace Editor
             SetConnection(filesource);
             CreateFile(filesource);
             sqliteCon.Open();
-            TablesInit();
-            OptionsInit(canvasHeight, canvasWidth);
+            CreateStruct(canvasHeight, canvasWidth);
+
         }
 
         private void CreateFile(string filesource)
         {
             try
             {
-                SQLiteConnection.CreateFile(filesource + form);
+                SQLiteConnection.CreateFile(filesource);
             }
             catch
             {
@@ -66,7 +65,7 @@ namespace Editor
 
         private void SetConnection(string filesource)
         {
-            sqliteCon = new SQLiteConnection("Data Source=" + filesource + form + ";Version=3;");
+            sqliteCon = new SQLiteConnection("Data Source=" + filesource + ";Version=3;");
         } 
 
         private void CreateStruct(int canvasHeight, int canvasWidth)

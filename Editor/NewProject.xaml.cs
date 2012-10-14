@@ -21,30 +21,38 @@ namespace Editor
     /// </summary>
     public partial class NewProject : Window
     {
+        SaveFileDialog sfd = null;
         public NewProject()
         {
             InitializeComponent();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CanvasSize canvasSize = CanvasSize.GetCanvasSize();
-            canvasSize.Height = int.Parse(canvasHeight.Text);
-            canvasSize.Width = int.Parse(canvasWidth.Text);
-            this.Close();
+            try
+            {                
+                int height = int.Parse(canvasHeight.Text);
+                int width = int.Parse(canvasWidth.Text);
+                SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
+                sqlitehelp.NewFile(sfd.FileName, height, width);
+                CanvasSize canvasSize = CanvasSize.GetCanvasSize();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba:\n" + ex.Message);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".txt";
-            sfd.Filter = "Text documents (.txt)|*.txt";
+            sfd = new SaveFileDialog();
+            sfd.DefaultExt = ".rbsln";
+            sfd.Filter = "RoboLOGO Solution(.rbsln)|*.rbsln";
+            sfd.FileName = "Projekt";
             sfd.ShowDialog();
-            try
-            {
-                File.Create(sfd.FileName);
-            }
-            catch { MessageBox.Show("Nem adtál meg filenevet!"); }
+            fileSource.Text = sfd.FileName;
+            fileSource.ToolTip = sfd.FileName;
         }
     }
 }
