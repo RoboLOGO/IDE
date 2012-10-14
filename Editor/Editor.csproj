@@ -56,9 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CanvasSize.xaml.cs">
-      <DependentUpon>CanvasSize.xaml</DependentUpon>
+    <Compile Include="NewProject.xaml.cs">
+      <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\CanvasSize.cs" />
     <Compile Include="Source\Logo_Run.cs" />
     <Compile Include="Source\Menu.cs" />
     <Compile Include="Method.xaml.cs">
@@ -72,7 +73,7 @@
     <Compile Include="Source\Turtle.cs" />
     <Compile Include="Source\TurtleImage.cs" />
     <Compile Include="Source\Vector2.cs" />
-    <Page Include="CanvasSize.xaml">
+    <Page Include="NewProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

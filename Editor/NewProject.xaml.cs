@@ -17,18 +17,19 @@ using Microsoft.Win32;
 namespace Editor
 {
     /// <summary>
-    /// Interaction logic for CanvasSize.xaml
+    /// Interaction logic for NewProject.xaml
     /// </summary>
-    public partial class CanvasSize : Window
+    public partial class NewProject : Window
     {
-        public CanvasSize()
+        public NewProject()
         {
             InitializeComponent();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.cHeight = int.Parse(canvasHeight.Text);
-            MainWindow.cWidth = int.Parse(canvasWidth.Text);
+            CanvasSize canvasSize = CanvasSize.GetCanvasSize();
+            canvasSize.Height = int.Parse(canvasHeight.Text);
+            canvasSize.Width = int.Parse(canvasWidth.Text);
             this.Close();
         }
 

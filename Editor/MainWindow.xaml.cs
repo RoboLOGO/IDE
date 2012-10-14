@@ -27,12 +27,12 @@ namespace Editor
         #endregion
         #region Turtle
         //Canvas méretei
-        public static int cHeight = 600;
-        public static int cWidth = 800;
+        CanvasSize canvasSize;
 
         public MainWindow()
         {
             InitializeComponent();
+            canvasSize = CanvasSize.GetCanvasSize();
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper();
             //sqlitehelper.NewFile("teszt", 800, 600);
@@ -40,8 +40,8 @@ namespace Editor
 
         private void InitializeCanvas()
         {
-            canvas.Height = cHeight;
-            canvas.Width = cWidth;
+            canvas.Height = canvasSize.Height;
+            canvas.Width = canvasSize.Width;
             this.Height = canvas.Height + 75;
             this.Width = canvas.Width + 50;
             canvas.Background = new SolidColorBrush(Colors.White);
@@ -86,7 +86,7 @@ namespace Editor
         //új
         private void New_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            CanvasSize cs = new CanvasSize();
+            NewProject cs = new NewProject();
             cs.ShowDialog();
             InitializeCanvas();
 
