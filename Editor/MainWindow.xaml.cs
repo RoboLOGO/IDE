@@ -23,7 +23,7 @@ namespace Editor
     public partial class MainWindow : Window
     {
         #region SQLite
-        SQLiteConnection sqLiteConnection;
+        SQLiteHelper sqlitehelper;
         #endregion
         #region Turtle
         //Canvas méretei
@@ -34,6 +34,8 @@ namespace Editor
         {
             InitializeComponent();
             InitializeCanvas();
+            sqlitehelper = SQLiteHelper.GetSqlHelper();
+            //sqlitehelper.NewFile("teszt", 800, 600);
         }
 
         private void InitializeCanvas()
