@@ -25,7 +25,6 @@ namespace Editor
         {
             InitializeComponent();
         }
-        Menu a;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.cHeight = int.Parse(canvasHeight.Text);

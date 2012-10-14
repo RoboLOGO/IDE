@@ -58,18 +58,18 @@
     <Compile Include="CanvasSize.xaml.cs">
       <DependentUpon>CanvasSize.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Logo_Run.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="Source\Logo_Run.cs" />
+    <Compile Include="Source\Menu.cs" />
     <Compile Include="Method.xaml.cs">
       <DependentUpon>Method.xaml</DependentUpon>
     </Compile>
     <Compile Include="Method_Name.xaml.cs">
       <DependentUpon>Method_Name.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SyntaxHighlight.cs" />
-    <Compile Include="Turtle.cs" />
-    <Compile Include="TurtleImage.cs" />
-    <Compile Include="Vector2.cs" />
+    <Compile Include="Source\SyntaxHighlight.cs" />
+    <Compile Include="Source\Turtle.cs" />
+    <Compile Include="Source\TurtleImage.cs" />
+    <Compile Include="Source\Vector2.cs" />
     <Page Include="CanvasSize.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,7 +96,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pen.cs" />
+    <Compile Include="Source\Pen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
