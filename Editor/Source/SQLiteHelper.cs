@@ -6,6 +6,8 @@ using System.Data.SQLite;
 
 namespace Editor
 {
+    //Test OpenFIle
+    //New method, Get method, Get Canvas Size, source code
     class SQLiteHelper
     {
         static SQLiteHelper self = null;
@@ -29,8 +31,15 @@ namespace Editor
         {
             SetConnection(filesource);
             CreateFile(filesource);
-            sqliteCon.Open();
+            Open();
             CreateStruct(canvasHeight, canvasWidth);
+        }
+
+        public void OpenFile(string filesource)
+        {
+            SetConnection(filesource);
+            Open();
+            SetCanvasSize();
 
         }
 
@@ -45,12 +54,35 @@ namespace Editor
             }
         }
 
+        public void SetCanvasSize()
+        {
+            string canvasheightSQL = "SELECT Value FROM Options WHERE Name='canvasheight'";
+            string canvaswidthSQL = "SELECT Value FROM Options WHERE Name='canvaswidth'";
+
+            CanvasSize.GetCanvasSize().Height = GetCanvasSize(canvasheightSQL);
+            CanvasSize.GetCanvasSize().Width = GetCanvasSize(canvaswidthSQL);
+
+        }
+
+        private int GetCanvasSize(string canvasheightSQL)
+        {
+            SQLiteCommand command = new SQLiteCommand(canvasheightSQL, sqliteCon);
+            SQLiteDataReader reader = command.ExecuteReader();
+            reader.Read();
+            return (int)reader["name"];
+        }
+
         public void Connect()
         {
             if (sqliteCon != null)
             {
                 sqliteCon.Open();
             }
+        }
+
+        public bool IsOpen()
+        {
+            return(System.Data.ConnectionState.Open == sqliteCon.State); 
         }
 
         private void Open()

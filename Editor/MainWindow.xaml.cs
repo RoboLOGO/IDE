@@ -96,7 +96,7 @@ namespace Editor
         private void Run_Click(object sender, RoutedEventArgs e)
         {
             menu.Save(GetString(Command_line));
-            menu.run(ref turtle, canvas);
+            menu.Run(ref turtle, canvas);
         }
         //kép mentés
         private void Save_Image_Click(object sender, RoutedEventArgs e)

@@ -95,19 +95,19 @@ namespace Editor
         }
         #endregion
         //futtatás
-        public void run(ref Turtle turtle, Canvas canvas)
+        public void Run(ref Turtle turtle, Canvas canvas)
         {
             if (turtle == null)
             {
                 turtle = new Turtle(canvas);
             }
-            Logo_Run runn = new Logo_Run();
-            runn.Read_line(sfd.FileName);
-            for (int i = 0; i < runn.line.Count; i++)
+            Logo_Run run = new Logo_Run();
+            run.Read_line(sfd.FileName);
+            for (int i = 0; i < run.line.Count; i++)
             {
-                runn.Spearate(i);
+                run.Spearate(i);
             }
-            runn.Draww(turtle, runn.comm);
+            run.Draww(turtle, run.comm);
         }
         //képernyő törlés
         public void clear(Turtle turtle)

@@ -35,6 +35,7 @@ namespace Editor
                 SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
                 sqlitehelp.NewFile(sfd.FileName, height, width);
                 CanvasSize canvasSize = CanvasSize.GetCanvasSize();
+                sqlitehelp.IsOpen();
                 this.Close();
             }
             catch (Exception ex)
