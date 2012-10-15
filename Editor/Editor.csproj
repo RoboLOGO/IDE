@@ -60,7 +60,7 @@
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\CanvasSize.cs" />
-    <Compile Include="Source\Logo_Run.cs" />
+    <Compile Include="Source\LogoRun.cs" />
     <Compile Include="Source\Menu.cs" />
     <Compile Include="Method.xaml.cs">
       <DependentUpon>Method.xaml</DependentUpon>

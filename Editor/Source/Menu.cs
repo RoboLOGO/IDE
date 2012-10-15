@@ -85,12 +85,8 @@ namespace Editor
             }
             LogoRun run = new LogoRun();
             string sourceCode = sqlitehelp.GetSourceCode();
-            run.ReadLine(sourceCode);
-            for (int i = 0; i < 1; i++)  //Hiba ezt ki kell szedni a LogoRun osztályba és a lines hosszáig megy
-            {
-                run.Spearate(i);
-            }
-            run.Draww(turtle, run.comm);
+            run.Run(sourceCode);
+            run.Draw(turtle);
         }
         //képernyő törlés
         public void clear(Turtle turtle)
