@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SQLite;
+using System.IO;
 
 namespace Editor
 {
@@ -59,6 +60,11 @@ namespace Editor
         {
             try
             {
+                if (File.Exists(filesource))
+                {
+                    File.Delete(filesource);
+                    System.Threading.Thread.Sleep(500);
+                }
                 SQLiteConnection.CreateFile(filesource);
             }
             catch
