@@ -82,6 +82,13 @@ namespace Editor
 
         }
 
+        private void InserOption(string name, string value)
+        {
+            string cavasHeightSQL = "INSERT INTO Options (Name, Value) VALUES ('" + name + "','" + value + "')";
+            command = new SQLiteCommand(cavasHeightSQL, sqliteCon);
+            command.ExecuteNonQuery();
+        }
+
         private string GetValue(string nameSQL)
         {
             SQLiteCommand command = new SQLiteCommand(nameSQL, sqliteCon);
@@ -144,15 +151,9 @@ namespace Editor
 
         private void OptionsInit(int canvasHeight, int canvasWidth)
         {
-            string cavasHeightSQL = "INSERT INTO Options (Name, Value) VALUES ('canvasheight',"+ canvasHeight +")";
-            string cavasWidthSQL = "INSERT INTO Options (Name, Value) VALUES ('canvaswidth'," + canvasWidth + ")";
-            string sourceCode = "INSERT INTO Options (Name, Value) VALUES ('sourcecode', '')";
-            command = new SQLiteCommand(cavasHeightSQL, sqliteCon);
-            command.ExecuteNonQuery();
-            command = new SQLiteCommand(cavasWidthSQL, sqliteCon);
-            command.ExecuteNonQuery();
-            command = new SQLiteCommand(sourceCode, sqliteCon);
-            command.ExecuteNonQuery();
+            InserOption("canvasheight", canvasHeight.ToString());
+            InserOption("canvaswidth", canvasWidth.ToString());
+            InserOption("sourcecode", "");
         }
 
         ~SQLiteHelper()
