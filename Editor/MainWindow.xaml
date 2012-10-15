@@ -143,7 +143,7 @@
         </StackPanel>
         
         <Border>
-            <RichTextBox  Height="112" x:Name="Command_line"  VerticalAlignment="Bottom" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
+            <RichTextBox IsEnabled="False"  Height="112" x:Name="CommandLine"  VerticalAlignment="Bottom" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
                 <FlowDocument Name="fdtext">
                     <Paragraph FontSize="10pt" LineHeight="0.1pt" >
                     </Paragraph>

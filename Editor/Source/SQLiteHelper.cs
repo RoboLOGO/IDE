@@ -35,6 +35,18 @@ namespace Editor
             CreateStruct(canvasHeight, canvasWidth);
         }
 
+        public string GetSourceCode()
+        {
+            return GetValue("SELECT Value FROM Options WHERE Name='sourcecode'");
+        }
+
+
+        public void SetSourceCode(string source)
+        {
+            string sourceSQL = "UPDATE Options SET Value='" + source + "' WHERE Name='sourcecode'";
+            SetValue(sourceSQL);
+        }
+
         public void OpenFile(string filesource)
         {
             SetConnection(filesource);
@@ -59,17 +71,23 @@ namespace Editor
             string canvasheightSQL = "SELECT Value FROM Options WHERE Name='canvasheight'";
             string canvaswidthSQL = "SELECT Value FROM Options WHERE Name='canvaswidth'";
 
-            CanvasSize.GetCanvasSize().Height = GetCanvasSize(canvasheightSQL);
-            CanvasSize.GetCanvasSize().Width = GetCanvasSize(canvaswidthSQL);
+            CanvasSize.GetCanvasSize().Height = int.Parse(GetValue(canvasheightSQL));
+            CanvasSize.GetCanvasSize().Width = int.Parse(GetValue(canvaswidthSQL));
 
         }
 
-        private int GetCanvasSize(string canvasheightSQL)
+        private string GetValue(string nameSQL)
         {
-            SQLiteCommand command = new SQLiteCommand(canvasheightSQL, sqliteCon);
+            SQLiteCommand command = new SQLiteCommand(nameSQL, sqliteCon);
             SQLiteDataReader reader = command.ExecuteReader();
             reader.Read();
-            return (int)reader["name"];
+            return (string)reader["value"];
+        }
+
+        private void SetValue(string nameSQL)
+        {
+            command = new SQLiteCommand(nameSQL, sqliteCon);
+            command.ExecuteNonQuery();
         }
 
         public void Connect()
@@ -82,6 +100,7 @@ namespace Editor
 
         public bool IsOpen()
         {
+            if (sqliteCon == null) return false;
             return(System.Data.ConnectionState.Open == sqliteCon.State); 
         }
 
@@ -108,8 +127,8 @@ namespace Editor
 
         private void TablesInit()
         {
-            string methodsSQL = "CREATE TABLE Methods (Name VARCHAR(25) NOT NULL, Method VARCHAR)";
-            string optionsSQL = "CREATE TABLE Options (Name VARCHAR(25) UNIQUE, Value VARCHAR)";
+            string methodsSQL = "CREATE TABLE Methods (Name VARCHAR(25) NOT NULL, Method TEXT)";
+            string optionsSQL = "CREATE TABLE Options (Name VARCHAR(25) UNIQUE, Value TEXT)";
             command = new SQLiteCommand(methodsSQL, sqliteCon);
             command.ExecuteNonQuery();
             command = new SQLiteCommand(optionsSQL, sqliteCon);
@@ -121,9 +140,12 @@ namespace Editor
         {
             string cavasHeightSQL = "INSERT INTO Options (Name, Value) VALUES ('canvasheight',"+ canvasHeight +")";
             string cavasWidthSQL = "INSERT INTO Options (Name, Value) VALUES ('canvaswidth'," + canvasWidth + ")";
+            string sourceCode = "INSERT INTO Options (Name, Value) VALUES ('sourcecode', '')";
             command = new SQLiteCommand(cavasHeightSQL, sqliteCon);
             command.ExecuteNonQuery();
             command = new SQLiteCommand(cavasWidthSQL, sqliteCon);
+            command.ExecuteNonQuery();
+            command = new SQLiteCommand(sourceCode, sqliteCon);
             command.ExecuteNonQuery();
         }
 

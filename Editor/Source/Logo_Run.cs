@@ -3,12 +3,13 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Editor
 {
-    internal class Logo_Run
+    internal class LogoRun
     {
-        public Logo_Run()
+        public LogoRun()
         {
         }
         public List<string> line = new List<string>();
@@ -26,14 +27,12 @@ namespace Editor
             }
 
         }
-        public void Read_line(string filename)
+        public void ReadLine(string sourceCode)
         {
-            string s = "";
-            StreamReader str = new StreamReader(filename, Encoding.UTF8);
-            while (!str.EndOfStream)
+            string[] lines = Regex.Split(sourceCode, "\r\n");
+            for(int i = 0; i < lines.Length; i++)
             {
-                s = str.ReadLine();
-                line.Add(s);
+                line.Add(lines[i]);
             }
 
         }

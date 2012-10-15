@@ -13,52 +13,29 @@ namespace Editor
 {
     class Menu
     {
-        SaveFileDialog sfd;
-        StreamWriter stw;
-        public OpenFileDialog dlg;
+
+
+        SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
+
         //mentés
-        public void Save(string s)
+        public void Save(string source)
         {
-            if (sfd == null) sfd = new SaveFileDialog();
-            if (sfd.FileName == String.Empty) sfd.ShowDialog();
-            try
-            {
-                stw = new StreamWriter(sfd.FileName, false, Encoding.UTF8);
-                stw.Write(s);
-                stw.Flush();
-            }
-            catch { }
-            finally { stw.Close(); }
+            sqlitehelp.SetSourceCode(source);
         }
         //mentés másként
         public void SaveAs(string s)
         {
-            if (sfd == null) sfd = new SaveFileDialog();
-            sfd.ShowDialog();
-            try
-            {
-                stw = new StreamWriter(File.OpenWrite(sfd.FileName), Encoding.UTF8);
-                stw.Write(s);
-                stw.Flush();
-
-            }
-            catch { }
-            finally { stw.Close(); }
+            
         }
         //megnyitás
         public bool? Open()
         {
-            dlg = new OpenFileDialog();
-            dlg.DefaultExt = ".txt";
-            dlg.Filter = "Text documents (.txt)|*.txt";
-            bool? result = dlg.ShowDialog();
-            //fájlnév
-            return result;
+            return null;
         }
         #region --Kép Mentés--
         public void Image_Save(Canvas canvas, Window window)
         {
-            sfd = new SaveFileDialog();
+            SaveFileDialog sfd = new SaveFileDialog();
             sfd.DefaultExt = ".png";
             sfd.FileName = "image";
             sfd.Filter = "Portable Network Graphics (.png)|*.png";
@@ -97,13 +74,19 @@ namespace Editor
         //futtatás
         public void Run(ref Turtle turtle, Canvas canvas)
         {
+            if (!sqlitehelp.IsOpen())
+            {
+                MessageBox.Show("Nincs projekted");
+                return;
+            }
             if (turtle == null)
             {
                 turtle = new Turtle(canvas);
             }
-            Logo_Run run = new Logo_Run();
-            run.Read_line(sfd.FileName);
-            for (int i = 0; i < run.line.Count; i++)
+            LogoRun run = new LogoRun();
+            string sourceCode = sqlitehelp.GetSourceCode();
+            run.ReadLine(sourceCode);
+            for (int i = 0; i < 1; i++)  //Hiba ezt ki kell szedni a LogoRun osztályba és a lines hosszáig megy
             {
                 run.Spearate(i);
             }

@@ -25,7 +25,6 @@ namespace Editor
         #region SQLite
         SQLiteHelper sqlitehelper;
         #endregion
-        #region Turtle
         //Canvas méretei
         CanvasSize canvasSize;
 
@@ -36,6 +35,7 @@ namespace Editor
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper();
             //sqlitehelper.NewFile("teszt", 800, 600);
+            //sqlitehelper.SetSourceCode("almfa körtefa íííí neo");
         }
 
         private void InitializeCanvas()
@@ -47,7 +47,6 @@ namespace Editor
             canvas.Background = new SolidColorBrush(Colors.White);
         }
        
-        #endregion 
         #region Menu
         Menu menu = new Menu();
         //bezárás
@@ -58,7 +57,7 @@ namespace Editor
         //mentés
         private void Save_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.Save(GetString(Command_line));
+            menu.Save(GetString(CommandLine));
         }
         //rtb -> string
         string GetString(RichTextBox rtb)
@@ -75,7 +74,7 @@ namespace Editor
         //mentés másként
         private void SaveAs_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.SaveAs(GetString(Command_line));
+            menu.SaveAs(GetString(CommandLine));
         }
         //megnyitás
         private void Open_Click(object sender, ExecutedRoutedEventArgs e)
@@ -89,13 +88,14 @@ namespace Editor
             NewProject cs = new NewProject();
             cs.ShowDialog();
             InitializeCanvas();
+            CommandLine.IsEnabled = true;
 
         }
         Turtle turtle;
         //futtatás
         private void Run_Click(object sender, RoutedEventArgs e)
         {
-            menu.Save(GetString(Command_line));
+            menu.Save(GetString(CommandLine));
             menu.Run(ref turtle, canvas);
         }
         //kép mentés
@@ -122,14 +122,14 @@ namespace Editor
         #region Syntax
         private void TextChangedEventHandler(object sender, TextChangedEventArgs e)
         {
-            if (Command_line.Document == null)
+            if (CommandLine.Document == null)
                 return;
 
-            TextRange documentRange = new TextRange(Command_line.Document.ContentStart, Command_line.Document.ContentEnd);
+            TextRange documentRange = new TextRange(CommandLine.Document.ContentStart, CommandLine.Document.ContentEnd);
             documentRange.ClearAllProperties();
 
-            TextPointer navigator = Command_line.Document.ContentStart;
-            while (navigator.CompareTo(Command_line.Document.ContentEnd) < 0)
+            TextPointer navigator = CommandLine.Document.ContentStart;
+            while (navigator.CompareTo(CommandLine.Document.ContentEnd) < 0)
             {
                 TextPointerContext context = navigator.GetPointerContext(LogicalDirection.Backward);
                 if (context == TextPointerContext.ElementStart && navigator.Parent is Run)
@@ -152,7 +152,7 @@ namespace Editor
         List<Tag> m_tags = new List<Tag>();
         void Format()
         {
-            Command_line.TextChanged -= this.TextChangedEventHandler;
+            CommandLine.TextChanged -= this.TextChangedEventHandler;
 
             for (int i = 0; i < m_tags.Count; i++)
             {
@@ -162,7 +162,7 @@ namespace Editor
             }
             m_tags.Clear();
 
-            Command_line.TextChanged += this.TextChangedEventHandler;
+            CommandLine.TextChanged += this.TextChangedEventHandler;
         }
 
         void CheckWordsInRun(Run run)
