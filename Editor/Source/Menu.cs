@@ -13,7 +13,10 @@ namespace Editor
 {
     class Menu
     {
+
+
         SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
+
         //mentés
         public void Save(string source)
         {
@@ -27,7 +30,11 @@ namespace Editor
         //megnyitás
         public bool? Open()
         {
-            return null;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.DefaultExt = ".rlsln"; ofd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
+            bool? result = ofd.ShowDialog();
+            sqlitehelp.SetSourceCode(ofd.FileName);
+            return result;
         }
         #region --Kép Mentés--
         public void Image_Save(Canvas canvas, Window window)
