@@ -35,12 +35,12 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Mentés" Command="ApplicationCommands.Save">
+                    <MenuItem Header="Mentés" Name="SaveMenu" IsEnabled="False" Command="ApplicationCommands.Save">
                         <MenuItem.Icon>
                             <Image Source="/Editor;component/Icon_Images/save_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Mentés Másként..." Command="ApplicationCommands.SaveAs">
+                    <MenuItem Header="Mentés Másként..." Name="SaveAsMenu" IsEnabled="False" Command="ApplicationCommands.SaveAs">
                         <MenuItem.Icon>
                             <Image Source="/Editor;component/Icon_Images/save_as_icon.png" />
                         </MenuItem.Icon>
@@ -82,17 +82,17 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Futtatás">
-                    <MenuItem Header="Fut" InputGestureText="F5" Click="Run_Click">
+                    <MenuItem Header="Fut" Name="RunMenu" IsEnabled="False" InputGestureText="F5" Click="Run_Click">
                         <MenuItem.Icon>
                             <Image Source="/Editor;component/Icon_Images/run_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Kép törlés" Click="Clear_Click">
+                    <MenuItem Header="Kép törlés" Name="ClearMenu" IsEnabled="False" Click="Clear_Click">
                         <MenuItem.Icon>
                             <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Eljárás" Click="Method_Click">
+                    <MenuItem Header="Eljárás" Name="MethodMenu" IsEnabled="False" Click="Method_Click">
                         <MenuItem.Icon>
                             <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                         </MenuItem.Icon>
@@ -106,7 +106,7 @@
                 <Button ToolTip="Megnyitás" Command="ApplicationCommands.Open">
                     <Image Source="/Editor;component/Icon_Images/open_icon.gif" />
                 </Button>
-                <Button ToolTip="Mentés" Command="ApplicationCommands.Save">
+                <Button Name="SaveButton" IsEnabled="False" ToolTip="Mentés" Command="ApplicationCommands.Save">
                     <Image Source="/Editor;component/Icon_Images/save_icon.png" />
                 </Button>
                 <Separator/>
@@ -127,10 +127,10 @@
                     <Image Source="/Editor;component/Icon_Images/redo_icon.png" />
                 </Button>
                 <Separator/>
-                <Button ToolTip="Futtatás" Click="Run_Click">
+                <Button Name="RunButton" ToolTip="Futtatás" IsEnabled="False" Click="Run_Click">
                     <Image Source="/Editor;component/Icon_Images/run_icon.png" />
                 </Button>
-                <Button ToolTip="Képernyő törlés" Click="Clear_Click" >
+                <Button Name="ClearButton" IsEnabled="False" ToolTip="Képernyő törlés" Click="Clear_Click" >
                     <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                 </Button>
                 <Button ToolTip="Rajzvászon mentése" Click="Save_Image_Click">

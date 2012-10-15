@@ -45,6 +45,7 @@ namespace Editor
             this.Height = canvas.Height + 75;
             this.Width = canvas.Width + 50;
             canvas.Background = new SolidColorBrush(Colors.White);
+            
         }
        
         #region Menu
@@ -88,8 +89,17 @@ namespace Editor
             NewProject cs = new NewProject();
             cs.ShowDialog();
             InitializeCanvas();
-            CommandLine.IsEnabled = true;
 
+
+            CommandLine.IsEnabled = true;
+            RunButton.IsEnabled = true;
+            RunMenu.IsEnabled = true;
+            ClearButton.IsEnabled = true;
+            ClearMenu.IsEnabled = true;
+            SaveButton.IsEnabled = true;
+            SaveMenu.IsEnabled = true;
+            SaveAsMenu.IsEnabled = true;
+            MethodMenu.IsEnabled = true;
         }
         Turtle turtle;
         //futtatás
@@ -115,7 +125,7 @@ namespace Editor
         private void Method_Click(object sender, RoutedEventArgs e)
         {
             A = new Method();
-            A.Show();
+            A.ShowDialog();
         }
         #endregion
         #endregion

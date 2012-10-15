@@ -13,10 +13,7 @@ namespace Editor
 {
     class Menu
     {
-
-
         SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
-
         //mentés
         public void Save(string source)
         {

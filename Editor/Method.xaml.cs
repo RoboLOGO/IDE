@@ -117,7 +117,7 @@ namespace Editor
         private void Method_Add_Click(object sender, RoutedEventArgs e)
         {
             M = new Method_Name();
-            M.Show();
+            M.ShowDialog();
         }
     }
 }
