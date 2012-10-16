@@ -69,6 +69,8 @@
       <DependentUpon>Method_Name.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\SQLiteHelper.cs" />
+    <Compile Include="Source\SQLiteReader.cs" />
+    <Compile Include="Source\SQLiteWriter.cs" />
     <Compile Include="Source\SyntaxHighlight.cs" />
     <Compile Include="Source\Turtle.cs" />
     <Compile Include="Source\TurtleImage.cs" />

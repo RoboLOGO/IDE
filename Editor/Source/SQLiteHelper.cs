@@ -4,19 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 using System.IO;
+using Editor.SQLite;
 
 namespace Editor
 {
-    //Test OpenFIle
-    //New method, Get method, Get Canvas Size, source code
+    //Test OpenFile, New method, Get method, Update Method, Delete Method,
     class SQLiteHelper
     {
-        static SQLiteHelper self = null;
-        SQLiteConnection sqliteCon = null;
-        SQLiteCommand command = null;
+        static SQLiteHelper self;
+
+        SQLiteConnection sqliteCon;
+        SQLiteReader sqlitereader;
+        SQLiteWriter sqlitewriter;
+
         protected SQLiteHelper()
         {
-
+            sqlitereader = new SQLiteReader();
+            sqlitewriter = new SQLiteWriter();
         }
 
         static public SQLiteHelper GetSqlHelper()
@@ -38,23 +42,46 @@ namespace Editor
 
         public string GetSourceCode()
         {
-            return GetValue("SELECT Value FROM Options WHERE Name='sourcecode'");
+            string sourceSQL = "SELECT Value FROM Options WHERE Name='sourcecode'";
+            return sqlitereader.ExecuteReader(sourceSQL, "value", sqliteCon);
         }
 
+        public void NewMethod(string name, string code)
+        {
+            string methodSQL = "INSERT INTO Method (Name, Method) VALUES ('" + name + "','" + code + "')";
+            sqlitewriter.ExecuteQuery(methodSQL, sqliteCon);
+        }
+
+        public string GetMethod(string name)
+        {
+            string methodSQL = "SELECT Method FROM Methods WHERE Name='" + name + "'";
+            return sqlitereader.ExecuteReader(methodSQL, "value", sqliteCon);
+        }
+
+        public void DeleteMethod(string name)
+        {
+            string methodSQL = "DELETE FROM Methods WHERE Name='" + name +"'";
+            sqlitewriter.ExecuteQuery(methodSQL, sqliteCon);
+        } 
+
+        public void UpdateMethod(string name, string source)
+        {
+            string methodSQL = "UPDATE Methods SET Method ='" + source + "' WHERE Name='" + name + "'";
+            sqlitewriter.ExecuteQuery(methodSQL, sqliteCon);
+        } 
 
         public void SetSourceCode(string source)
         {
             string sourceSQL = "UPDATE Options SET Value='" + source + "' WHERE Name='sourcecode'";
-            SetValue(sourceSQL);
-        }
+            sqlitewriter.ExecuteQuery(sourceSQL, sqliteCon);
+        } 
 
         public void OpenFile(string filesource)
         {
             SetConnection(filesource);
             Open();
             SetCanvasSize();
-
-        }
+        } 
 
         private void CreateFile(string filesource)
         {
@@ -70,37 +97,22 @@ namespace Editor
             catch
             {
             }
-        }
+        } 
 
         public void SetCanvasSize()
         {
             string canvasheightSQL = "SELECT Value FROM Options WHERE Name='canvasheight'";
             string canvaswidthSQL = "SELECT Value FROM Options WHERE Name='canvaswidth'";
 
-            CanvasSize.GetCanvasSize().Height = int.Parse(GetValue(canvasheightSQL));
-            CanvasSize.GetCanvasSize().Width = int.Parse(GetValue(canvaswidthSQL));
+            CanvasSize.GetCanvasSize().Height = int.Parse(sqlitereader.ExecuteReader(canvasheightSQL, "value", sqliteCon));
+            CanvasSize.GetCanvasSize().Width = int.Parse(sqlitereader.ExecuteReader(canvaswidthSQL, "value", sqliteCon));
 
         }
 
         private void InserOption(string name, string value)
         {
             string cavasHeightSQL = "INSERT INTO Options (Name, Value) VALUES ('" + name + "','" + value + "')";
-            command = new SQLiteCommand(cavasHeightSQL, sqliteCon);
-            command.ExecuteNonQuery();
-        }
-
-        private string GetValue(string nameSQL)
-        {
-            SQLiteCommand command = new SQLiteCommand(nameSQL, sqliteCon);
-            SQLiteDataReader reader = command.ExecuteReader();
-            reader.Read();
-            return (string)reader["value"];
-        }
-
-        private void SetValue(string nameSQL)
-        {
-            command = new SQLiteCommand(nameSQL, sqliteCon);
-            command.ExecuteNonQuery();
+            sqlitewriter.ExecuteQuery(cavasHeightSQL, sqliteCon);
         }
 
         public void Connect()
@@ -109,28 +121,28 @@ namespace Editor
             {
                 sqliteCon.Open();
             }
-        }
+        } 
 
         public bool IsOpen()
         {
             if (sqliteCon == null) return false;
             return(System.Data.ConnectionState.Open == sqliteCon.State); 
-        }
+        } 
 
         private void Open()
         {
             sqliteCon.Open();
-        }
+        } 
 
         private void Close()
         {
             sqliteCon.Close();
-        }
+        } 
 
         private void SetConnection(string filesource)
         {
             sqliteCon = new SQLiteConnection("Data Source=" + filesource + ";Version=3;");
-        } 
+        }  
 
         private void CreateStruct(int canvasHeight, int canvasWidth)
         {
@@ -142,12 +154,9 @@ namespace Editor
         {
             string methodsSQL = "CREATE TABLE Methods (Name VARCHAR(25) NOT NULL, Method TEXT)";
             string optionsSQL = "CREATE TABLE Options (Name VARCHAR(25) UNIQUE, Value TEXT)";
-            command = new SQLiteCommand(methodsSQL, sqliteCon);
-            command.ExecuteNonQuery();
-            command = new SQLiteCommand(optionsSQL, sqliteCon);
-            command.ExecuteNonQuery();
-
-        }
+            sqlitewriter.ExecuteQuery(methodsSQL, sqliteCon);
+            sqlitewriter.ExecuteQuery(optionsSQL, sqliteCon);
+        } 
 
         private void OptionsInit(int canvasHeight, int canvasWidth)
         {
@@ -165,7 +174,7 @@ namespace Editor
             catch
             {
             }
-        }
+        } 
 
     }
 }
