@@ -21,12 +21,13 @@ namespace Editor
     /// </summary>
     public partial class NewProject : Window
     {
+        bool success = false;
         SaveFileDialog sfd = null;
         public NewProject()
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {                
@@ -44,7 +45,7 @@ namespace Editor
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SaveButton_Click_1(object sender, RoutedEventArgs e)
         {
             
             sfd = new SaveFileDialog();
@@ -54,6 +55,12 @@ namespace Editor
             sfd.ShowDialog();
             fileSource.Text = sfd.FileName;
             fileSource.ToolTip = sfd.FileName;
+            success = true;
+        }
+
+        public bool Success()
+        {
+            return success;
         }
     }
 }

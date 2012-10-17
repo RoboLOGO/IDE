@@ -27,7 +27,7 @@
         <TextBox Name="canvasHeight" Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Text="600" TextAlignment="Right"/>
         <TextBlock Grid.Row="2" Text="Mentés helye: " />
         <TextBlock Grid.Row="2" Grid.Column="3" Name="fileSource" Width="120" Background="WhiteSmoke" />
-        <Button Width="70" Height="23" Grid.Column="1" Grid.Row="3" Content="Tallózás.." Click="Button_Click_1" />
-        <Button Width="70" Grid.Row="4" Grid.Column="1" Content="Mehet!" Click="Button_Click" HorizontalAlignment="Right" Margin="0,41,10,-62" />
+        <Button Width="70" Height="23" Grid.Column="1" Grid.Row="3" Content="Tallózás.." Click="SaveButton_Click_1" />
+        <Button Width="70" Grid.Row="4" Grid.Column="1" Content="Mentés" Click="SelectButton_Click" HorizontalAlignment="Right" Margin="0,41,10,-62" />
     </Grid>
 </Window>

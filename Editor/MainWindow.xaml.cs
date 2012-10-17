@@ -80,17 +80,26 @@ namespace Editor
         //megnyitás
         private void Open_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.Open();
-            Format();
+            if (menu.Open() == true)
+            {
+                Format();
+                EnableMenus();
+            }
         }
         //új
         private void New_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            NewProject cs = new NewProject();
-            cs.ShowDialog();
-            InitializeCanvas();
+            NewProject np = new NewProject();
+            np.ShowDialog();
+            if (np.Success())
+            {
+                InitializeCanvas();
+                EnableMenus();
+            }
+        }
 
-
+        private void EnableMenus()
+        {
             CommandLine.IsEnabled = true;
             RunButton.IsEnabled = true;
             RunMenu.IsEnabled = true;
@@ -101,6 +110,7 @@ namespace Editor
             SaveAsMenu.IsEnabled = true;
             MethodMenu.IsEnabled = true;
         }
+
         Turtle turtle;
         //futtatás
         private void Run_Click(object sender, RoutedEventArgs e)

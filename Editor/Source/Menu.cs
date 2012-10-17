@@ -13,8 +13,6 @@ namespace Editor
 {
     class Menu
     {
-
-
         SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
 
         //mentés
@@ -45,7 +43,8 @@ namespace Editor
             ofd.DefaultExt = ".rlsln"; 
             ofd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
             bool? result = ofd.ShowDialog();
-            sqlitehelp.SetSourceCode(ofd.FileName);
+            if (result == true) 
+                sqlitehelp.SetSourceCode(ofd.FileName);
             return result;
         }
         #region --Kép Mentés--
