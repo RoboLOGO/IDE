@@ -34,6 +34,7 @@ namespace Editor
             canvasSize = CanvasSize.GetCanvasSize();
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper();
+            menu = Menu.GetMenu();
             //sqlitehelper.NewFile("teszt", 800, 600);
             //sqlitehelper.SetSourceCode("almfa körtefa íííí neo");
         }
@@ -44,12 +45,11 @@ namespace Editor
             canvas.Width = canvasSize.Width;
             this.Height = canvas.Height + 75;
             this.Width = canvas.Width + 50;
-            canvas.Background = new SolidColorBrush(Colors.White);
-            
+            canvas.Background = new SolidColorBrush(Colors.White); 
         }
        
         #region Menu
-        Menu menu = new Menu();
+        Menu menu;
         RTextboxHelper RTB = new RTextboxHelper();
         //bezárás
         private void Close_Click(object sender, RoutedEventArgs e)

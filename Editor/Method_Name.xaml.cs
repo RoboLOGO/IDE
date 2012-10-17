@@ -27,7 +27,6 @@ namespace Editor
         {
             MainWindow.A.Method_List.Items.Add(textBox1.Text);
             this.Close();
-            
         }
     }
 }
