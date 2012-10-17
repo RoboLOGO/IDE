@@ -68,6 +68,7 @@
     <Compile Include="Method_Name.xaml.cs">
       <DependentUpon>Method_Name.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\RTextboxHelper.cs" />
     <Compile Include="Source\SQLiteHelper.cs" />
     <Compile Include="Source\SQLiteReader.cs" />
     <Compile Include="Source\SQLiteWriter.cs" />

@@ -50,6 +50,7 @@ namespace Editor
        
         #region Menu
         Menu menu = new Menu();
+        RTextboxHelper RTB = new RTextboxHelper();
         //bezárás
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -58,24 +59,12 @@ namespace Editor
         //mentés
         private void Save_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.Save(GetString(CommandLine));
-        }
-        //rtb -> string
-        string GetString(RichTextBox rtb)
-        {
-            var textRange = new TextRange(rtb.Document.ContentStart, rtb.Document.ContentEnd);
-            return textRange.Text;
-        }
-        //string ->rtb
-        public void SetRTFText(string text, RichTextBox rtb)
-        {
-            MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(text));
-            rtb.Selection.Load(stream, DataFormats.Text);
+            menu.Save(RTB.GetString(CommandLine));
         }
         //mentés másként
         private void SaveAs_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.SaveAs(GetString(CommandLine), sqlitehelper.GetFile());
+            menu.SaveAs(RTB.GetString(CommandLine), sqlitehelper.GetFile());
         }
         //megnyitás
         private void Open_Click(object sender, ExecutedRoutedEventArgs e)
@@ -115,7 +104,7 @@ namespace Editor
         //futtatás
         private void Run_Click(object sender, RoutedEventArgs e)
         {
-            menu.Save(GetString(CommandLine));
+            menu.Save(RTB.GetString(CommandLine));
             menu.Run(ref turtle, canvas);
         }
         //kép mentés
