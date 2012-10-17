@@ -75,7 +75,7 @@ namespace Editor
         //mentés másként
         private void SaveAs_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.SaveAs(GetString(CommandLine));
+            menu.SaveAs(GetString(CommandLine), sqlitehelper.GetFile());
         }
         //megnyitás
         private void Open_Click(object sender, ExecutedRoutedEventArgs e)

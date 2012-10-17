@@ -17,6 +17,8 @@ namespace Editor
         SQLiteReader sqlitereader;
         SQLiteWriter sqlitewriter;
 
+        string filesource;
+
         protected SQLiteHelper()
         {
             sqlitereader = new SQLiteReader();
@@ -34,10 +36,16 @@ namespace Editor
 
         public void NewFile(string filesource, int canvasHeight, int canvasWidth)
         {
+            this.filesource = filesource;
             SetConnection(filesource);
             CreateFile(filesource);
             Open();
             CreateStruct(canvasHeight, canvasWidth);
+        }
+
+        public string GetFile()
+        {
+            return filesource;
         }
 
         public string GetSourceCode()
@@ -78,6 +86,7 @@ namespace Editor
 
         public void OpenFile(string filesource)
         {
+            this.filesource = filesource;
             SetConnection(filesource);
             Open();
             SetCanvasSize();
@@ -129,12 +138,12 @@ namespace Editor
             return(System.Data.ConnectionState.Open == sqliteCon.State); 
         } 
 
-        private void Open()
+        public void Open()
         {
             sqliteCon.Open();
         } 
 
-        private void Close()
+        public void Close()
         {
             sqliteCon.Close();
         } 

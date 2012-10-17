@@ -23,15 +23,27 @@ namespace Editor
             sqlitehelp.SetSourceCode(source);
         }
         //mentés másként
-        public void SaveAs(string s)
+        public void SaveAs(string source, string sourceFile)
         {
-            
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.DefaultExt = ".rlsln"; 
+            sfd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
+            sfd.FileName = "Projekt1";
+            bool? result = sfd.ShowDialog();
+            if (result == true)
+            {
+                sqlitehelp.SetSourceCode(source);
+                sqlitehelp.Close();
+                File.Copy(sourceFile, sfd.FileName);
+                sqlitehelp.Open();
+            }
         }
         //megnyitás
         public bool? Open()
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.DefaultExt = ".rlsln"; ofd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
+            ofd.DefaultExt = ".rlsln"; 
+            ofd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
             bool? result = ofd.ShowDialog();
             sqlitehelp.SetSourceCode(ofd.FileName);
             return result;
