@@ -120,11 +120,10 @@ namespace Editor
 
        
         #region Eljárás szerksztő
-        public static Method A;
         private void Method_Click(object sender, RoutedEventArgs e)
         {
-            A = new Method();
-            A.ShowDialog();
+            Method method = new Method();
+            method.ShowDialog();
         }
         #endregion
         #endregion

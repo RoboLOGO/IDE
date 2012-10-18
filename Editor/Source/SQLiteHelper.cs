@@ -51,26 +51,50 @@ namespace Editor
         public string GetSourceCode()
         {
             string sourceSQL = "SELECT Value FROM Options WHERE Name='sourcecode'";
-            return sqlitereader.ExecuteReader(sourceSQL, "value", sqliteCon);
+            return sqlitereader.ExecuteOneReader(sourceSQL, "value", sqliteCon);
         }
 
         public void NewMethod(string name, string code)
         {
-            string methodSQL = "INSERT INTO Method (Name, Method) VALUES ('" + name + "','" + code + "')";
+            string methodSQL = "INSERT INTO Methods (Name, Method) VALUES ('" + name + "','" + code + "')";
             sqlitewriter.ExecuteQuery(methodSQL, sqliteCon);
         }
 
         public string GetMethod(string name)
         {
             string methodSQL = "SELECT Method FROM Methods WHERE Name='" + name + "'";
-            return sqlitereader.ExecuteReader(methodSQL, "value", sqliteCon);
+            return sqlitereader.ExecuteOneReader(methodSQL, "value", sqliteCon);
         }
 
         public void DeleteMethod(string name)
         {
             string methodSQL = "DELETE FROM Methods WHERE Name='" + name +"'";
             sqlitewriter.ExecuteQuery(methodSQL, sqliteCon);
-        } 
+        }
+
+        public List<string> GetAllMethodName()
+        {
+            string getallmethodSQL = "SELECT Name FROM Methods";
+            return sqlitereader.ExecuteMoreReader(getallmethodSQL, "name", sqliteCon);
+        }
+
+        public void NewVariable(string name, int value)
+        {
+            string variableSQL = "INSERT INTO Variables (Name, Value) VALUES ('" + name + "'," + value + ")";
+            sqlitewriter.ExecuteQuery(variableSQL, sqliteCon);
+        }
+
+        public int GetVariable(string name)
+        {
+            string variableSQL = "SELECT Value FROM Variables WHERE Name='" + name + "'";
+            return int.Parse(sqlitereader.ExecuteOneReader(variableSQL, "value", sqliteCon));
+        }
+
+        public void DeleteVariable(string name)
+        {
+            string variableSQL = "DELETE FROM Variables WHERE Name='" + name + "'";
+            sqlitewriter.ExecuteQuery(variableSQL, sqliteCon);
+        }
 
         public void UpdateMethod(string name, string source)
         {
@@ -113,8 +137,8 @@ namespace Editor
             string canvasheightSQL = "SELECT Value FROM Options WHERE Name='canvasheight'";
             string canvaswidthSQL = "SELECT Value FROM Options WHERE Name='canvaswidth'";
 
-            CanvasSize.GetCanvasSize().Height = int.Parse(sqlitereader.ExecuteReader(canvasheightSQL, "value", sqliteCon));
-            CanvasSize.GetCanvasSize().Width = int.Parse(sqlitereader.ExecuteReader(canvaswidthSQL, "value", sqliteCon));
+            CanvasSize.GetCanvasSize().Height = int.Parse(sqlitereader.ExecuteOneReader(canvasheightSQL, "value", sqliteCon));
+            CanvasSize.GetCanvasSize().Width = int.Parse(sqlitereader.ExecuteOneReader(canvaswidthSQL, "value", sqliteCon));
 
         }
 
@@ -161,10 +185,12 @@ namespace Editor
 
         private void TablesInit()
         {
-            string methodsSQL = "CREATE TABLE Methods (Name VARCHAR(25) NOT NULL, Method TEXT)";
+            string methodsSQL = "CREATE TABLE Methods (Name VARCHAR(25) UNIQUE, Method TEXT)";
             string optionsSQL = "CREATE TABLE Options (Name VARCHAR(25) UNIQUE, Value TEXT)";
+            string variablesSQL = "CREATE TABLE Variables (Name VARCHAR(25) UNIQUE, Value NUMBER)";
             sqlitewriter.ExecuteQuery(methodsSQL, sqliteCon);
             sqlitewriter.ExecuteQuery(optionsSQL, sqliteCon);
+            sqlitewriter.ExecuteQuery(variablesSQL, sqliteCon);
         } 
 
         private void OptionsInit(int canvasHeight, int canvasWidth)

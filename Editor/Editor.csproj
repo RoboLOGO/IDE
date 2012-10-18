@@ -65,8 +65,8 @@
     <Compile Include="Method.xaml.cs">
       <DependentUpon>Method.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Method_Name.xaml.cs">
-      <DependentUpon>Method_Name.xaml</DependentUpon>
+    <Compile Include="MethodName.xaml.cs">
+      <DependentUpon>MethodName.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\RTextboxHelper.cs" />
     <Compile Include="Source\SQLiteHelper.cs" />
@@ -96,7 +96,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Method_Name.xaml">
+    <Page Include="MethodName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,16 +16,24 @@ namespace Editor
     /// <summary>
     /// Interaction logic for Method_Name.xaml
     /// </summary>
-    public partial class Method_Name : Window
+    public partial class MethodName : Window
     {
-        public Method_Name()
+        public MethodName()
         {
             InitializeComponent();
         }
 
         private void Method_Name_Add_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.A.Method_List.Items.Add(textBox1.Text);
+            try
+            {
+                if (textBox1.Text == string.Empty) throw new Exception("Nem lehet üres a név");
+                SQLiteHelper.GetSqlHelper().NewMethod(textBox1.Text, "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             this.Close();
         }
     }

@@ -21,6 +21,7 @@ namespace Editor
         public Method()
         {
             InitializeComponent();
+            SetMethodNames();
         }
 
         private void Method_Close_Click(object sender, RoutedEventArgs e)
@@ -113,11 +114,17 @@ namespace Editor
             }
         }
         #endregion
-        Method_Name M;
         private void Method_Add_Click(object sender, RoutedEventArgs e)
         {
-            M = new Method_Name();
-            M.ShowDialog();
+            MethodName methodname = new MethodName();
+            methodname.ShowDialog();
+            SetMethodNames();
+        }
+
+        private void SetMethodNames()
+        {
+            List<string> items = SQLiteHelper.GetSqlHelper().GetAllMethodName();
+            Method_List.ItemsSource = items;
         }
     }
 }

@@ -16,8 +16,7 @@
                             </FlowDocument>
                         </RichTextBox>
                         <ListBox Margin="6,6,154,37" Width="72" x:Name="Method_List"></ListBox>
-                        <Button Margin="132,182,56,-37" Height="25">OK</Button>
-                        <Button Margin="0,182,0,-37" Height="25" HorizontalAlignment="Right" Width="50" Click="Method_Close_Click">Mégsem</Button>
+                        <Button Margin="0,182,0,-37" Height="25" HorizontalAlignment="Right" Width="50" Click="Method_Close_Click">OK</Button>
                     </Grid>
                 </GroupBox>
 
