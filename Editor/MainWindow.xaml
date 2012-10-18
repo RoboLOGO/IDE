@@ -12,13 +12,13 @@
         <CommandBinding Command="ApplicationCommands.Redo"/>
         <CommandBinding Command="ApplicationCommands.Undo"/>
         <CommandBinding Command="ApplicationCommands.Save"
-                        Executed="Save_Click"/>
+                        Executed="SaveClick"/>
         <CommandBinding Command="ApplicationCommands.SaveAs"
-                        Executed="SaveAs_Click"/>
+                        Executed="SaveAsClick"/>
         <CommandBinding Command="ApplicationCommands.Open"
-                        Executed="Open_Click"/>
+                        Executed="OpenClick"/>
         <CommandBinding Command="ApplicationCommands.New"
-                        Executed="New_Click"/>
+                        Executed="NewClick"/>
     </Window.CommandBindings>
     <Grid>
         <StackPanel>
@@ -82,12 +82,12 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Futtatás">
-                    <MenuItem Header="Fut" Name="RunMenu" IsEnabled="False" InputGestureText="F5" Click="Run_Click">
+                    <MenuItem Header="Fut" Name="RunMenu" IsEnabled="False" InputGestureText="F5" Click="RunClick">
                         <MenuItem.Icon>
                             <Image Source="/Editor;component/Icon_Images/run_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Kép törlés" Name="ClearMenu" IsEnabled="False" Click="Clear_Click">
+                    <MenuItem Header="Kép törlés" Name="ClearMenu" IsEnabled="False" Click="ClearClick">
                         <MenuItem.Icon>
                             <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                         </MenuItem.Icon>
@@ -127,13 +127,13 @@
                     <Image Source="/Editor;component/Icon_Images/redo_icon.png" />
                 </Button>
                 <Separator/>
-                <Button Name="RunButton" ToolTip="Futtatás" IsEnabled="False" Click="Run_Click">
+                <Button Name="RunButton" ToolTip="Futtatás" IsEnabled="False" Click="RunClick">
                     <Image Source="/Editor;component/Icon_Images/run_icon.png" />
                 </Button>
-                <Button Name="ClearButton" IsEnabled="False" ToolTip="Képernyő törlés" Click="Clear_Click" >
+                <Button Name="ClearButton" IsEnabled="False" ToolTip="Képernyő törlés" Click="ClearClick" >
                     <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                 </Button>
-                <Button ToolTip="Rajzvászon mentése" Click="Save_Image_Click">
+                <Button ToolTip="Rajzvászon mentése" Click="SaveImageClick">
                     <Image Source="/Editor;component/Icon_Images/save_image.png" />
                 </Button>
             </ToolBar>
@@ -143,7 +143,7 @@
         </StackPanel>
         
         <Border>
-            <RichTextBox IsEnabled="False"  Height="112" x:Name="CommandLine"  VerticalAlignment="Bottom" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
+            <RichTextBox IsEnabled="False"  Height="112" x:Name="commandLine"  VerticalAlignment="Bottom" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
                 <FlowDocument Name="fdtext">
                     <Paragraph FontSize="10pt" LineHeight="0.1pt" >
                     </Paragraph>

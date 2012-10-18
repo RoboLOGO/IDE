@@ -50,33 +50,35 @@ namespace Editor
        
         #region Menu
         Menu menu;
-        RTextboxHelper RTB = new RTextboxHelper();
+        RTextboxHelper rtbhelper = new RTextboxHelper();
         //bezárás
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
         //mentés
-        private void Save_Click(object sender, ExecutedRoutedEventArgs e)
+        private void SaveClick(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.Save(RTB.GetString(CommandLine));
+            menu.Save(rtbhelper.GetString(commandLine));
         }
         //mentés másként
-        private void SaveAs_Click(object sender, ExecutedRoutedEventArgs e)
+        private void SaveAsClick(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.SaveAs(RTB.GetString(CommandLine), sqlitehelper.GetFile());
+            menu.SaveAs(rtbhelper.GetString(commandLine), sqlitehelper.GetFile());
         }
         //megnyitás
-        private void Open_Click(object sender, ExecutedRoutedEventArgs e)
+        private void OpenClick(object sender, ExecutedRoutedEventArgs e)
         {
             if (menu.Open() == true)
             {
+                
+                rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 Format();
                 EnableMenus();
             }
         }
         //új
-        private void New_Click(object sender, ExecutedRoutedEventArgs e)
+        private void NewClick(object sender, ExecutedRoutedEventArgs e)
         {
             NewProject np = new NewProject();
             np.ShowDialog();
@@ -89,7 +91,7 @@ namespace Editor
 
         private void EnableMenus()
         {
-            CommandLine.IsEnabled = true;
+            commandLine.IsEnabled = true;
             RunButton.IsEnabled = true;
             RunMenu.IsEnabled = true;
             ClearButton.IsEnabled = true;
@@ -102,18 +104,18 @@ namespace Editor
 
         Turtle turtle;
         //futtatás
-        private void Run_Click(object sender, RoutedEventArgs e)
+        private void RunClick(object sender, RoutedEventArgs e)
         {
-            menu.Save(RTB.GetString(CommandLine));
+            menu.Save(rtbhelper.GetString(commandLine));
             menu.Run(ref turtle, canvas);
         }
         //kép mentés
-        private void Save_Image_Click(object sender, RoutedEventArgs e)
+        private void SaveImageClick(object sender, RoutedEventArgs e)
         {
             menu.Image_Save(canvas, this);
         }
         //képernyő törlés
-        private void Clear_Click(object sender, RoutedEventArgs e)
+        private void ClearClick(object sender, RoutedEventArgs e)
         {
             menu.clear(turtle);
         }
@@ -130,14 +132,14 @@ namespace Editor
         #region Syntax
         private void TextChangedEventHandler(object sender, TextChangedEventArgs e)
         {
-            if (CommandLine.Document == null)
+            if (commandLine.Document == null)
                 return;
 
-            TextRange documentRange = new TextRange(CommandLine.Document.ContentStart, CommandLine.Document.ContentEnd);
+            TextRange documentRange = new TextRange(commandLine.Document.ContentStart, commandLine.Document.ContentEnd);
             documentRange.ClearAllProperties();
 
-            TextPointer navigator = CommandLine.Document.ContentStart;
-            while (navigator.CompareTo(CommandLine.Document.ContentEnd) < 0)
+            TextPointer navigator = commandLine.Document.ContentStart;
+            while (navigator.CompareTo(commandLine.Document.ContentEnd) < 0)
             {
                 TextPointerContext context = navigator.GetPointerContext(LogicalDirection.Backward);
                 if (context == TextPointerContext.ElementStart && navigator.Parent is Run)
@@ -160,7 +162,7 @@ namespace Editor
         List<Tag> m_tags = new List<Tag>();
         void Format()
         {
-            CommandLine.TextChanged -= this.TextChangedEventHandler;
+            commandLine.TextChanged -= this.TextChangedEventHandler;
 
             for (int i = 0; i < m_tags.Count; i++)
             {
@@ -170,7 +172,7 @@ namespace Editor
             }
             m_tags.Clear();
 
-            CommandLine.TextChanged += this.TextChangedEventHandler;
+            commandLine.TextChanged += this.TextChangedEventHandler;
         }
 
         void CheckWordsInRun(Run run)

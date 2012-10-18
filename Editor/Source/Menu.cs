@@ -56,8 +56,10 @@ namespace Editor
             ofd.DefaultExt = ".rlsln"; 
             ofd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
             bool? result = ofd.ShowDialog();
-            if (result == true) 
-                sqlitehelp.SetSourceCode(ofd.FileName);
+            if (result == true)
+            {
+                sqlitehelp.OpenFile(ofd.FileName);
+            }
             return result;
         }
         #region --Kép Mentés--

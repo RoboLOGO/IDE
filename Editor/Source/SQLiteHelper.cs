@@ -110,6 +110,10 @@ namespace Editor
 
         public void OpenFile(string filesource)
         {
+            if (sqliteCon != null)
+            {
+                sqliteCon.Close();
+            }
             this.filesource = filesource;
             SetConnection(filesource);
             Open();
