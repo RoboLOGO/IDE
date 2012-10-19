@@ -113,6 +113,7 @@ namespace Editor
             {
                 turtle = new Turtle(canvas);
             }
+            turtle.Clean();
             LogoRun run = new LogoRun();
             string sourceCode = sqlitehelp.GetSourceCode();
             run.Run(sourceCode);

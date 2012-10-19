@@ -22,11 +22,12 @@ namespace Editor
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region SQLite
+
         SQLiteHelper sqlitehelper;
-        #endregion
-        //Canvas méretei
         CanvasSize canvasSize;
+        Menu menu;
+        RTextboxHelper rtbhelper;
+        Turtle turtle;
 
         public MainWindow()
         {
@@ -35,8 +36,7 @@ namespace Editor
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper();
             menu = Menu.GetMenu();
-            //sqlitehelper.NewFile("teszt", 800, 600);
-            //sqlitehelper.SetSourceCode("almfa körtefa íííí neo");
+            rtbhelper = new RTextboxHelper();
         }
 
         private void InitializeCanvas()
@@ -47,10 +47,7 @@ namespace Editor
             this.Width = canvas.Width + 50;
             canvas.Background = new SolidColorBrush(Colors.White); 
         }
-       
-        #region Menu
-        Menu menu;
-        RTextboxHelper rtbhelper = new RTextboxHelper();
+      
         //bezárás
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -101,8 +98,7 @@ namespace Editor
             SaveAsMenu.IsEnabled = true;
             MethodMenu.IsEnabled = true;
         }
-
-        Turtle turtle;
+        
         //futtatás
         private void RunClick(object sender, RoutedEventArgs e)
         {
@@ -120,16 +116,14 @@ namespace Editor
             menu.clear(turtle);
         }
 
-       
-        #region Eljárás szerksztő
         private void Method_Click(object sender, RoutedEventArgs e)
         {
             Method method = new Method();
             method.ShowDialog();
         }
-        #endregion
-        #endregion
+       
         #region Syntax
+        //kikell szedni
         private void TextChangedEventHandler(object sender, TextChangedEventArgs e)
         {
             if (commandLine.Document == null)
