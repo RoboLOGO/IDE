@@ -1,46 +1,40 @@
 ﻿<Window x:Class="Editor.Method"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Method" Height="300" Width="300" ResizeMode="NoResize">
+        Title="Method" Height="362" Width="395" ResizeMode="NoResize">
     <Grid>
-        <StackPanel>
-            <TabControl>
-                <TabItem Header="Eljárások">
-                    <GroupBox Margin="12,0,12,36" Header="Eljárások">
-                        <StackPanel>
-                            <Grid>
-                                <Button Height="25" Width="62" Margin="6,139,164,6" Click="Method_Add_Click">Hozzáadás</Button>
-                                <Button Height="25" Width="59" Margin="74,139,99,6" Click="DeleteMethod_Click">Eltávolítás</Button>
-                                <RichTextBox x:Name="methodCommandLine" TextChanged="TextChangedEventHandler" Margin="85,6,6,37" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Width="141">
-                                    <FlowDocument Name="fdtext">
-                                        <Paragraph FontSize="10pt" LineHeight="0.1pt" >
-                                        </Paragraph>
-                                    </FlowDocument>
-                                </RichTextBox>
-                                <ListBox Margin="6,6,154,37" Width="72" x:Name="methodList" SelectionChanged="select_SelectionChanged" ></ListBox>
-                                <Button Margin="0,182,0,-37" Height="25" HorizontalAlignment="Right" Width="50" Click="Method_Close_Click">OK</Button>
-                            </Grid>
-                        </StackPanel>
-                    </GroupBox>
-                </TabItem>
-                <TabItem Header="Változók">
-                    <GroupBox Margin="12,0,12,36" Header="Változók" Height="197">
-                        <StackPanel>
-                            <Grid Height="174">
-                                <Button Name="AddVariable" Height="28" Width="66" Margin="88,140,78,6" Click="AddVariable_Click">Hozzáadás</Button>
-                                <Button Margin="0,182,0,-37" Height="25" HorizontalAlignment="Right" Width="50" Click="Method_Close_Click">Ok</Button>
-                                <Button Name="DeleteValriable" Content="Eltávolítás" Height="28" Margin="160,140,6,6" Width="66" Click="DeleteValriable_Click" />
-                                <DataGrid Margin="0,0,6,40" Width="226" x:Name="DataGrid">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Név" IsReadOnly="True" />
-                                        <DataGridTextColumn Header="Érték" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </Grid>
-                        </StackPanel>
-                    </GroupBox>
-                </TabItem>
-            </TabControl>
-        </StackPanel>
+        <TabControl Height="322">
+            <TabItem Header="Eljárások">
+                <Grid Height="296">
+                    <Button Height="25" Width="62" Margin="9,240,0,31" Click="Method_Add_Click" HorizontalAlignment="Left">Hozzáadás</Button>
+                    <Button Height="25" Width="59" Margin="77,240,0,0" Click="DeleteMethod_Click" HorizontalAlignment="Left" VerticalAlignment="Top">Eltávolítás</Button>
+                    <RichTextBox x:Name="methodCommandLine" TextChanged="TextChangedEventHandler" Margin="84,6,6,62" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Width="273">
+                        <FlowDocument Name="fdtext">
+                            <Paragraph FontSize="10pt" LineHeight="0.1pt"></Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <ListBox Margin="9,6,0,62" Width="72" x:Name="methodList" SelectionChanged="select_SelectionChanged" HorizontalAlignment="Left"></ListBox>
+                    <Button Height="25" Width="50" Click="Method_Close_Click" Margin="307,258,6,13">Ok</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Változók">
+                <Grid Height="297" Width="369">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="333*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Name="AddVariable" Height="25" Width="62" Margin="9,240,298,31" Click="AddVariable_Click" Grid.ColumnSpan="2">Hozzáadás</Button>
+                    <Button Name="DeleteValriable" Content="Eltávolítás" Height="25" Width="62" Margin="41,240,230,31" Click="DeleteValriable_Click" Grid.Column="1" />
+                    <DataGrid Margin="9,7,7,60" x:Name="DataGrid" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Név" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Érték" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Height="25" Width="50" Click="Method_Close_Click" Margin="271,259,12,13" Grid.Column="1">Ok</Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
