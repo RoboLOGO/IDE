@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 using System.IO;
-using Editor.SQLite;
 
 namespace Editor
 {

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Editor.AddVariables"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AddVariables" Height="112" Width="250">
+        Title="Változók" Height="112" Width="250" ResizeMode="NoResize">
     <Grid Height="72" Width="272">
         <Label Content="Név:" Margin="12,0,229,43"></Label>
         
