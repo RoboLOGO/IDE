@@ -154,9 +154,10 @@
     <Resource Include="Icon_Images\clear_icon.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon_Images\save_image.png" />
+    <Resource Include="Icon_Images\save_image_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Icon_Images\method_icon.gif" />
     <Content Include="SQLite\System.Data.SQLite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

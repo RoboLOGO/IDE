@@ -94,7 +94,7 @@
                     </MenuItem>
                     <MenuItem Header="Eljárás" Name="MethodMenu" IsEnabled="False" Click="Method_Click">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
+                            <Image Source="/Editor;component/Icon_Images/method_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -134,7 +134,7 @@
                     <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
                 </Button>
                 <Button ToolTip="Rajzvászon mentése" Click="SaveImageClick">
-                    <Image Source="/Editor;component/Icon_Images/save_image.png" />
+                    <Image Source="/Editor;component/Icon_Images/save_image_icon.png" />
                 </Button>
             </ToolBar>
             <Label x:Name="FileName"></Label>
