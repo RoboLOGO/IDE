@@ -80,6 +80,7 @@ namespace Editor
                 if (MessageBox.Show("Biztosan törlöd a(z) " + methodList.SelectedItem.ToString() + " eljárást?", "Eljárás törlés", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
                     SQLiteHelper.GetSqlHelper().DeleteMethod(methodList.SelectedItem.ToString());
+                    methodCommandLine.Document.Blocks.Clear();
                     SetMethodNames();
                 }
             }

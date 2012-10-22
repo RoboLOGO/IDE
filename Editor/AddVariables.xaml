@@ -1,13 +1,25 @@
 ﻿<Window x:Class="Editor.AddVariables"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Változók" Height="112" Width="250" ResizeMode="NoResize">
-    <Grid Height="72" Width="272">
-        <Label Content="Név:" Margin="12,0,229,43"></Label>
+        Title="Változók" Height="Auto" Width="Auto" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         
-        <TextBox Name="NameBox" Margin="42,3,171,0" Height="21" VerticalAlignment="Top"></TextBox>
-        <Label Content="Érték:" Margin="113,1,122,47"></Label>
-        <TextBox Name="ValueBox" Margin="154,4,47,47" />
-        <Button Name="AddButton" Margin="154,36,47,12" Content="Hozzáad" ></Button>
+        <Label Content="Név:" />
+        <TextBox Grid.Column="1" Name="NameBox" Width="100"/> 
+        
+        <Label Grid.Column="2" Content="Érték:" />
+        <TextBox Grid.Column="3" Name="ValueBox" Width="100"/>
+        
+        <Button Width="70" HorizontalAlignment="Right" Grid.ColumnSpan="4" Grid.Row="2" Name="AddButton" Content="Hozzáad" />
     </Grid>
 </Window>

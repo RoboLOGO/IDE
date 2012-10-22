@@ -20,9 +20,7 @@ namespace Editor
             set { _y = value; }
         }
 
-        public Vector2()
-        {
-        }
+        public Vector2() { }
         public Vector2(Vector2 vector2)
         {
             this.X = vector2.X;

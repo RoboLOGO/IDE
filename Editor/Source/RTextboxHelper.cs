@@ -17,6 +17,7 @@ namespace Editor
             var textRange = new TextRange(rtb.Document.ContentStart, rtb.Document.ContentEnd);
             return textRange.Text;
         }
+
         //string ->rtb
         public void SetString(string text, RichTextBox rtb)
         {

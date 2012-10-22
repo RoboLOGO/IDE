@@ -15,7 +15,7 @@ namespace Editor
         SQLiteReader sqlitereader;
         SQLiteWriter sqlitewriter;
 
-        string filesource;
+        string _filesource;
 
         protected SQLiteHelper()
         {
@@ -25,25 +25,24 @@ namespace Editor
 
         static public SQLiteHelper GetSqlHelper()
         {
-            if(self == null)
-            {
-                self = new SQLiteHelper();
-            }
+            if(self == null) self = new SQLiteHelper();
             return self;
         }
 
         public void NewFile(string filesource, int canvasHeight, int canvasWidth)
         {
-            this.filesource = filesource;
-            SetConnection(filesource);
-            CreateFile(filesource);
+            this.FileSource = filesource;
+            SetConnection(this.FileSource);
+            CreateFile(this.FileSource);
             Open();
             CreateStruct(canvasHeight, canvasWidth);
         }
 
-        public string GetFile()
+        // !!!
+        public string FileSource
         {
-            return filesource;
+            get { return _filesource; }
+            internal set { _filesource = value; } 
         }
 
         public string GetSourceCode()
@@ -108,12 +107,9 @@ namespace Editor
 
         public void OpenFile(string filesource)
         {
-            if (sqliteCon != null)
-            {
-                sqliteCon.Close();
-            }
-            this.filesource = filesource;
-            SetConnection(filesource);
+            if (sqliteCon != null) sqliteCon.Close();
+            this.FileSource = filesource;
+            SetConnection(this.FileSource);
             Open();
             SetCanvasSize();
         } 
@@ -129,9 +125,7 @@ namespace Editor
                 }
                 SQLiteConnection.CreateFile(filesource);
             }
-            catch
-            {
-            }
+            catch { }
         } 
 
         public void SetCanvasSize()
@@ -144,7 +138,7 @@ namespace Editor
 
         }
 
-        private void InserOption(string name, string value)
+        private void InsertOption(string name, string value)
         {
             string cavasHeightSQL = "INSERT INTO Options (Name, Value) VALUES ('" + name + "','" + value + "')";
             sqlitewriter.ExecuteQuery(cavasHeightSQL, sqliteCon);
@@ -152,16 +146,16 @@ namespace Editor
 
         public void Connect()
         {
-            if (sqliteCon != null)
-            {
-                sqliteCon.Open();
-            }
+            if (sqliteCon != null) sqliteCon.Open();
         } 
 
-        public bool IsOpen()
+        public bool IsOpen
         {
-            if (sqliteCon == null) return false;
-            return(System.Data.ConnectionState.Open == sqliteCon.State); 
+            get
+            {
+                if (sqliteCon == null) return false;
+                return (System.Data.ConnectionState.Open == sqliteCon.State);
+            }
         } 
 
         public void Open()
@@ -197,20 +191,15 @@ namespace Editor
 
         private void OptionsInit(int canvasHeight, int canvasWidth)
         {
-            InserOption("canvasheight", canvasHeight.ToString());
-            InserOption("canvaswidth", canvasWidth.ToString());
-            InserOption("sourcecode", "");
+            InsertOption("canvasheight", canvasHeight.ToString());
+            InsertOption("canvaswidth", canvasWidth.ToString());
+            InsertOption("sourcecode", "");
         }
 
         ~SQLiteHelper()
         {
-            try
-            {
-                Close();
-            }
-            catch
-            {
-            }
+            try { Close(); }
+            catch { }
         } 
 
     }

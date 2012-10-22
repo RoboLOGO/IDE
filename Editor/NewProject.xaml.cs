@@ -21,31 +21,33 @@ namespace Editor
     /// </summary>
     public partial class NewProject : Window
     {
-        bool success = false;
+        bool _success = false;
         SaveFileDialog sfd = null;
+
         public NewProject()
         {
             InitializeComponent();
         }
+
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {                
-                int height = int.Parse(canvasHeight.Text);
-                int width = int.Parse(canvasWidth.Text);
+                int height = int.Parse(txtcanvasHeight.Text);
+                int width = int.Parse(txtcanvasWidth.Text);
                 SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
                 sqlitehelp.NewFile(sfd.FileName, height, width);
                 CanvasSize canvasSize = CanvasSize.GetCanvasSize();
-                sqlitehelp.IsOpen();
+                //sqlitehelp.IsOpen;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hiba:\n" + ex.Message);
+                MessageBox.Show("Error: \n" + ex.Message);
             }
         }
 
-        private void SaveButton_Click_1(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             
             sfd = new SaveFileDialog();
@@ -53,14 +55,16 @@ namespace Editor
             sfd.Filter = "RoboLOGO Solution(.rbsln)|*.rbsln";
             sfd.FileName = "Projekt";
             sfd.ShowDialog();
-            fileSource.Text = sfd.FileName;
-            fileSource.ToolTip = sfd.FileName;
-            success = true;
+
+            txtfileSource.Text = sfd.FileName;
+            txtfileSource.ToolTip = sfd.FileName;
+            this.IsSuccess = true;
         }
 
-        public bool Success()
+        public bool IsSuccess
         {
-            return success;
+            get { return _success; }
+            internal set { _success = value; }
         }
     }
 }

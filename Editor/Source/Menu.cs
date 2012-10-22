@@ -15,16 +15,14 @@ namespace Editor
     {
         SQLiteHelper sqlitehelp;
         static Menu menu;
+
         private Menu()
         {
             sqlitehelp = SQLiteHelper.GetSqlHelper();
         }
-        static public Menu GetMenu()
+        public static Menu GetMenu()
         {
-            if (menu == null)
-            {
-                menu = new Menu();
-            }
+            if (menu == null) menu = new Menu();
             return menu;
         }
 
@@ -33,6 +31,7 @@ namespace Editor
         {
             sqlitehelp.SetSourceCode(source);
         }
+
         //mentés másként
         public void SaveAs(string source, string sourceFile)
         {
@@ -46,17 +45,16 @@ namespace Editor
                 sqlitehelp.Open();
             }
         }
+
         //megnyitás
         public bool? Open()
         {
             OpenFileDialog ofd = FileDialogs.GetOpenFileDialog();
             bool? result = ofd.ShowDialog();
-            if (result == true)
-            {
-                sqlitehelp.OpenFile(ofd.FileName);
-            }
+            if (result == true) sqlitehelp.OpenFile(ofd.FileName);
             return result;
         }
+
         #region --Kép Mentés--
         public void Image_Save(Canvas canvas, Window window)
         {
@@ -93,29 +91,27 @@ namespace Editor
             }
         }
         #endregion
+
         //futtatás
         public void Run(ref Turtle turtle, Canvas canvas)
         {
-            if (!sqlitehelp.IsOpen())
+            if (!sqlitehelp.IsOpen)
             {
                 MessageBox.Show("Nincs projekted");
                 return;
             }
-            if (turtle == null)
-            {
-                turtle = new Turtle(canvas);
-            }
+            if (turtle == null) turtle = new Turtle(canvas);
             turtle.Clean();
             LogoRun run = new LogoRun();
             string sourceCode = sqlitehelp.GetSourceCode();
             run.Run(sourceCode);
             run.Draw(turtle);
         }
+
         //képernyő törlés
-        public void clear(Turtle turtle)
+        public void Clear(Turtle turtle)
         {
-            if (turtle != null)
-                turtle.Clean();
+            if (turtle != null) turtle.Clean();
         }
     }
 }

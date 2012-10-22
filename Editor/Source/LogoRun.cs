@@ -9,12 +9,12 @@ namespace Editor
 {
     internal class LogoRun
     {
-        public LogoRun()
-        {
-        }
-        private List<string> line = new List<string>();
-        private List<Tuple<Command>> comm = new List<Tuple<Command>>();
-        private struct Command
+        public LogoRun() { }
+
+        List<string> line = new List<string>();
+        List<Tuple<Command>> comm = new List<Tuple<Command>>();
+
+        struct Command
         {
             public string word;
             public int? param_value;
@@ -25,29 +25,22 @@ namespace Editor
                 param_value = _param_value;
                 param = _param;
             }
-
         }
 
         public void Run(string source)
         {
             ReadLine(source);
-            for (int i = 0; i < line.Count; i++)  
-            {
-                Spearate(i);
-            }
+            for (int i = 0; i < line.Count; i++) Separate(i);
         }
 
         private void ReadLine(string sourceCode)
         {
             string[] lines = Regex.Split(sourceCode, "\r\n");
-            for(int i = 0; i < lines.Length; i++)
-            {
-                line.Add(lines[i]);
-            }
+            for(int i = 0; i < lines.Length; i++) line.Add(lines[i]);
 
         }
 
-        private void Spearate(int sor)
+        private void Separate(int sor)
         {
             Command cmd = new Command("", null, true);
             string strparam = ""; ;
@@ -62,10 +55,7 @@ namespace Editor
             for (int i = 0; i < line[sor].Length; i++)
             {
 
-                if (line[sor][i] != ' ' && cmd.param)
-                {
-                    cmd.word += line[sor][i];
-                }
+                if (line[sor][i] != ' ' && cmd.param) cmd.word += line[sor][i];
                 else
                 {
                     if (i + 1 >= line[sor].Length) break;

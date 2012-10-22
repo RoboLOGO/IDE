@@ -12,35 +12,15 @@ namespace Editor
         int _height;
         public int Height
         {
-            set
-            {
-                if (value >= 0)
-                {
-                    _height = value;
-                }
-            }
-
-            get
-            {
-                return _height;
-            }
+            get { return _height; }
+            set { if (value >= 0) _height = value; }
         }
 
         int _width;
         public int Width
         {
-            set
-            {
-                if (value >= 0)
-                {
-                    _width = value;
-                }
-            }
-
-            get
-            {
-                return _width;
-            }
+            get { return _width; }
+            set { if (value >= 0)  _width = value; }
         }
 
         private CanvasSize()
@@ -51,10 +31,7 @@ namespace Editor
 
         public static CanvasSize GetCanvasSize()
         {
-            if (self == null)
-            {
-                self = new CanvasSize();
-            }
+            if (self == null) self = new CanvasSize();
             return self;
         }
 

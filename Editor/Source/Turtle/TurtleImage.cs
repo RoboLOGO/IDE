@@ -13,25 +13,25 @@ namespace Editor
     {
         //A teknős mérete
         int _size = 40;
-        public int size
+        public int Size
         {
-            get
-            {
-                return _size;
-            }
+            get { return _size; }
         }
+
         //A teknős képe
         Image turtle;
+
         //a teknős állapota
         bool _visible;
-        public bool visible
+        public bool Visible
         {
             get { return _visible; }
             set { _visible = value; }
         }
+
         //A canvas children tömbjének hanyadik eleme a teknős kép
         int _cPos;
-        public int cPos
+        public int CPos
         {
             get { return _cPos; }
             set { _cPos = value; }
@@ -42,15 +42,15 @@ namespace Editor
         {
             turtle = new Image();
             turtle.Source = new BitmapImage(new Uri(@"Content\turtle.png", UriKind.Relative));
-            turtle.Width = size;
-            turtle.Height = size;
-            visible = true;
+            turtle.Width = this.Size;
+            turtle.Height = this.Size;
+            this.Visible = true;
         }
 
         //Visszadja a teknős képének referenciáját
-        public Image getTurtleImage()
+        public Image GetTurtleImage
         {
-            return turtle;
+            get { return turtle; }
         }
         
     }

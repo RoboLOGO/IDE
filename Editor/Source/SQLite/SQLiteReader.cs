@@ -21,10 +21,7 @@ namespace Editor
             List<string> items = new List<string>();
             SQLiteCommand command = new SQLiteCommand(commandSQL, connection);
             SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                items.Add((string)reader["name"]);
-            }
+            while (reader.Read()) items.Add((string)reader["name"]);
             return items;
         }
     }

@@ -3,8 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Eljárás neve" Height="114" Width="227" ResizeMode="NoResize">
     <Grid>
-        <Label>Eljárás neve</Label>
-        <TextBox Height="21" HorizontalAlignment="Left" Margin="52,26,0,0" Name="textBox1" VerticalAlignment="Top" Width="126" />
-        <Button Margin="136,53,0,0" Click="Method_Name_Add_Click">Hozzáad</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label FontWeight="Bold">Eljárás neve</Label>
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="txtMethod" Width="125" />
+        <Button HorizontalAlignment="Right" Height="23" Width="70" Grid.Row="2" Click="Method_Name_Add_Click" Content="Hozzáad" />
     </Grid>
 </Window>

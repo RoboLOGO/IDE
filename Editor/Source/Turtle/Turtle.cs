@@ -22,10 +22,7 @@ namespace Editor
         private int angle
         {
             get { return _angle; }
-            set
-            {
-                _angle = value % 360;
-            }
+            set { _angle = value % 360; }
         }
 
 
@@ -55,8 +52,8 @@ namespace Editor
             pen = new Pen(penColor, penSize);
             pos = new Vector2();
             turtleimage = new TurtleImage();
-            turtleimage.cPos = canvas.Children.Add(turtleimage.getTurtleImage());
-            Canvas.SetZIndex(canvas.Children[turtleimage.cPos], 100); //a teknős mindig legfelül
+            turtleimage.CPos = canvas.Children.Add(turtleimage.GetTurtleImage);
+            Canvas.SetZIndex(canvas.Children[turtleimage.CPos], 100); //a teknős mindig legfelül
             Home();
         }
 
@@ -80,11 +77,11 @@ namespace Editor
             newpos.X = pos.X + (distance * Math.Cos(DegreeToRadian(angle)));
             newpos.Y = pos.Y + (distance * Math.Sin(DegreeToRadian(angle)));
 
-            if (pen.IsDown())
+            if (pen.IsDown)
             {
 
                 Line line = new Line();
-                line.Stroke = new SolidColorBrush(pen.color);
+                line.Stroke = new SolidColorBrush(pen.Color);
                 //line.SnapsToDevicePixels = true;
                 //line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
                 
@@ -95,7 +92,7 @@ namespace Editor
                 line.Y2 = newpos.Y;
 
 
-                line.StrokeThickness = pen.pensize;
+                line.StrokeThickness = pen.Pensize;
                 canvas.Children.Add(line);
                 
             }
@@ -108,20 +105,20 @@ namespace Editor
         //Teknőst mozgatja a Canvason
         private void TurtleMove(Vector2 turtlePos)
         {
-            if (turtleimage.visible)
+            if (turtleimage.Visible)
             {
-                Canvas.SetTop(canvas.Children[turtleimage.cPos], turtlePos.Y - turtleimage.size / 2);
-                Canvas.SetLeft(canvas.Children[turtleimage.cPos], turtlePos.X - turtleimage.size / 2);
+                Canvas.SetTop(canvas.Children[turtleimage.CPos], turtlePos.Y - turtleimage.Size / 2);
+                Canvas.SetLeft(canvas.Children[turtleimage.CPos], turtlePos.X - turtleimage.Size / 2);
             }
         }
 
         //Teknőst forgatja a Canvason
         private void TurtleRotate(int angle)
         {
-            if (turtleimage.visible)
+            if (turtleimage.Visible)
             {
-                RotateTransform rotateTransform1 = new RotateTransform(angle - 90, turtleimage.size / 2, turtleimage.size / 2);
-                canvas.Children[turtleimage.cPos].RenderTransform = rotateTransform1;
+                RotateTransform rotateTransform1 = new RotateTransform(angle - 90, turtleimage.Size / 2, turtleimage.Size / 2);
+                canvas.Children[turtleimage.CPos].RenderTransform = rotateTransform1;
             }
         }
 
@@ -143,7 +140,7 @@ namespace Editor
         public void Clean()
         {
             canvas.Children.Clear();
-            turtleimage.cPos = canvas.Children.Add(turtleimage.getTurtleImage());
+            turtleimage.CPos = canvas.Children.Add(turtleimage.GetTurtleImage);
             Home();
         } 
 
@@ -190,38 +187,38 @@ namespace Editor
         //Visszadja, hogy éppen lent van e a toll, rajzol-e
         public bool PenIsDown()
         {
-            return pen.IsDown();
+            return pen.IsDown;
         }
 
         //beállítja a toll színét
         public void PenColor(Color penColor)
         {
             if(penColor != null)
-                pen.color = penColor;
+                pen.Color = penColor;
         }
 
         //beállítja a toll vastagságát
         public void PenSize(int penSize)
         {
             if (penSize > 0)
-                pen.pensize = penSize;
+                pen.Pensize = penSize;
         }
 
         //A teknős láthatóságának kikapcsolása
         public void TurtleOff()
         {
-            turtleimage.visible = false;
+            turtleimage.Visible = false;
         }
 
         //A teknős láthatóságának bekapcsolása
         public void TurtleOn()
         {
-            turtleimage.visible = true;
+            turtleimage.Visible = true;
         }
         //Megmondja h látható e a teknős
         public bool TurtleIsVisible()
         {
-            return turtleimage.visible;
+            return turtleimage.Visible;
         }
 
         //Megállítja a teknős

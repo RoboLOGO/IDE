@@ -13,29 +13,25 @@ namespace Editor
 
         //a toll színe
         Color _color;
-        public Color color
+        public Color Color
         {
             get { return _color; }
             set 
             {
-                if (value != null)
-                    _color = value;
-                else
-                    throw new Exception("Error: invalid pen color");
+                if (value != null) _color = value;
+                else throw new Exception("Error: invalid pen color");
             }
         }
 
         //a toll mérete
         int _pensize;
-        public int pensize
+        public int Pensize
         {
             get { return _pensize; }
             set 
             {
-                if (value > 0)
-                    _pensize = value;
-                else
-                    throw new Exception("Error: invalid pensize");
+                if (value > 0) _pensize = value;
+                else throw new Exception("Error: invalid pen size");
             }
         }
 
@@ -43,21 +39,21 @@ namespace Editor
         {
             Reset();
         }
-        public Pen(Color color):this()
+        public Pen(Color color) : this()
         {
-            this.color = color;
+            this.Color = color;
         }
-        public Pen(Color color, int pensize): this(color)
+        public Pen(Color color, int pensize) : this(color)
         {
-            this.pensize = pensize;
+            this.Pensize = pensize;
         }
 
         //Kezdő állapotba állítja a tollat
         public void Reset()
         {
             drawing = true;
-            color = Colors.Black;
-            pensize = 1;
+            Color = Colors.Black;
+            Pensize = 1;
         }
 
         //Tollat felemeli, nem rajzol
@@ -65,15 +61,17 @@ namespace Editor
         {
             drawing = false;
         }
+
         //Tollat leteszi, rajzol
         public void PenDown()
         {
             drawing = true;
         }
+
         //Toll állapotát adja vissza
-        public bool IsDown()
+        public bool IsDown
         {
-            return drawing;
+            get { return drawing; }
         }
         
     }

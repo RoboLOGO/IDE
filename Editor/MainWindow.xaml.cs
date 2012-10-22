@@ -61,14 +61,13 @@ namespace Editor
         //mentés másként
         private void SaveAsClick(object sender, ExecutedRoutedEventArgs e)
         {
-            menu.SaveAs(rtbhelper.GetString(commandLine), sqlitehelper.GetFile());
+            menu.SaveAs(rtbhelper.GetString(commandLine), sqlitehelper.FileSource);
         }
         //megnyitás
         private void OpenClick(object sender, ExecutedRoutedEventArgs e)
         {
             if (menu.Open() == true)
             {
-                
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 Format();
                 EnableMenus();
@@ -79,7 +78,7 @@ namespace Editor
         {
             NewProject np = new NewProject();
             np.ShowDialog();
-            if (np.Success())
+            if (np.IsSuccess)
             {
                 InitializeCanvas();
                 EnableMenus();
@@ -113,7 +112,7 @@ namespace Editor
         //képernyő törlés
         private void ClearClick(object sender, RoutedEventArgs e)
         {
-            menu.clear(turtle);
+            menu.Clear(turtle);
         }
 
         private void Method_Click(object sender, RoutedEventArgs e)

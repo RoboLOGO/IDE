@@ -27,14 +27,11 @@ namespace Editor
         {
             try
             {
-                if (textBox1.Text == string.Empty) throw new Exception("Nem lehet üres a név");
-                SQLiteHelper.GetSqlHelper().NewMethod(textBox1.Text, "eljárás " + textBox1.Text + "\r\n\r\nvége");
+                if (txtMethod.Text == string.Empty) throw new Exception("Error: empty method name");
+                SQLiteHelper.GetSqlHelper().NewMethod(txtMethod.Text, "eljárás " + txtMethod.Text + "\r\n\r\nvége");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            this.Close();
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            finally { this.Close(); }
         }
     }
 }
