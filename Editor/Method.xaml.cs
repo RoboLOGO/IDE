@@ -138,5 +138,16 @@ namespace Editor
                 rtbhelper.SetString(SQLiteHelper.GetSqlHelper().GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);                
             }
         }
+
+        private void AddVariable_Click(object sender, RoutedEventArgs e)
+        {
+            AddVariables AddVar = new AddVariables();
+            AddVar.ShowDialog();
+        }
+
+        private void DeleteValriable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

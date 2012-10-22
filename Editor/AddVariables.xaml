@@ -1,0 +1,13 @@
+﻿<Window x:Class="Editor.AddVariables"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddVariables" Height="112" Width="250">
+    <Grid Height="72" Width="272">
+        <Label Content="Név:" Margin="12,0,229,43"></Label>
+        
+        <TextBox Name="NameBox" Margin="42,3,171,0" Height="21" VerticalAlignment="Top"></TextBox>
+        <Label Content="Érték:" Margin="113,1,122,47"></Label>
+        <TextBox Name="ValueBox" Margin="154,4,47,47" />
+        <Button Name="AddButton" Margin="154,36,47,12" Content="Hozzáad" ></Button>
+    </Grid>
+</Window>

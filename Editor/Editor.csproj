@@ -56,11 +56,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddVariables.xaml.cs">
+      <DependentUpon>AddVariables.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\CanvasSize.cs" />
     <Compile Include="Source\FileDialogs.cs" />
+    <Compile Include="Source\Turtle\CanvasSize.cs" />
     <Compile Include="Source\LogoRun.cs" />
     <Compile Include="Source\Menu.cs" />
     <Compile Include="Method.xaml.cs">
@@ -70,13 +74,17 @@
       <DependentUpon>MethodName.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\RTextboxHelper.cs" />
-    <Compile Include="Source\SQLiteHelper.cs" />
-    <Compile Include="Source\SQLiteReader.cs" />
-    <Compile Include="Source\SQLiteWriter.cs" />
+    <Compile Include="Source\SQLite\SQLiteHelper.cs" />
+    <Compile Include="Source\SQLite\SQLiteReader.cs" />
+    <Compile Include="Source\SQLite\SQLiteWriter.cs" />
     <Compile Include="Source\SyntaxHighlight.cs" />
-    <Compile Include="Source\Turtle.cs" />
-    <Compile Include="Source\TurtleImage.cs" />
-    <Compile Include="Source\Vector2.cs" />
+    <Compile Include="Source\Turtle\Turtle.cs" />
+    <Compile Include="Source\Turtle\TurtleImage.cs" />
+    <Compile Include="Source\Turtle\Vector2.cs" />
+    <Page Include="AddVariables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,7 +111,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Pen.cs" />
+    <Compile Include="Source\Turtle\Pen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -159,7 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon_Images\method_icon.gif" />
-    <Content Include="SQLite\System.Data.SQLite.dll" />
+    <Content Include="Source\SQLite\System.Data.SQLite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
