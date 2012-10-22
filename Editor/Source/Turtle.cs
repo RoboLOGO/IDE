@@ -96,7 +96,6 @@ namespace Editor
 
 
                 line.StrokeThickness = pen.pensize;
-                //int canvasindex = 
                 canvas.Children.Add(line);
                 
             }
@@ -223,6 +222,13 @@ namespace Editor
         public bool TurtleIsVisible()
         {
             return turtleimage.visible;
+        }
+
+        //Megállítja a teknős
+        public void Wait(int millisecundum)
+        {
+            if ( millisecundum > 0)
+                System.Threading.Thread.Sleep(millisecundum);
         }
     }
 }
