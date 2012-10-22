@@ -36,10 +36,7 @@ namespace Editor
         //mentés másként
         public void SaveAs(string source, string sourceFile)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".rlsln"; 
-            sfd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
-            sfd.FileName = "Projekt1";
+            SaveFileDialog sfd = FileDialogs.GetSaveFileDialog();
             bool? result = sfd.ShowDialog();
             if (result == true)
             {
@@ -52,9 +49,7 @@ namespace Editor
         //megnyitás
         public bool? Open()
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.DefaultExt = ".rlsln"; 
-            ofd.Filter = "RoboLOGO Solution (.rlsln)|*.rbsln";
+            OpenFileDialog ofd = FileDialogs.GetOpenFileDialog();
             bool? result = ofd.ShowDialog();
             if (result == true)
             {
@@ -65,10 +60,7 @@ namespace Editor
         #region --Kép Mentés--
         public void Image_Save(Canvas canvas, Window window)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".png";
-            sfd.FileName = "image";
-            sfd.Filter = "Portable Network Graphics (.png)|*.png";
+            SaveFileDialog sfd = FileDialogs.SavePngDialog();
             sfd.ShowDialog();
 
             SaveCanvas(window, canvas, 96, sfd.FileName);
