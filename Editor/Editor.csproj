@@ -62,7 +62,6 @@
     <Compile Include="NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\CanvasSize.cs" />
     <Compile Include="Source\FileDialogs.cs" />
     <Compile Include="Source\Turtle\CanvasSize.cs" />
     <Compile Include="Source\LogoRun.cs" />
