@@ -55,7 +55,7 @@ namespace Editor
 
         public void NewMethod(string name, string code)
         {
-            string methodSQL = "INSERT INTO Methods (Name, Method) VALUES ('" + name + "','" + code + "')";
+            string methodSQL = "INSERT INTO Methods (Name, Method) VALUES ('" + name.ToLower() + "','" + code + "')";
             sqlitewriter.ExecuteQuery(methodSQL, sqliteCon);
         }
 
@@ -79,7 +79,7 @@ namespace Editor
 
         public void NewVariable(string name, int value)
         {
-            string variableSQL = "INSERT INTO Variables (Name, Value) VALUES ('" + name + "'," + value + ")";
+            string variableSQL = "INSERT INTO Variables (Name, Value) VALUES ('" + name.ToLower() + "'," + value + ")";
             sqlitewriter.ExecuteQuery(variableSQL, sqliteCon);
         }
 

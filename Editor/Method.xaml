@@ -10,7 +10,7 @@
                         <StackPanel>
                             <Grid>
                                 <Button Height="25" Width="62" Margin="6,139,164,6" Click="Method_Add_Click">Hozzáadás</Button>
-                                <Button Height="25" Width="59" Margin="74,139,99,6">Eltávolítás</Button>
+                                <Button Height="25" Width="59" Margin="74,139,99,6" Click="DeleteMethod_Click">Eltávolítás</Button>
                                 <RichTextBox x:Name="methodCommandLine" TextChanged="TextChangedEventHandler" Margin="85,6,6,37" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Width="141">
                                     <FlowDocument Name="fdtext">
                                         <Paragraph FontSize="10pt" LineHeight="0.1pt" >
@@ -18,7 +18,7 @@
                                     </FlowDocument>
                                 </RichTextBox>
                                 <ListBox Margin="6,6,154,37" Width="72" x:Name="methodList" SelectionChanged="select_SelectionChanged" ></ListBox>
-                                <Button Margin="0,182,0,-37" Height="25" HorizontalAlignment="Right" Width="50" Click="Method_Close_Click">Ok</Button>
+                                <Button Margin="0,182,0,-37" Height="25" HorizontalAlignment="Right" Width="50" Click="Method_Close_Click">OK</Button>
                             </Grid>
                         </StackPanel>
                     </GroupBox>

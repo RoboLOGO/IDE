@@ -18,6 +18,8 @@ namespace Editor
     /// </summary>
     public partial class Method : Window
     {
+        object prevItem;
+
         public Method()
         {
             InitializeComponent();
@@ -40,6 +42,53 @@ namespace Editor
         {
             List<string> items = SQLiteHelper.GetSqlHelper().GetAllMethodName();
             methodList.ItemsSource = items;
+        }
+
+        private void select_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (methodList.SelectedItem != null)
+            {
+                RTextboxHelper rtbhelper = new RTextboxHelper();
+                if (prevItem != null && TextChanged())
+                {                    
+                    if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        SQLiteHelper.GetSqlHelper().UpdateMethod(prevItem.ToString(), rtbhelper.GetString(methodCommandLine));
+                    }
+                }
+                methodCommandLine.Document.Blocks.Clear();//nem az igazi:S
+                rtbhelper.SetString(SQLiteHelper.GetSqlHelper().GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);
+                prevItem = methodList.SelectedItem;
+            }
+        }
+
+        private void AddVariable_Click(object sender, RoutedEventArgs e)
+        {
+            AddVariables AddVar = new AddVariables();
+            AddVar.ShowDialog();
+        }
+
+        private void DeleteValriable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteMethod_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Biztosan törlöd a(z) " + methodList.SelectedItem.ToString() + " eljárást?", "Eljárás törlés", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+            {
+                SQLiteHelper.GetSqlHelper().DeleteMethod(methodList.SelectedItem.ToString());
+                SetMethodNames();
+            } 
+        }
+
+        private bool TextChanged()
+        {
+            RTextboxHelper rtbhelper = new RTextboxHelper();
+            string s1 = rtbhelper.GetString(methodCommandLine).Replace("\r\n", "");
+            string s2 = SQLiteHelper.GetSqlHelper().GetMethod(prevItem.ToString()).Replace("\n", "");
+            s2 = s2.Replace("\r", "");
+            return !(s1.Equals(s2));    
         }
 
         #region Syntax
@@ -128,26 +177,5 @@ namespace Editor
             }
         }
         #endregion
-
-        private void select_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (methodList.SelectedItem != null)
-            {
-                methodCommandLine.Document.Blocks.Clear();//nem az igazi:S
-                RTextboxHelper rtbhelper = new RTextboxHelper();
-                rtbhelper.SetString(SQLiteHelper.GetSqlHelper().GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);                
-            }
-        }
-
-        private void AddVariable_Click(object sender, RoutedEventArgs e)
-        {
-            AddVariables AddVar = new AddVariables();
-            AddVar.ShowDialog();
-        }
-
-        private void DeleteValriable_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
