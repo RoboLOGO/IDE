@@ -28,17 +28,31 @@ namespace Editor
         {
             this.Close();
         }
+
+        private void Method_Add_Click(object sender, RoutedEventArgs e)
+        {
+            MethodName methodname = new MethodName();
+            methodname.ShowDialog();
+            SetMethodNames();
+        }
+
+        private void SetMethodNames()
+        {
+            List<string> items = SQLiteHelper.GetSqlHelper().GetAllMethodName();
+            methodList.ItemsSource = items;
+        }
+
         #region Syntax
         private void TextChangedEventHandler(object sender, TextChangedEventArgs e)
         {
-            if (Method_command_line.Document == null)
+            if (methodCommandLine.Document == null)
                 return;
 
-            TextRange documentRange = new TextRange(Method_command_line.Document.ContentStart, Method_command_line.Document.ContentEnd);
+            TextRange documentRange = new TextRange(methodCommandLine.Document.ContentStart, methodCommandLine.Document.ContentEnd);
             documentRange.ClearAllProperties();
 
-            TextPointer navigator = Method_command_line.Document.ContentStart;
-            while (navigator.CompareTo(Method_command_line.Document.ContentEnd) < 0)
+            TextPointer navigator = methodCommandLine.Document.ContentStart;
+            while (navigator.CompareTo(methodCommandLine.Document.ContentEnd) < 0)
             {
                 TextPointerContext context = navigator.GetPointerContext(LogicalDirection.Backward);
                 if (context == TextPointerContext.ElementStart && navigator.Parent is Run)
@@ -61,7 +75,7 @@ namespace Editor
         List<Tag> m_tags = new List<Tag>();
         void Format()
         {
-            Method_command_line.TextChanged -= this.TextChangedEventHandler;
+            methodCommandLine.TextChanged -= this.TextChangedEventHandler;
 
             for (int i = 0; i < m_tags.Count; i++)
             {
@@ -71,7 +85,7 @@ namespace Editor
             }
             m_tags.Clear();
 
-            Method_command_line.TextChanged += this.TextChangedEventHandler;
+            methodCommandLine.TextChanged += this.TextChangedEventHandler;
         }
 
         void CheckWordsInRun(Run run)
@@ -114,17 +128,15 @@ namespace Editor
             }
         }
         #endregion
-        private void Method_Add_Click(object sender, RoutedEventArgs e)
-        {
-            MethodName methodname = new MethodName();
-            methodname.ShowDialog();
-            SetMethodNames();
-        }
 
-        private void SetMethodNames()
+        private void select_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<string> items = SQLiteHelper.GetSqlHelper().GetAllMethodName();
-            Method_List.ItemsSource = items;
+            if (methodList.SelectedItem != null)
+            {
+                methodCommandLine.Document.Blocks.Clear();//nem az igazi:S
+                RTextboxHelper rtbhelper = new RTextboxHelper();
+                rtbhelper.SetString(SQLiteHelper.GetSqlHelper().GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);                
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ using Editor.SQLite;
 
 namespace Editor
 {
-    //Test OpenFile, New method, Get method, Update Method, Delete Method,
     class SQLiteHelper
     {
         static SQLiteHelper self;
@@ -63,7 +62,7 @@ namespace Editor
         public string GetMethod(string name)
         {
             string methodSQL = "SELECT Method FROM Methods WHERE Name='" + name + "'";
-            return sqlitereader.ExecuteOneReader(methodSQL, "value", sqliteCon);
+            return sqlitereader.ExecuteOneReader(methodSQL, "method", sqliteCon);
         }
 
         public void DeleteMethod(string name)
