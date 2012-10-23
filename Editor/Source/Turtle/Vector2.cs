@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Editor
 {
-    public class Vector2
+    class Vector2
     {
         double _x;
         public double X

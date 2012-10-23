@@ -49,11 +49,7 @@ namespace Editor
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            sfd = new SaveFileDialog();
-            sfd.DefaultExt = ".rbsln";
-            sfd.Filter = "RoboLOGO Solution(.rbsln)|*.rbsln";
-            sfd.FileName = "Projekt";
+            SaveFileDialog sfd = FileDialogs.GetSaveFileDialog();
             sfd.ShowDialog();
 
             txtfileSource.Text = sfd.FileName;
