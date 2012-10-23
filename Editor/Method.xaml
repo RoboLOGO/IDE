@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Editor.Method"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Method" Height="362" Width="395" ResizeMode="NoResize">
+        Title="Method" Height="362" Width="395" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <TabControl Height="322">
             <TabItem Header="Eljárások">

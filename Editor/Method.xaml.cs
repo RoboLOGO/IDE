@@ -28,7 +28,16 @@ namespace Editor
 
         private void Method_Close_Click(object sender, RoutedEventArgs e)
         {
+            CloseSave();
             this.Close();
+        }
+
+        private void CloseSave()
+        {
+            if (methodList.SelectedItem != null && TextChanged())
+            {
+                MethodSaver(methodList.SelectedItem);
+            }
         }
 
         private void Method_Add_Click(object sender, RoutedEventArgs e)
@@ -48,17 +57,23 @@ namespace Editor
         {
             if (methodList.SelectedItem != null)
             {
-                RTextboxHelper rtbhelper = new RTextboxHelper();
                 if (prevItem != null && TextChanged())
-                {                    
-                    if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        SQLiteHelper.GetSqlHelper().UpdateMethod(prevItem.ToString(), rtbhelper.GetString(methodCommandLine));
-                    }
+                {
+                    MethodSaver(prevItem);
                 }
-                methodCommandLine.Document.Blocks.Clear();//nem az igazi:S
+                RTextboxHelper rtbhelper = new RTextboxHelper();
+                CommandLineClear();
                 rtbhelper.SetString(SQLiteHelper.GetSqlHelper().GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);
                 prevItem = methodList.SelectedItem;
+            }
+        }
+
+        private void MethodSaver(object item)
+        {
+            RTextboxHelper rtbhelper = new RTextboxHelper();
+            if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                SQLiteHelper.GetSqlHelper().UpdateMethod(item.ToString(), rtbhelper.GetString(methodCommandLine));
             }
         }
 
@@ -82,6 +97,7 @@ namespace Editor
                     SQLiteHelper.GetSqlHelper().DeleteMethod(methodList.SelectedItem.ToString());
                     methodCommandLine.Document.Blocks.Clear();
                     SetMethodNames();
+                    CommandLineClear();
                 }
             }
             prevItem = null;
@@ -91,9 +107,18 @@ namespace Editor
         {
             RTextboxHelper rtbhelper = new RTextboxHelper();
             string s1 = rtbhelper.GetString(methodCommandLine).Replace("\r\n", "");
-            string s2 = SQLiteHelper.GetSqlHelper().GetMethod(prevItem.ToString()).Replace("\n", "");
-            s2 = s2.Replace("\r", "");
-            return !(s1.Equals(s2));    
+            string s2 = (SQLiteHelper.GetSqlHelper().GetMethod(prevItem.ToString()).Replace("\n", "")).Replace("\r", "");
+            return !(s1.Equals(s2));
+        }
+
+        private void CommandLineClear()
+        {
+            methodCommandLine.Document.Blocks.Clear();//nem az igazi:S
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            CloseSave();
         }
 
         #region Syntax

@@ -9,7 +9,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label FontWeight="Bold">Eljárás neve</Label>
-        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="txtMethod" Width="125" />
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="methodnameTextBox" Width="125" />
         <Button HorizontalAlignment="Right" Height="23" Width="70" Grid.Row="2" Click="Method_Name_Add_Click" Content="Hozzáad" />
     </Grid>
 </Window>
