@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
+using System.Windows;
 
 namespace Editor
 {
@@ -104,8 +106,23 @@ namespace Editor
         {
             if (turtleimage.Visible)
             {
-                Canvas.SetTop(canvas.Children[turtleimage.CPos], turtlePos.Y - turtleimage.Size / 2);
-                Canvas.SetLeft(canvas.Children[turtleimage.CPos], turtlePos.X - turtleimage.Size / 2);
+                //Canvas.SetTop(canvas.Children[turtleimage.CPos], turtlePos.Y - turtleimage.Size / 2);
+                //Canvas.SetLeft(canvas.Children[turtleimage.CPos], turtlePos.X - turtleimage.Size / 2);
+
+                Storyboard sb = new Storyboard();
+                DoubleAnimation da = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.TopProperty), turtlePos.Y - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
+                DoubleAnimation db = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.LeftProperty), turtlePos.X - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
+                Storyboard.SetTargetProperty(db, new PropertyPath("(Canvas.Left)"));
+                Storyboard.SetTargetProperty(da, new PropertyPath("(Canvas.Top)")); // EPIC FONTOS A ZAROJELEZES
+                sb.Children.Add(da);
+                sb.Children.Add(db);
+
+                (canvas.Children[turtleimage.CPos] as Image).BeginStoryboard(sb);
+
+                //TranslateTransform translate = new TranslateTransform();
+                //(canvas.Children[0] as Image).RenderTransform = translate;
+                //translate.BeginAnimation(TranslateTransform.XProperty, db);
+                //translate.BeginAnimation(TranslateTransform.YProperty, da);
             }
         }
 
@@ -147,7 +164,9 @@ namespace Editor
             pos.X = canvas.Width / 2d;
             pos.Y = canvas.Height / 2d;
             angle = 90;
-            TurtleMove(pos);
+            //TurtleMove(pos);
+            Canvas.SetTop(canvas.Children[turtleimage.CPos], pos.Y - turtleimage.Size / 2);
+            Canvas.SetLeft(canvas.Children[turtleimage.CPos], pos.X - turtleimage.Size / 2);
             TurtleRotate(angle);
         }
 
