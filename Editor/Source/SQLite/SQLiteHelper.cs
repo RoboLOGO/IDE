@@ -134,7 +134,7 @@ namespace Editor
                 if (File.Exists(filesource))
                 {
                     File.Delete(filesource);
-                    System.Threading.Thread.Sleep(500);
+                    System.Threading.Thread.Sleep(2000);
                 }
                 SQLiteConnection.CreateFile(filesource);
             }
