@@ -11,14 +11,14 @@ namespace Editor
 {
     class RTextboxHelper
     {
-        //rtb ->string
+        //rtb -> string
         public string GetString(RichTextBox rtb)
         {
             var textRange = new TextRange(rtb.Document.ContentStart, rtb.Document.ContentEnd);
             return textRange.Text;
         }
 
-        //string ->rtb
+        //string -> rtb
         public void SetString(string text, RichTextBox rtb)
         {
             MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(text));

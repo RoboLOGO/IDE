@@ -35,9 +35,13 @@ namespace Editor
             {                
                 int height = int.Parse(txtcanvasHeight.Text);
                 int width = int.Parse(txtcanvasWidth.Text);
-                SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper();
+                SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper;
                 sqlitehelp.NewFile(sfd.FileName, height, width);
-                CanvasSize canvasSize = CanvasSize.GetCanvasSize();
+                CanvasSize canvasSize = CanvasSize.GetCanvasSize;
+
+                canvasSize.Width = width;
+                canvasSize.Height = height;
+
                 //sqlitehelp.IsOpen;
                 this.Close();
             }

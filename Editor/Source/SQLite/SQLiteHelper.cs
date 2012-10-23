@@ -24,10 +24,13 @@ namespace Editor
             sqlitewriter = new SQLiteWriter();
         }
 
-        static public SQLiteHelper GetSqlHelper()
+        public static SQLiteHelper GetSqlHelper
         {
-            if(self == null) self = new SQLiteHelper();
-            return self;
+            get
+            {
+                if (self == null) self = new SQLiteHelper();
+                return self;
+            }
         }
 
         public void NewFile(string filesource, int canvasHeight, int canvasWidth)
@@ -39,7 +42,6 @@ namespace Editor
             CreateStruct(canvasHeight, canvasWidth);
         }
 
-        // !!!
         public string FileSource
         {
             get { return _filesource; }
@@ -146,8 +148,8 @@ namespace Editor
             string canvasheightSQL = "SELECT Value FROM Options WHERE Name='canvasheight'";
             string canvaswidthSQL = "SELECT Value FROM Options WHERE Name='canvaswidth'";
 
-            CanvasSize.GetCanvasSize().Height = int.Parse(sqlitereader.ExecuteOneReader(canvasheightSQL, "value", sqliteCon));
-            CanvasSize.GetCanvasSize().Width = int.Parse(sqlitereader.ExecuteOneReader(canvaswidthSQL, "value", sqliteCon));
+            CanvasSize.GetCanvasSize.Height = int.Parse(sqlitereader.ExecuteOneReader(canvasheightSQL, "value", sqliteCon));
+            CanvasSize.GetCanvasSize.Width = int.Parse(sqlitereader.ExecuteOneReader(canvaswidthSQL, "value", sqliteCon));
 
         }
 

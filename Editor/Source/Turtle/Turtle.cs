@@ -79,18 +79,15 @@ namespace Editor
 
             if (pen.IsDown)
             {
-
                 Line line = new Line();
                 line.Stroke = new SolidColorBrush(pen.Color);
                 //line.SnapsToDevicePixels = true;
                 //line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
-                
 
                 line.X1 = pos.X;
                 line.X2 = newpos.X;
                 line.Y1 = pos.Y;
                 line.Y2 = newpos.Y;
-
 
                 line.StrokeThickness = pen.Pensize;
                 canvas.Children.Add(line);
@@ -193,15 +190,13 @@ namespace Editor
         //beállítja a toll színét
         public void PenColor(Color penColor)
         {
-            if(penColor != null)
-                pen.Color = penColor;
+            if(penColor != null) pen.Color = penColor;
         }
 
         //beállítja a toll vastagságát
         public void PenSize(int penSize)
         {
-            if (penSize > 0)
-                pen.Pensize = penSize;
+            if (penSize > 0) pen.Pensize = penSize;
         }
 
         //A teknős láthatóságának kikapcsolása
@@ -224,8 +219,7 @@ namespace Editor
         //Megállítja a teknős
         public void Wait(int millisecundum)
         {
-            if ( millisecundum > 0)
-                System.Threading.Thread.Sleep(millisecundum);
+            if (millisecundum > 0) System.Threading.Thread.Sleep(millisecundum);
         }
     }
 }

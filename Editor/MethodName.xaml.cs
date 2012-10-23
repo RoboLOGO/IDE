@@ -28,8 +28,8 @@ namespace Editor
             try
             {
                 string methodname = methodnameTextBox.Text.Replace(" ", String.Empty);
-                if (methodname == string.Empty) throw new Exception("Nem lehet üres a név");
-                SQLiteHelper.GetSqlHelper().NewMethod(methodname, "eljárás " + methodname + "\r\n\r\nvége");
+                if (methodname == string.Empty) throw new Exception("Error: name can not be empty");
+                SQLiteHelper.GetSqlHelper.NewMethod(methodname, "eljárás " + methodname + "\r\n\r\nvége");
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }

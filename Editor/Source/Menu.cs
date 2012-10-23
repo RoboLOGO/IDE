@@ -14,16 +14,19 @@ namespace Editor
     class Menu
     {
         SQLiteHelper sqlitehelp;
-        static Menu menu;
+        static Menu self;
 
         private Menu()
         {
-            sqlitehelp = SQLiteHelper.GetSqlHelper();
+            sqlitehelp = SQLiteHelper.GetSqlHelper;
         }
-        public static Menu GetMenu()
+        public static Menu GetMenu
         {
-            if (menu == null) menu = new Menu();
-            return menu;
+            get
+            {
+                if (self == null) self = new Menu();
+                return self;
+            }
         }
 
         //mentés

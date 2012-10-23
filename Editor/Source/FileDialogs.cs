@@ -9,7 +9,7 @@ namespace Editor
     class FileDialogs
     {
         static string filter = "RoboLOGO Solution (.rbsln)|*.rbsln";
-        static string ext = ".rlsln";
+        static string ext = ".rbsln";
 
         public static OpenFileDialog GetOpenFileDialog()
         {

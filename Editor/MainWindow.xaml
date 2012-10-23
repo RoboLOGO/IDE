@@ -26,29 +26,29 @@
                 <MenuItem Header="_Fájl">
                     <MenuItem Header="Új..." Command="ApplicationCommands.New">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/new_icon.gif" />
+                            <Image Source="Icon_Images/new_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Megnyitás..." Command="ApplicationCommands.Open">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/open_icon.gif" />
+                            <Image Source="Icon_Images/open_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="Mentés" Name="SaveMenu" IsEnabled="False" Command="ApplicationCommands.Save">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/save_icon.png" />
+                            <Image Source="Icon_Images/save_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Mentés Másként..." Name="SaveAsMenu" IsEnabled="False" Command="ApplicationCommands.SaveAs">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/save_as_icon.png" />
+                            <Image Source="Icon_Images/save_as_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="Kilépés" Command="ApplicationCommands.Close">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/exit_icon.gif" />
+                            <Image Source="Icon_Images/exit_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -56,85 +56,85 @@
                 <MenuItem Header="_Szerkesztés">
                     <MenuItem Header="Vissza" Command="ApplicationCommands.Undo">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/undo_icon.png" />
+                            <Image Source="Icon_Images/undo_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Előre" Command="ApplicationCommands.Redo">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/redo_icon.png" />
+                            <Image Source="Icon_Images/redo_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="Másolás" Command="ApplicationCommands.Copy">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/copy_icon.png" />
+                            <Image Source="Icon_Images/copy_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Kivágás" Command="ApplicationCommands.Cut">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/cut_icon.png" />
+                            <Image Source="Icon_Images/cut_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Beillesztés" Command="ApplicationCommands.Paste">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/paste_icon.gif" />
+                            <Image Source="Icon_Images/paste_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Futtatás">
                     <MenuItem Header="Fut" Name="RunMenu" IsEnabled="False" InputGestureText="F5" Click="RunClick">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/run_icon.png" />
+                            <Image Source="Icon_Images/run_icon.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Kép törlés" Name="ClearMenu" IsEnabled="False" Click="ClearClick">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
+                            <Image Source="Icon_Images/clear_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Eljárás" Name="MethodMenu" IsEnabled="False" Click="Method_Click">
                         <MenuItem.Icon>
-                            <Image Source="/Editor;component/Icon_Images/method_icon.gif" />
+                            <Image Source="Icon_Images/method_icon.gif" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBar>
                 <Button ToolTip="Új..." Command="ApplicationCommands.New">
-                    <Image Source="/Editor;component/Icon_Images/new_icon.gif" />
+                    <Image Source="Icon_Images/new_icon.gif" />
                 </Button>
                 <Button ToolTip="Megnyitás" Command="ApplicationCommands.Open">
-                    <Image Source="/Editor;component/Icon_Images/open_icon.gif" />
+                    <Image Source="Icon_Images/open_icon.gif" />
                 </Button>
                 <Button Name="SaveButton" IsEnabled="False" ToolTip="Mentés" Command="ApplicationCommands.Save">
-                    <Image Source="/Editor;component/Icon_Images/save_icon.png" />
+                    <Image Source="Icon_Images/save_icon.png" />
                 </Button>
                 <Separator/>
                 <Button ToolTip="Kivágás" Command="Cut">
-                    <Image Source="/Editor;component/Icon_Images/Cut_icon.png" />
+                    <Image Source="Icon_Images/Cut_icon.png" />
                 </Button>
                 <Button ToolTip="Másolás" Command="ApplicationCommands.Copy">
-                    <Image Source="/Editor;component/Icon_Images/copy_icon.png" />
+                    <Image Source="Icon_Images/copy_icon.png" />
                 </Button>
                 <Button ToolTip="Beillesztés" Command="ApplicationCommands.Paste">
-                    <Image Source="/Editor;component/Icon_Images/paste_icon.gif" />
+                    <Image Source="Icon_Images/paste_icon.gif" />
                 </Button>
                 <Separator/>
                 <Button ToolTip="Vissza" Command="ApplicationCommands.Undo">
-                    <Image Source="/Editor;component/Icon_Images/undo_icon.png" />
+                    <Image Source="Icon_Images/undo_icon.png" />
                 </Button>
                 <Button ToolTip="Előre" Command="ApplicationCommands.Redo">
-                    <Image Source="/Editor;component/Icon_Images/redo_icon.png" />
+                    <Image Source="Icon_Images/redo_icon.png" />
                 </Button>
                 <Separator/>
                 <Button Name="RunButton" ToolTip="Futtatás" IsEnabled="False" Click="RunClick">
-                    <Image Source="/Editor;component/Icon_Images/run_icon.png" />
+                    <Image Source="Icon_Images/run_icon.png" />
                 </Button>
                 <Button Name="ClearButton" IsEnabled="False" ToolTip="Képernyő törlés" Click="ClearClick" >
-                    <Image Source="/Editor;component/Icon_Images/clear_icon.gif" />
+                    <Image Source="Icon_Images/clear_icon.gif" />
                 </Button>
                 <Button ToolTip="Rajzvászon mentése" Click="SaveImageClick">
-                    <Image Source="/Editor;component/Icon_Images/save_image_icon.png" />
+                    <Image Source="Icon_Images/save_image_icon.png" />
                 </Button>
             </ToolBar>
             <Label x:Name="FileName"></Label>

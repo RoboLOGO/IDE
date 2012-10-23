@@ -15,11 +15,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Content="Név:" />
-        <TextBox Grid.Column="1" x:Name="nameBox" Width="100"/>
+        <TextBlock Text="Név:" FontWeight="Bold" />
+        <TextBox Grid.Column="1" x:Name="txtnameBox" Width="100"/>
 
-        <Label Grid.Column="2" Content="Érték:" />
-        <TextBox Grid.Column="3" x:Name="valueBox" Width="100"/>
+        <TextBlock Grid.Column="2" Text="Érték:" FontWeight="Bold" />
+        <TextBox Grid.Column="3" x:Name="txtvalueBox" Width="100"/>
 
         <Button Width="70" HorizontalAlignment="Right" Grid.Row="1" x:Name="AddButton" Content="Hozzáad" Grid.Column="3" Margin="0,5,10,-5" Click="AddButton_Click"/>
     </Grid>

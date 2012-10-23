@@ -32,10 +32,10 @@ namespace Editor
         public MainWindow()
         {
             InitializeComponent();
-            canvasSize = CanvasSize.GetCanvasSize();
+            canvasSize = CanvasSize.GetCanvasSize;
             InitializeCanvas();
-            sqlitehelper = SQLiteHelper.GetSqlHelper();
-            menu = Menu.GetMenu();
+            sqlitehelper = SQLiteHelper.GetSqlHelper;
+            menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
         }
 
@@ -68,11 +68,13 @@ namespace Editor
         {
             if (menu.Open() == true)
             {
+                sqlitehelper.SetCanvasSize();
+                InitializeCanvas();
+                commandLine.Document.Blocks.Clear();
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 Format();
                 EnableMenus();
-                if (turtle != null)
-                    turtle.Clean();
+                if (turtle != null) turtle.Clean();
             }
         }
         //új
@@ -83,7 +85,9 @@ namespace Editor
             if (np.IsSuccess)
             {
                 InitializeCanvas();
+                commandLine.Document.Blocks.Clear();
                 EnableMenus();
+                if (turtle != null) turtle.Clean();
             }
         }
 

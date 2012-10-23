@@ -18,9 +18,6 @@ namespace Editor
             get { return _size; }
         }
 
-        //A teknős képe
-        Image turtle;
-
         //a teknős állapota
         bool _visible;
         public bool Visible
@@ -37,7 +34,6 @@ namespace Editor
             set { _cPos = value; }
         }
 
-
         public TurtleImage()
         {
             turtle = new Image();
@@ -47,7 +43,8 @@ namespace Editor
             this.Visible = true;
         }
 
-        //Visszadja a teknős képének referenciáját
+        //A teknős képe
+        Image turtle;
         public Image GetTurtleImage
         {
             get { return turtle; }

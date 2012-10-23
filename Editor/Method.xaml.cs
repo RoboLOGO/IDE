@@ -35,10 +35,7 @@ namespace Editor
 
         private void CloseSave()
         {
-            if (methodList.SelectedItem != null && TextChanged())
-            {
-                MethodSaver(methodList.SelectedItem);
-            }
+            if (methodList.SelectedItem != null && TextChanged()) MethodSaver(methodList.SelectedItem);
         }
 
         private void Method_Add_Click(object sender, RoutedEventArgs e)
@@ -50,7 +47,7 @@ namespace Editor
 
         private void SetMethodNames()
         {
-            List<string> items = SQLiteHelper.GetSqlHelper().GetAllMethodName();
+            List<string> items = SQLiteHelper.GetSqlHelper.GetAllMethodName();
             methodList.ItemsSource = items;
         }
 
@@ -64,7 +61,7 @@ namespace Editor
                 }
                 RTextboxHelper rtbhelper = new RTextboxHelper();
                 CommandLineClear();
-                rtbhelper.SetString(SQLiteHelper.GetSqlHelper().GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);
+                rtbhelper.SetString(SQLiteHelper.GetSqlHelper.GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);
                 prevItem = methodList.SelectedItem;
             }
         }
@@ -74,7 +71,7 @@ namespace Editor
             RTextboxHelper rtbhelper = new RTextboxHelper();
             if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                SQLiteHelper.GetSqlHelper().UpdateMethod(item.ToString(), rtbhelper.GetString(methodCommandLine));
+                SQLiteHelper.GetSqlHelper.UpdateMethod(item.ToString(), rtbhelper.GetString(methodCommandLine));
             }
         }
 
@@ -91,7 +88,7 @@ namespace Editor
             {
                 if (MessageBox.Show("Biztosan törlöd a(z) " + (dataGrid.SelectedItem as Variable).Name + " változót?", "Változó törlése törlés", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
-                    SQLiteHelper.GetSqlHelper().DeleteVariable((dataGrid.SelectedItem as Variable).Name);
+                    SQLiteHelper.GetSqlHelper.DeleteVariable((dataGrid.SelectedItem as Variable).Name);
                     SetVariables();
                 }
             }
@@ -103,8 +100,8 @@ namespace Editor
             {
                 if (MessageBox.Show("Biztosan törlöd a(z) " + methodList.SelectedItem.ToString() + " eljárást?", "Eljárás törlés", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
-                    SQLiteHelper.GetSqlHelper().DeleteMethod(methodList.SelectedItem.ToString());
-                    methodCommandLine.Document.Blocks.Clear();
+                    SQLiteHelper.GetSqlHelper.DeleteMethod(methodList.SelectedItem.ToString());
+                    CommandLineClear();
                     SetMethodNames();
                     CommandLineClear();
                 }
@@ -116,13 +113,13 @@ namespace Editor
         {
             RTextboxHelper rtbhelper = new RTextboxHelper();
             string s1 = rtbhelper.GetString(methodCommandLine).Replace("\r\n", "");
-            string s2 = (SQLiteHelper.GetSqlHelper().GetMethod(prevItem.ToString()).Replace("\n", "")).Replace("\r", "");
+            string s2 = (SQLiteHelper.GetSqlHelper.GetMethod(prevItem.ToString()).Replace("\n", "")).Replace("\r", "");
             return !(s1.Equals(s2));
         }
 
         private void CommandLineClear()
         {
-            methodCommandLine.Document.Blocks.Clear();//nem az igazi:S
+            methodCommandLine.Document.Blocks.Clear(); //nem az igazi:S
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -132,12 +129,9 @@ namespace Editor
 
         private void SetVariables()
         {
-            List<string> names = SQLiteHelper.GetSqlHelper().GetAllVariablesName();
+            List<string> names = SQLiteHelper.GetSqlHelper.GetAllVariablesName();
             List<Variable> l = new List<Variable>();
-            foreach (string x in names)
-            {
-                l.Add(new Variable(x, SQLiteHelper.GetSqlHelper().GetVariable(x)));
-            }
+            foreach (string x in names) l.Add(new Variable(x, SQLiteHelper.GetSqlHelper.GetVariable(x)));
             dataGrid.ItemsSource = l;
         }
 
@@ -145,15 +139,14 @@ namespace Editor
         {
             if (((dataGrid.SelectedItem as Variable).Value != int.Parse((e.EditingElement as TextBox).Text)) && MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                
                 try
                 {
                     int value = int.Parse((e.EditingElement as TextBox).Text);
-                    SQLiteHelper.GetSqlHelper().UpdateVariable((dataGrid.SelectedItem as Variable).Name, value);
+                    SQLiteHelper.GetSqlHelper.UpdateVariable((dataGrid.SelectedItem as Variable).Name, value);
                 }
                 catch
                 {
-                    MessageBox.Show("Nem megfelelő érték");
+                    MessageBox.Show("Error: incorrect value");
                 }
                 
             }

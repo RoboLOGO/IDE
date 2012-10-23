@@ -27,12 +27,12 @@ namespace Editor
         {
             try
             {
-                string varname = nameBox.Text.Replace(" ", String.Empty);
-                if (varname == string.Empty) throw new Exception("Nem lehet üres a név");
+                string varname = txtnameBox.Text.Replace(" ", String.Empty);
+                if (varname == string.Empty) throw new Exception("Error: name can not be empty");
                 int value;
-                try { value = int.Parse(valueBox.Text); }
-                catch { throw new Exception("A változó értéke csak egész szám lehet"); }
-                SQLiteHelper.GetSqlHelper().NewVariable(varname, value);
+                try { value = int.Parse(txtvalueBox.Text); }
+                catch { throw new Exception("Error: value must be integer"); }
+                SQLiteHelper.GetSqlHelper.NewVariable(varname, value);
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }

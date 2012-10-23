@@ -29,12 +29,13 @@ namespace Editor
             Width = 800;
         }
 
-        public static CanvasSize GetCanvasSize()
+        public static CanvasSize GetCanvasSize
         {
-            if (self == null) self = new CanvasSize();
-            return self;
+            get
+            {
+                if (self == null) self = new CanvasSize();
+                return self;
+            }
         }
-
-
     }
 }

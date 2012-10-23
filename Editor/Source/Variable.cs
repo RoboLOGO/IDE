@@ -10,8 +10,8 @@ namespace Editor
         public Variable() { }
         public Variable(string name, int value)
         {
-            Name = name;
-            Value = value;
+            this.Name = name;
+            this.Value = value;
         }
 
         public string Name { get; set; }
