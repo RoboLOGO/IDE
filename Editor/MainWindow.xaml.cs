@@ -71,6 +71,7 @@ namespace Editor
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 Format();
                 EnableMenus();
+                turtle.Clean();
             }
         }
         //új
