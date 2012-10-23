@@ -22,5 +22,20 @@ namespace Editor
         {
             InitializeComponent();
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string varname = nameBox.Text.Replace(" ", String.Empty);
+                if (varname == string.Empty) throw new Exception("Nem lehet üres a név");
+                int value;
+                try { value = int.Parse(valueBox.Text); }
+                catch { throw new Exception("A változó értéke csak egész szám lehet"); }
+                SQLiteHelper.GetSqlHelper().NewVariable(varname, value);
+                this.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
     }
 }

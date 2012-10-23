@@ -13,25 +13,24 @@
                             <Paragraph FontSize="10pt" LineHeight="0.1pt"></Paragraph>
                         </FlowDocument>
                     </RichTextBox>
-                    <ListBox Margin="9,6,0,62" Width="72" x:Name="methodList" SelectionChanged="select_SelectionChanged" HorizontalAlignment="Left"></ListBox>
+                    <ListBox Margin="9,6,0,62" Width="72" x:Name="methodList" SelectionChanged="Select_SelectionChanged" HorizontalAlignment="Left"></ListBox>
                     <Button Height="25" Width="50" Click="Method_Close_Click" Margin="307,258,6,13">Ok</Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Változók">
                 <Grid Height="297" Width="369">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="36*" />
-                        <ColumnDefinition Width="333*" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Name="AddVariable" Height="25" Width="62" Margin="9,240,298,31" Click="AddVariable_Click" Grid.ColumnSpan="2">Hozzáadás</Button>
-                    <Button Name="DeleteValriable" Content="Eltávolítás" Height="25" Width="62" Margin="41,240,230,31" Click="DeleteValriable_Click" Grid.Column="1" />
-                    <DataGrid Margin="9,7,7,60" x:Name="DataGrid" Grid.ColumnSpan="2">
+                    <Button Name="AddVariable" Height="25" Width="62" Margin="9,240,298,31" Click="AddVariable_Click">Hozzáadás</Button>
+                    <Button Name="DeleteValriable" Content="Eltávolítás" Height="25" Width="62" Margin="77,240,230,31" Click="DeleteValriable_Click" />
+                    <DataGrid Margin="9,7,7,60" x:Name="dataGrid" SelectionMode="Single" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CellEditEnding="dataGrid_CellEditEnding">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Név" IsReadOnly="True" />
-                            <DataGridTextColumn Header="Érték" />
+                            <DataGridTextColumn Header="Név" Binding="{Binding Name}" IsReadOnly="True" Width="Auto"/>
+                            <DataGridTextColumn Header="Érték" Binding="{Binding Value}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Height="25" Width="50" Click="Method_Close_Click" Margin="271,259,12,13" Grid.Column="1">Ok</Button>
+                    <Button Height="25" Width="50" Click="Method_Close_Click" Margin="307,259,12,13">OK</Button>
                 </Grid>
             </TabItem>
         </TabControl>

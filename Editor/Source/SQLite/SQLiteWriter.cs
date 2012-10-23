@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 
-namespace Editor
+namespace Editor.SQLite
 {
     class SQLiteWriter
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 using System.IO;
+using Editor.SQLite;
 
 namespace Editor
 {
@@ -85,6 +86,18 @@ namespace Editor
         {
             string variableSQL = "SELECT Value FROM Variables WHERE Name='" + name + "'";
             return int.Parse(sqlitereader.ExecuteOneReader(variableSQL, "value", sqliteCon));
+        }
+
+        public List<string> GetAllVariablesName()
+        {
+            string getallvariablesSQL = "SELECT Name FROM Variables";
+            return sqlitereader.ExecuteMoreReader(getallvariablesSQL, "name", sqliteCon);
+        }
+
+        public void UpdateVariable(string name, int value)
+        {
+            string variableSQL = "UPDATE Variables SET Value =" + value + " WHERE Name='" + name + "'";
+            sqlitewriter.ExecuteQuery(variableSQL, sqliteCon);
         }
 
         public void DeleteVariable(string name)

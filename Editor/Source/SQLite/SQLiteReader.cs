@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 
-namespace Editor
+namespace Editor.SQLite
 {
     class SQLiteReader
     {
@@ -13,7 +13,7 @@ namespace Editor
             SQLiteCommand command = new SQLiteCommand(commandSQL, connection);
             SQLiteDataReader reader = command.ExecuteReader();
             reader.Read();
-            return (string)reader[returnColumn];
+            return reader[returnColumn].ToString();
         }
 
         public List<string> ExecuteMoreReader(string commandSQL, string returnColumn, SQLiteConnection connection)
@@ -21,7 +21,7 @@ namespace Editor
             List<string> items = new List<string>();
             SQLiteCommand command = new SQLiteCommand(commandSQL, connection);
             SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read()) items.Add((string)reader["name"]);
+            while (reader.Read()) items.Add((string)reader[returnColumn]);
             return items;
         }
     }

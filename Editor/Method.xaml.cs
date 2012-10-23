@@ -24,6 +24,7 @@ namespace Editor
         {
             InitializeComponent();
             SetMethodNames();
+            SetVariables();
         }
 
         private void Method_Close_Click(object sender, RoutedEventArgs e)
@@ -53,7 +54,7 @@ namespace Editor
             methodList.ItemsSource = items;
         }
 
-        private void select_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Select_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (methodList.SelectedItem != null)
             {
@@ -81,11 +82,19 @@ namespace Editor
         {
             AddVariables AddVar = new AddVariables();
             AddVar.ShowDialog();
+            SetVariables();
         }
 
         private void DeleteValriable_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGrid.SelectedItem != null)
+            {
+                if (MessageBox.Show("Biztosan törlöd a(z) " + (dataGrid.SelectedItem as Variable).Name + " változót?", "Változó törlése törlés", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+                {
+                    SQLiteHelper.GetSqlHelper().DeleteVariable((dataGrid.SelectedItem as Variable).Name);
+                    SetVariables();
+                }
+            }
         }
 
         private void DeleteMethod_Click(object sender, RoutedEventArgs e)
@@ -119,6 +128,36 @@ namespace Editor
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             CloseSave();
+        }
+
+        private void SetVariables()
+        {
+            List<string> names = SQLiteHelper.GetSqlHelper().GetAllVariablesName();
+            List<Variable> l = new List<Variable>();
+            foreach (string x in names)
+            {
+                l.Add(new Variable(x, SQLiteHelper.GetSqlHelper().GetVariable(x)));
+            }
+            dataGrid.ItemsSource = l;
+        }
+
+        private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                
+                try
+                {
+                    int value = int.Parse((e.EditingElement as TextBox).Text);
+                    SQLiteHelper.GetSqlHelper().UpdateVariable((dataGrid.SelectedItem as Variable).Name, value);
+                }
+                catch
+                {
+                    MessageBox.Show("Nem megfelelő érték");
+                }
+                
+            }
+            SetVariables();
         }
 
         #region Syntax
