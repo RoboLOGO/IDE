@@ -143,7 +143,7 @@ namespace Editor
 
         private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (((dataGrid.SelectedItem as Variable).Value != int.Parse((e.EditingElement as TextBox).Text)) && MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 
                 try
