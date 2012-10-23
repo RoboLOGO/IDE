@@ -49,7 +49,7 @@ namespace Editor
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog sfd = FileDialogs.GetSaveFileDialog();
+            sfd = FileDialogs.GetSaveFileDialog();
             sfd.ShowDialog();
 
             txtfileSource.Text = sfd.FileName;
