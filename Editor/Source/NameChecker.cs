@@ -25,6 +25,8 @@ namespace Editor
                 "tollatle",
                 "tollatfel",
                 "várj",
+                "eljárás",
+                "vége",
             };
         }
 
