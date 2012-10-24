@@ -20,35 +20,34 @@
         <CommandBinding Command="ApplicationCommands.New"
                         Executed="NewClick"/>
     </Window.CommandBindings>
-    <Grid>
-        <StackPanel>
-            <Menu>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Fájl">
                     <MenuItem Header="Új..." Command="ApplicationCommands.New">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/new_icon.gif" />
+                            <Image Source="Icon_Images/new.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Megnyitás..." Command="ApplicationCommands.Open">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/open_icon.gif" />
+                            <Image Source="Icon_Images/open.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="Mentés" Name="SaveMenu" IsEnabled="False" Command="ApplicationCommands.Save">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/save_icon.png" />
+                            <Image Source="Icon_Images/save.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Mentés Másként..." Name="SaveAsMenu" IsEnabled="False" Command="ApplicationCommands.SaveAs">
+                    <MenuItem Header="Mentés Másként..." Command="ApplicationCommands.SaveAs">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/save_as_icon.png" />
+                            <Image Name="SaveAsMenu" IsEnabled="False" Source="Icon_Images/save_as.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="Kilépés" Command="ApplicationCommands.Close">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/exit_icon.gif" />
+                            <Image Source="Icon_Images/delete.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -56,40 +55,40 @@
                 <MenuItem Header="_Szerkesztés">
                     <MenuItem Header="Vissza" Command="ApplicationCommands.Undo">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/undo_icon.png" />
+                            <Image Source="Icon_Images/undo.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Előre" Command="ApplicationCommands.Redo">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/redo_icon.png" />
+                            <Image Source="Icon_Images/redo.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="Másolás" Command="ApplicationCommands.Copy">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/copy_icon.png" />
+                            <Image Source="Icon_Images/copy.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Kivágás" Command="ApplicationCommands.Cut">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/cut_icon.png" />
+                            <Image Source="Icon_Images/cut.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Beillesztés" Command="ApplicationCommands.Paste">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/paste_icon.gif" />
+                            <Image Source="Icon_Images/paste.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Futtatás">
                     <MenuItem Header="Fut" Name="RunMenu" IsEnabled="False" InputGestureText="F5" Click="RunClick">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/run_icon.png" />
+                            <Image Source="Icon_Images/run.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Kép törlés" Name="ClearMenu" IsEnabled="False" Click="ClearClick">
                         <MenuItem.Icon>
-                            <Image Source="Icon_Images/clear_icon.gif" />
+                            <Image Source="Icon_Images/clear.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Eljárás" Name="MethodMenu" IsEnabled="False" Click="Method_Click">
@@ -99,49 +98,48 @@
                     </MenuItem>
                 </MenuItem>
             </Menu>
+        <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
                 <Button ToolTip="Új..." Command="ApplicationCommands.New">
-                    <Image Source="Icon_Images/new_icon.gif" />
+                    <Image Source="Icon_Images/new.png" />
                 </Button>
                 <Button ToolTip="Megnyitás" Command="ApplicationCommands.Open">
-                    <Image Source="Icon_Images/open_icon.gif" />
+                    <Image Source="Icon_Images/open.png" />
                 </Button>
                 <Button Name="SaveButton" IsEnabled="False" ToolTip="Mentés" Command="ApplicationCommands.Save">
-                    <Image Source="Icon_Images/save_icon.png" />
+                    <Image Source="Icon_Images/save.png" />
                 </Button>
                 <Separator/>
                 <Button ToolTip="Kivágás" Command="Cut">
-                    <Image Source="Icon_Images/Cut_icon.png" />
+                    <Image Source="Icon_Images/cut.png" />
                 </Button>
                 <Button ToolTip="Másolás" Command="ApplicationCommands.Copy">
-                    <Image Source="Icon_Images/copy_icon.png" />
+                    <Image Source="Icon_Images/copy.png" />
                 </Button>
                 <Button ToolTip="Beillesztés" Command="ApplicationCommands.Paste">
-                    <Image Source="Icon_Images/paste_icon.gif" />
+                    <Image Source="Icon_Images/paste.png" />
                 </Button>
                 <Separator/>
                 <Button ToolTip="Vissza" Command="ApplicationCommands.Undo">
-                    <Image Source="Icon_Images/undo_icon.png" />
+                    <Image Source="Icon_Images/undo.png" />
                 </Button>
                 <Button ToolTip="Előre" Command="ApplicationCommands.Redo">
-                    <Image Source="Icon_Images/redo_icon.png" />
+                    <Image Source="Icon_Images/redo.png" />
                 </Button>
                 <Separator/>
-                <Button Name="RunButton" ToolTip="Futtatás" IsEnabled="False" Click="RunClick">
-                    <Image Source="Icon_Images/run_icon.png" />
+                <Button  Name="RunButton" IsEnabled="False" ToolTip="Futtatás" Click="RunClick">
+                    <Image Source="Icon_Images/run.png" />
                 </Button>
-                <Button Name="ClearButton" IsEnabled="False" ToolTip="Képernyő törlés" Click="ClearClick" >
-                    <Image Source="Icon_Images/clear_icon.gif" />
+                <Button  Name="ClearButton" IsEnabled="False" ToolTip="Képernyő törlés" Click="ClearClick" >
+                    <Image Source="Icon_Images/clear.png" />
                 </Button>
                 <Button ToolTip="Rajzvászon mentése" Click="SaveImageClick">
-                    <Image Source="Icon_Images/save_image_icon.png" />
+                    <Image Source="Icon_Images/dl_canvas.png" />
                 </Button>
             </ToolBar>
-            <Label x:Name="FileName"></Label>
+        </ToolBarTray>
 
-            <Canvas HorizontalAlignment="Center" Margin="25,25,25,25" Name="canvas" VerticalAlignment="Bottom" SnapsToDevicePixels="True"/>
-        </StackPanel>
-        
+        <Canvas DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="25,25,25,25" Name="canvas" VerticalAlignment="Bottom" SnapsToDevicePixels="True"/>
         <Border>
             <RichTextBox IsEnabled="False"  Height="112" x:Name="commandLine"  VerticalAlignment="Bottom" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
                 <FlowDocument Name="fdtext">
@@ -149,7 +147,6 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            
         </Border>
-    </Grid>
+    </DockPanel>
 </Window>
