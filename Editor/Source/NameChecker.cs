@@ -70,7 +70,7 @@ namespace Editor
 
         private bool IsAlphaNumeric(string name)
         {
-            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9éáűőúöüóÉÁŰŐÚÖÜÓ]");
+            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9éáűőúöüóíÉÁŰŐÚÖÜÓÍ]");
             return objAlphaNumericPattern.IsMatch(name); 
         }
 
