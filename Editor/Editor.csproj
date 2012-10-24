@@ -56,13 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddVariables.xaml.cs">
-      <DependentUpon>AddVariables.xaml</DependentUpon>
+    <Compile Include="NewVariables.xaml.cs">
+      <DependentUpon>NewVariables.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\FileDialogs.cs" />
+    <Compile Include="Source\NameChecker.cs" />
     <Compile Include="Source\Turtle\CanvasSize.cs" />
     <Compile Include="Source\LogoRun.cs" />
     <Compile Include="Source\Menu.cs" />
@@ -81,7 +82,7 @@
     <Compile Include="Source\Turtle\TurtleImage.cs" />
     <Compile Include="Source\Turtle\Vector2.cs" />
     <Compile Include="Source\Variable.cs" />
-    <Page Include="AddVariables.xaml">
+    <Page Include="NewVariables.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

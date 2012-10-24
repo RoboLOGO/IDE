@@ -102,6 +102,7 @@ namespace Editor
                 "törölkép",
                 "tollatle",
                 "tollatfel",
+                "várj"
             };
         public void Draw(Turtle turtle)
         {

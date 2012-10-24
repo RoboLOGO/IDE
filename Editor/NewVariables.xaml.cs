@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 namespace Editor
 {
     /// <summary>
-    /// Interaction logic for AddVariables.xaml
+    /// Interaction logic for NewVariables.xaml
     /// </summary>
     public partial class AddVariables : Window
     {
@@ -27,11 +27,12 @@ namespace Editor
         {
             try
             {
-                string varname = txtnameBox.Text.Replace(" ", String.Empty);
-                if (varname == string.Empty) throw new Exception("Error: name can not be empty");
+                string varname = txtnameBox.Text.ToLower();
+                NameChecker nc = new NameChecker();
+                nc.IsUsable(varname);
                 int value;
                 try { value = int.Parse(txtvalueBox.Text); }
-                catch { throw new Exception("Error: value must be integer"); }
+                catch { throw new Exception("Az érték csak egész típusú lehet"); }
                 SQLiteHelper.GetSqlHelper.NewVariable(varname, value);
                 this.Close();
             }
