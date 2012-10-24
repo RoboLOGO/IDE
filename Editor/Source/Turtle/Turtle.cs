@@ -108,21 +108,7 @@ namespace Editor
             {
                 //Canvas.SetTop(canvas.Children[turtleimage.CPos], turtlePos.Y - turtleimage.Size / 2);
                 //Canvas.SetLeft(canvas.Children[turtleimage.CPos], turtlePos.X - turtleimage.Size / 2);
-
-                Storyboard sb = new Storyboard();
-                DoubleAnimation da = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.TopProperty), turtlePos.Y - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
-                DoubleAnimation db = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.LeftProperty), turtlePos.X - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
-                Storyboard.SetTargetProperty(db, new PropertyPath("(Canvas.Left)"));
-                Storyboard.SetTargetProperty(da, new PropertyPath("(Canvas.Top)")); // EPIC FONTOS A ZAROJELEZES
-                sb.Children.Add(da);
-                sb.Children.Add(db);
-
-                (canvas.Children[turtleimage.CPos] as Image).BeginStoryboard(sb);
-
-                //TranslateTransform translate = new TranslateTransform();
-                //(canvas.Children[0] as Image).RenderTransform = translate;
-                //translate.BeginAnimation(TranslateTransform.XProperty, db);
-                //translate.BeginAnimation(TranslateTransform.YProperty, da);
+                Animate(turtlePos.X, turtlePos.Y);
             }
         }
 
@@ -165,9 +151,26 @@ namespace Editor
             pos.Y = canvas.Height / 2d;
             angle = 90;
             //TurtleMove(pos);
-            Canvas.SetTop(canvas.Children[turtleimage.CPos], pos.Y - turtleimage.Size / 2);
-            Canvas.SetLeft(canvas.Children[turtleimage.CPos], pos.X - turtleimage.Size / 2);
+            if (turtleimage.Visible)
+            {
+                Canvas.SetTop(canvas.Children[turtleimage.CPos], pos.Y - turtleimage.Size / 2);
+                Canvas.SetLeft(canvas.Children[turtleimage.CPos], pos.X - turtleimage.Size / 2);
+                Animate(pos.X, pos.Y);
+            }
             TurtleRotate(angle);
+        }
+
+        private void Animate(double X, double Y)
+        {
+            Storyboard sb = new Storyboard();
+            DoubleAnimation da = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.TopProperty), Y - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
+            DoubleAnimation db = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.LeftProperty), X - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
+            Storyboard.SetTargetProperty(db, new PropertyPath("(Canvas.Left)"));
+            Storyboard.SetTargetProperty(da, new PropertyPath("(Canvas.Top)")); // EPIC FONTOS A ZAROJELEZES
+            sb.Children.Add(da);
+            sb.Children.Add(db);
+
+            (canvas.Children[turtleimage.CPos] as Image).BeginStoryboard(sb);
         }
 
         //Vissza adja a teknős X pozicióját az origóhoz(teknős kezdő pontja) képest
