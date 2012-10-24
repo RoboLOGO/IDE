@@ -141,37 +141,36 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon_Images\new_icon.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon_Images\open_icon.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon_Images\exit_icon.gif" />
-    <Resource Include="Icon_Images\save_as_icon.png" />
-    <Resource Include="Icon_Images\save_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon_Images\copy_icon.png" />
-    <Resource Include="Icon_Images\cut_icon.png" />
-    <Resource Include="Icon_Images\paste_icon.gif" />
-    <Resource Include="Icon_Images\redo_icon.png" />
-    <Resource Include="Icon_Images\undo_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Content\turtle.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon_Images\run_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Icon_Images\clear.png" />
     <Resource Include="Icon_Images\clear_icon.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon_Images\save_image_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Icon_Images\copy.png" />
+    <Resource Include="Icon_Images\copy_icon.png" />
+    <Resource Include="Icon_Images\cut.png" />
+    <Resource Include="Icon_Images\cut_icon.png" />
+    <Resource Include="Icon_Images\delete.png" />
+    <Resource Include="Icon_Images\dl_canvas.png" />
+    <Resource Include="Icon_Images\exit_icon.gif" />
     <Resource Include="Icon_Images\method_icon.gif" />
+    <Resource Include="Icon_Images\new.png" />
+    <Resource Include="Icon_Images\new_icon.gif" />
+    <Resource Include="Icon_Images\open.png" />
+    <Resource Include="Icon_Images\open_icon.gif" />
+    <Resource Include="Icon_Images\paste.png" />
+    <Resource Include="Icon_Images\paste_icon.gif" />
+    <Resource Include="Icon_Images\redo.png" />
+    <Resource Include="Icon_Images\redo_icon.png" />
+    <Resource Include="Icon_Images\run.png" />
+    <Resource Include="Icon_Images\run_icon.png" />
+    <Resource Include="Icon_Images\save.png" />
+    <Resource Include="Icon_Images\save_as.png" />
+    <Resource Include="Icon_Images\save_as_icon.png" />
+    <Resource Include="Icon_Images\save_icon.png" />
+    <Resource Include="Icon_Images\save_image_icon.png" />
+    <Resource Include="Icon_Images\undo.png" />
+    <Resource Include="Icon_Images\undo_icon.png" />
     <Content Include="Source\SQLite\System.Data.SQLite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
