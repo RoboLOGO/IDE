@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Editor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RoboLogo" Height="350" Width="525" WindowState="Maximized" Background="AliceBlue">
+        Title="RoboLogo" MinWidth="640" MinHeight="480" WindowState="Maximized" Background="AliceBlue">
 
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close"
@@ -21,7 +21,7 @@
                         Executed="NewClick"/>
     </Window.CommandBindings>
         <DockPanel>
-            <Menu DockPanel.Dock="Top">
+            <Menu DockPanel.Dock="Top" >
                 <MenuItem Header="_Fájl">
                     <MenuItem Header="Új..." Command="ApplicationCommands.New">
                         <MenuItem.Icon>
@@ -138,15 +138,16 @@
                 </Button>
             </ToolBar>
         </ToolBarTray>
-
-        <Canvas DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="25,25,25,25" Name="canvas" VerticalAlignment="Bottom" SnapsToDevicePixels="True"/>
-        <Border>
-            <RichTextBox IsEnabled="False"  Height="112" x:Name="commandLine"  VerticalAlignment="Bottom" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
+        <Border DockPanel.Dock="Bottom">
+            <RichTextBox IsEnabled="False"  Height="120" x:Name="commandLine"  VerticalAlignment="Center" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
                 <FlowDocument Name="fdtext">
                     <Paragraph FontSize="10pt" LineHeight="0.1pt" >
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
         </Border>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Canvas HorizontalAlignment="Center" Name="canvas" VerticalAlignment="Center" SnapsToDevicePixels="True"/>
+        </ScrollViewer>
     </DockPanel>
 </Window>
