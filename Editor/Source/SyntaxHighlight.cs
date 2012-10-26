@@ -24,7 +24,9 @@ namespace Editor
                 "tollatfel",
                 "ha",
                 "ismétlés",
-                "amíg"
+                "amíg",
+                "eljárás",
+                "vége",
             };
             tags = new List<string>(strs);
 

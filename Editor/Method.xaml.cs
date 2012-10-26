@@ -19,12 +19,13 @@ namespace Editor
     public partial class Method : Window
     {
         object prevItem;
-
+        RTextboxHelper rtbhelper = new RTextboxHelper();
         public Method()
         {
             InitializeComponent();
             SetMethodNames();
             SetVariables();
+            MethodCommandLineEnable();
         }
 
         private void Method_Close_Click(object sender, RoutedEventArgs e)
@@ -43,6 +44,15 @@ namespace Editor
             MethodName methodname = new MethodName();
             methodname.ShowDialog();
             SetMethodNames();
+            MethodCommandLineEnable();
+        }
+
+        private void MethodCommandLineEnable()
+        {
+            if (methodList.Items.Count != 0)
+            {
+                methodCommandLine.IsEnabled = true;
+            }
         }
 
         private void SetMethodNames()
@@ -59,7 +69,6 @@ namespace Editor
                 {
                     MethodSaver(prevItem);
                 }
-                RTextboxHelper rtbhelper = new RTextboxHelper();
                 CommandLineClear();
                 rtbhelper.SetString(SQLiteHelper.GetSqlHelper.GetMethod(methodList.SelectedItem.ToString()), methodCommandLine);
                 prevItem = methodList.SelectedItem;
@@ -68,7 +77,6 @@ namespace Editor
 
         private void MethodSaver(object item)
         {
-            RTextboxHelper rtbhelper = new RTextboxHelper();
             if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 SQLiteHelper.GetSqlHelper.UpdateMethod(item.ToString(), rtbhelper.GetString(methodCommandLine));
@@ -111,7 +119,6 @@ namespace Editor
 
         private bool TextChanged()
         {
-            RTextboxHelper rtbhelper = new RTextboxHelper();
             string s1 = rtbhelper.GetString(methodCommandLine).Replace("\r\n", "");
             string s2 = (SQLiteHelper.GetSqlHelper.GetMethod(prevItem.ToString()).Replace("\n", "")).Replace("\r", "");
             return !(s1.Equals(s2));
@@ -119,7 +126,7 @@ namespace Editor
 
         private void CommandLineClear()
         {
-            methodCommandLine.Document.Blocks.Clear(); //nem az igazi:S
+            rtbhelper.DeleteString(methodCommandLine);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -24,5 +24,10 @@ namespace Editor
             MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(text));
             rtb.Selection.Load(stream, DataFormats.Text);
         }
+        //String.Empty -> rtb
+        public void DeleteString(RichTextBox rtb)
+        {
+            SetString(String.Empty, rtb);
+        }
     }
 }
