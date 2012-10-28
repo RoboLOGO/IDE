@@ -30,7 +30,7 @@
     <system:String x:Key="copy">Copy</system:String>
     <system:String x:Key="cut">Cut</system:String>
     <system:String x:Key="paste">Paste</system:String>
-    <system:String x:Key="run">Run Project</system:String>
+    <system:String x:Key="run">Run</system:String>
     <system:String x:Key="clean">Clear screen</system:String>
     <system:String x:Key="savecanvas">Save Canvas as Image</system:String>
     <system:String x:Key="method">Procedure</system:String>
@@ -42,6 +42,7 @@
     <system:String x:Key="deletemethod">named procedure</system:String>
     <system:String x:Key="delmet">Remove procedure</system:String>
     <system:String x:Key="delconfirmation">Do you want to save the changes?</system:String>
+    <system:String x:Key="type">Type a command</system:String>
     <system:String x:Key="error">Error</system:String>
     <system:String x:Key="nameempty">Name can not be empty</system:String>
     <system:String x:Key="namespace">Name can not contain white space</system:String>

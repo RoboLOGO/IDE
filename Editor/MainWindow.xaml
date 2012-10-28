@@ -23,7 +23,7 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top" >
                 <MenuItem Header="{DynamicResource file}" Name="fileMenuItem">
-                    <MenuItem Header="Új..." Name="newMenuItem" Command="ApplicationCommands.New">
+                    <MenuItem Header="{DynamicResource new}" Name="newMenuItem" Command="ApplicationCommands.New">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/new.png" />
                         </MenuItem.Icon>
@@ -34,64 +34,64 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Mentés" Name="saveMenuItem" IsEnabled="False" Command="ApplicationCommands.Save">
+                    <MenuItem Header="{DynamicResource save}" Name="saveMenuItem" IsEnabled="False" Command="ApplicationCommands.Save">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/save.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Mentés Másként..." Name="saveAsMenuItem" IsEnabled="False" Command="ApplicationCommands.SaveAs">
+                    <MenuItem Header="{DynamicResource saveas}" Name="saveAsMenuItem" IsEnabled="False" Command="ApplicationCommands.SaveAs">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/save_as.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Kilépés" Name="exitMenuItem" Command="ApplicationCommands.Close">
+                    <MenuItem Header="{DynamicResource exit}" Name="exitMenuItem" Command="ApplicationCommands.Close">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/delete.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
 
-                <MenuItem Header="_Szerkesztés" Name="editMenuItem">
-                    <MenuItem Header="Vissza" Name="undoMenuItem" Command="ApplicationCommands.Undo">
+                <MenuItem Header="{DynamicResource edit}" Name="editMenuItem">
+                    <MenuItem Header="{DynamicResource undo}" Name="undoMenuItem" Command="ApplicationCommands.Undo">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/undo.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Előre" Name="redoMenuItem" Command="ApplicationCommands.Redo">
+                    <MenuItem Header="{DynamicResource redo}" Name="redoMenuItem" Command="ApplicationCommands.Redo">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/redo.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Másolás" Name="copyMenuItem" Command="ApplicationCommands.Copy">
+                    <MenuItem Header="{DynamicResource copy}" Name="copyMenuItem" Command="ApplicationCommands.Copy">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/copy.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Kivágás" Name="cutMenuItem" Command="ApplicationCommands.Cut">
+                    <MenuItem Header="{DynamicResource cut}" Name="cutMenuItem" Command="ApplicationCommands.Cut">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/cut.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Beillesztés" Name="pasteMenuItem" Command="ApplicationCommands.Paste">
+                    <MenuItem Header="{DynamicResource paste}" Name="pasteMenuItem" Command="ApplicationCommands.Paste">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/paste.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Futtatás" Name="runMenuMenuItem">
-                    <MenuItem Header="Fut" Name="runMenuItem" IsEnabled="False" InputGestureText="F5" Click="RunClick">
+                <MenuItem Header="{DynamicResource run}" Name="runMenuMenuItem">
+                    <MenuItem Header="{DynamicResource run}" Name="runMenuItem" IsEnabled="False" InputGestureText="F5" Click="RunClick">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/run.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Kép törlés" Name="clearMenuItem" IsEnabled="False" Click="ClearClick">
+                    <MenuItem Header="{DynamicResource clean}" Name="clearMenuItem" IsEnabled="False" Click="ClearClick">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/clear.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Eljárás/Változó" Name="methodMenu" IsEnabled="False" Click="Method_Click">
+                    <MenuItem Header="{DynamicResource methodheader}" Name="methodMenu" IsEnabled="False" Click="Method_Click">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/method_icon.gif" />
                         </MenuItem.Icon>
@@ -100,40 +100,40 @@
             </Menu>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button ToolTip="Új.." Name="newButton" Command="ApplicationCommands.New">
+                <Button ToolTip="{DynamicResource new}" Name="newButton" Command="ApplicationCommands.New">
                     <Image Source="Icon_Images/new.png" />
                 </Button>
-                <Button ToolTip="Megnyitás.." Name="openButton" Command="ApplicationCommands.Open">
+                <Button ToolTip="{DynamicResource open}" Name="openButton" Command="ApplicationCommands.Open">
                     <Image Source="Icon_Images/open.png" />
                 </Button>
-                <Button Name="saveButton" IsEnabled="False" ToolTip="Mentés" Command="ApplicationCommands.Save">
+                <Button Name="saveButton" IsEnabled="False" ToolTip="{DynamicResource save}" Command="ApplicationCommands.Save">
                     <Image Source="Icon_Images/save.png" />
                 </Button>
                 <Separator/>
-                <Button ToolTip="Kivágás" Name="cutButton" Command="Cut">
+                <Button ToolTip="{DynamicResource cut}" Name="cutButton" Command="Cut">
                     <Image Source="Icon_Images/cut.png" />
                 </Button>
-                <Button ToolTip="Másolás" Name="copyButton" Command="ApplicationCommands.Copy">
+                <Button ToolTip="{DynamicResource copy}" Name="copyButton" Command="ApplicationCommands.Copy">
                     <Image Source="Icon_Images/copy.png" />
                 </Button>
-                <Button ToolTip="Beillesztés" Name="pasteButton" Command="ApplicationCommands.Paste">
+                <Button ToolTip="{DynamicResource paste}" Name="pasteButton" Command="ApplicationCommands.Paste">
                     <Image Source="Icon_Images/paste.png" />
                 </Button>
                 <Separator/>
-                <Button ToolTip="Vissza" Name="undoButton" Command="ApplicationCommands.Undo">
+                <Button ToolTip="{DynamicResource undo}" Name="undoButton" Command="ApplicationCommands.Undo">
                     <Image Source="Icon_Images/undo.png" />
                 </Button>
-                <Button ToolTip="Előre" Name="redoButton" Command="ApplicationCommands.Redo">
+                <Button ToolTip="{DynamicResource redo}" Name="redoButton" Command="ApplicationCommands.Redo">
                     <Image Source="Icon_Images/redo.png" />
                 </Button>
                 <Separator/>
-                <Button  Name="runButton" IsEnabled="False" ToolTip="Futtatás" Click="RunClick">
+                <Button  Name="runButton" IsEnabled="False" ToolTip="{DynamicResource run}" Click="RunClick">
                     <Image Source="Icon_Images/run.png" />
                 </Button>
-                <Button  Name="clearButton" IsEnabled="False" ToolTip="Kép törlés" Click="ClearClick" >
+                <Button  Name="clearButton" IsEnabled="False" ToolTip="{DynamicResource clean}" Click="ClearClick" >
                     <Image Source="Icon_Images/clear.png" />
                 </Button>
-                <Button Name="canvassaveButton" ToolTip="Rajzvászon mentése" Click="SaveImageClick">
+                <Button Name="canvassaveButton" ToolTip="{DynamicResource savecanvas}" Click="SaveImageClick">
                     <Image Source="Icon_Images/dl_canvas.png" />
                 </Button>
                 <Button Name="LangHu" Content="Hu" Click="LangHu_Click" />
@@ -141,7 +141,7 @@
             </ToolBar>
         </ToolBarTray>
         <Border DockPanel.Dock="Bottom">
-            <RichTextBox IsEnabled="False"  Height="120" x:Name="commandLine"  VerticalAlignment="Center" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
+            <RichTextBox IsEnabled="False"  Height="120" x:Name="commandLine"  VerticalAlignment="Center" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="{DynamicResource type}" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
                 <FlowDocument Name="fdtext">
                     <Paragraph FontSize="10pt" LineHeight="1pt" >
                     </Paragraph>

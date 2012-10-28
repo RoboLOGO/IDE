@@ -42,6 +42,7 @@
     <system:String x:Key="deletemethod">nevű eljárást</system:String>
     <system:String x:Key="delmet">Eljárás törlés</system:String>
     <system:String x:Key="delconfirmation">Szeretnéd menteni a változásokat?</system:String>
+    <system:String x:Key="type">Ide írd a parancsokat</system:String>
     <system:String x:Key="error">Hiba</system:String>
     <system:String x:Key="nameempty">Nem lehet üres a név</system:String>
     <system:String x:Key="namespace">Nem lehet szóköz a névben</system:String>
