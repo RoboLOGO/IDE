@@ -27,6 +27,17 @@ namespace Editor
         public NewProject()
         {
             InitializeComponent();
+            SetLanguage();
+        }
+
+        private void SetLanguage()
+        {
+            this.Title = "Új Projekt";
+            canvasWidthText.Text = "Vászon szélessége:";
+            canvasHeightText.Text = "Vászon magassága:";
+            saveText.Text = "Mentés helye:";
+            browseButton.Content = "Tallózás..";
+            saveButton.Content = "Mentés";
         }
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)

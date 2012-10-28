@@ -32,11 +32,44 @@ namespace Editor
         public MainWindow()
         {
             InitializeComponent();
+            SetLanguage();
             canvasSize = CanvasSize.GetCanvasSize;
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper;
             menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
+        }
+
+        private void SetLanguage()
+        {
+            this.Title = "RoboLOGO";
+            fileMenuItem.Header = "_Fájl";
+            newMenuItem.Header = "Új..";
+            openMenuItem.Header = "Megnyitás..";
+            saveMenuItem.Header = "Mentés";
+            saveAsMenuItem.Header = "Mentés másként..";
+            exitMenuItem.Header = "Kilépés";
+            editMenuItem.Header = "_Szerkesztés";
+            undoMenuItem.Header = "Vissza";
+            redoMenuItem.Header = "Előre";
+            copyMenuItem.Header = "Másolás";
+            cutMenuItem.Header = "Kivágás";
+            pasteMenuItem.Header = "Beillesztés";
+            runMenuMenuItem.Header = "_Futtatás";
+            runMenuItem.Header = "Futtatás";
+            clearMenuItem.Header = "Kép törlése";
+            methodMenu.Header = "Eljárás/Változó";
+            newButton.ToolTip = "Új..";
+            openButton.ToolTip = "Megynitás..";
+            saveButton.ToolTip = "Mentés";
+            cutButton.ToolTip = "Kivágás";
+            copyButton.ToolTip = "Másolás";
+            pasteButton.ToolTip = "Beillesztés";
+            undoButton.ToolTip = "Vissza";
+            redoButton.ToolTip = "Előre";
+            runButton.ToolTip = "Futtatás";
+            clearButton.ToolTip = "Kép törlése";
+            canvassaveButton.ToolTip = "Rajzvászon mentése";
         }
 
         private void InitializeCanvas()
@@ -70,7 +103,7 @@ namespace Editor
             {
                 sqlitehelper.SetCanvasSize();
                 InitializeCanvas();
-                rtbhelper.DeleteString(commandLine);
+                commandLine.Document.Blocks.Clear();
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 Format();
                 EnableMenus();
@@ -85,7 +118,7 @@ namespace Editor
             if (np.IsSuccess)
             {
                 InitializeCanvas();
-                rtbhelper.DeleteString(commandLine);
+                commandLine.Document.Blocks.Clear();
                 EnableMenus();
                 if (turtle != null) turtle.Clean();
             }
@@ -94,14 +127,14 @@ namespace Editor
         private void EnableMenus()
         {
             commandLine.IsEnabled = true;
-            RunButton.IsEnabled = true;
-            RunMenu.IsEnabled = true;
-            ClearButton.IsEnabled = true;
-            ClearMenu.IsEnabled = true;
-            SaveButton.IsEnabled = true;
-            SaveMenu.IsEnabled = true;
-            SaveAsMenu.IsEnabled = true;
-            MethodMenu.IsEnabled = true;
+            runButton.IsEnabled = true;
+            runMenuItem.IsEnabled = true;
+            clearButton.IsEnabled = true;
+            clearMenuItem.IsEnabled = true;
+            saveButton.IsEnabled = true;
+            saveMenuItem.IsEnabled = true;
+            saveAsMenuItem.IsEnabled = true;
+            methodMenu.IsEnabled = true;
         }
         
         //futtatás

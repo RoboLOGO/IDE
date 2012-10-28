@@ -23,9 +23,22 @@ namespace Editor
         public Method()
         {
             InitializeComponent();
+            SetLanguage();
             SetMethodNames();
             SetVariables();
             MethodCommandLineEnable();
+        }
+
+        private void SetLanguage()
+        {
+            this.Title = "Metódus/Változó";
+            addButton.Content = "Hozzáad";
+            removeButton.Content = "Eltávolítás";
+            okButton.Content = "OK";
+            methodsHeader.Header = "Eljárások";
+            varHeader.Header = "Változók";
+            dataGrid.Columns[0].Header = "Név";
+            dataGrid.Columns[1].Header = "Érték";
         }
 
         private void Method_Close_Click(object sender, RoutedEventArgs e)

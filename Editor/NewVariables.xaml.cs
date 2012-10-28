@@ -21,6 +21,15 @@ namespace Editor
         public AddVariables()
         {
             InitializeComponent();
+            SetLanguage();
+        }
+
+        private void SetLanguage()
+        {
+            this.Title = "Változó";
+            nameText.Text = "Név:";
+            valueText.Text = "Érték:";
+            addButton.Content = "Hozzáad";
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

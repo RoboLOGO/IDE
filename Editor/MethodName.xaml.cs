@@ -21,6 +21,14 @@ namespace Editor
         public MethodName()
         {
             InitializeComponent();
+            SetLanguage();
+        }
+
+        private void SetLanguage()
+        {
+            this.Title = "Új eljárás";
+            methodNameText.Text = "Eljárás neve:";
+            addButton.Content = "Hozzáad";
         }
 
         private void Method_Name_Add_Click(object sender, RoutedEventArgs e)
