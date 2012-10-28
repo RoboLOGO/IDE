@@ -24,10 +24,17 @@ namespace Editor
             MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(text));
             rtb.Selection.Load(stream, DataFormats.Text);
         }
-        //String.Empty -> rtb
-        public void DeleteString(RichTextBox rtb)
+        public void DeleteString(RichTextBox rtb, FlowDocument fd)
         {
-            SetString(String.Empty, rtb);
+            rtb.SelectAll();
+            rtb.Selection.Text = "";
+            FlowDocSettings(fd);
+        }
+
+        private void FlowDocSettings(FlowDocument fd)
+        {
+            fd.LineHeight = 1;
+            fd.FontSize = 17;
         }
     }
 }

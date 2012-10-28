@@ -141,7 +141,7 @@
         <Border DockPanel.Dock="Bottom">
             <RichTextBox IsEnabled="False"  Height="120" x:Name="commandLine"  VerticalAlignment="Center" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="Type a Command" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
                 <FlowDocument Name="fdtext">
-                    <Paragraph FontSize="10pt" LineHeight="0.1pt" >
+                    <Paragraph FontSize="10pt" LineHeight="1pt" >
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>

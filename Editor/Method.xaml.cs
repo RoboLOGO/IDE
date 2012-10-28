@@ -139,7 +139,7 @@ namespace Editor
 
         private void CommandLineClear()
         {
-            rtbhelper.DeleteString(methodCommandLine);
+            rtbhelper.DeleteString(methodCommandLine,fdtext);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -103,7 +103,7 @@ namespace Editor
             {
                 sqlitehelper.SetCanvasSize();
                 InitializeCanvas();
-                commandLine.Document.Blocks.Clear();
+                rtbhelper.DeleteString(commandLine,fdtext);
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 Format();
                 EnableMenus();
@@ -118,7 +118,7 @@ namespace Editor
             if (np.IsSuccess)
             {
                 InitializeCanvas();
-                commandLine.Document.Blocks.Clear();
+                rtbhelper.DeleteString(commandLine,fdtext);
                 EnableMenus();
                 if (turtle != null) turtle.Clean();
             }
