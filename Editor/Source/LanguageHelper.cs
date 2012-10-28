@@ -60,7 +60,6 @@ namespace Editor
             words.Add("file", "Fájl");
             words.Add("new", "Új");
             words.Add("open", "Megnyitás");
-            words.Add("save", "Mentés");
             words.Add("saveas", "Mentés másként");
             words.Add("exit", "Kilépés");
             words.Add("edit", "Szerkesztés");

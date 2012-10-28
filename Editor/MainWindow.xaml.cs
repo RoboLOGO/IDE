@@ -48,7 +48,7 @@ namespace Editor
             newMenuItem.Header = lp.GetName("new") + "..";
             openMenuItem.Header = lp.GetName("open") + "..";
             saveMenuItem.Header = lp.GetName("save");
-            saveAsMenuItem.Header = lp.GetName("saveas" + "..");
+            saveAsMenuItem.Header = lp.GetName("saveas") + "..";
             exitMenuItem.Header = lp.GetName("exit");
             editMenuItem.Header = "_" + lp.GetName("edit");
             undoMenuItem.Header = lp.GetName("undo");
