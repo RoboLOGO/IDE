@@ -79,7 +79,7 @@ namespace Editor
             words.Add("delvar", "Változó törlése");
             words.Add("deletemethod", "nevű eljárást");
             words.Add("delmet", "Eljárás törlés");
-            words.Add("delconfirmation", "Szeretnéd menteni a változások");
+            words.Add("delconfirmation", "Szeretnéd menteni a változásokat");
         }
 
         private void SetExeptions()
