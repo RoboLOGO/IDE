@@ -19,9 +19,13 @@ namespace Editor
     public partial class Method : Window
     {
         object prevItem;
-        RTextboxHelper rtbhelper = new RTextboxHelper();
+        RTextboxHelper rtbhelper;
+        LanguageHelper lh;
+
         public Method()
         {
+            rtbhelper = new RTextboxHelper();
+            lh = LanguageHelper.GetLanguageHelper();
             InitializeComponent();
             SetLanguage();
             SetMethodNames();
@@ -31,14 +35,14 @@ namespace Editor
 
         private void SetLanguage()
         {
-            this.Title = "Metódus/Változó";
-            addButton.Content = "Hozzáad";
-            removeButton.Content = "Eltávolítás";
-            okButton.Content = "OK";
-            methodsHeader.Header = "Eljárások";
-            varHeader.Header = "Változók";
-            dataGrid.Columns[0].Header = "Név";
-            dataGrid.Columns[1].Header = "Érték";
+            this.Title = lh.GetName("methodheader");
+            addButton.Content = lh.GetName("add");
+            removeButton.Content = lh.GetName("remove");
+            okButton.Content = lh.GetName("ok");
+            methodsHeader.Header = lh.GetName("methods");
+            varHeader.Header = lh.GetName("variables");
+            dataGrid.Columns[0].Header = lh.GetName("name");
+            dataGrid.Columns[1].Header = lh.GetName("value");
         }
 
         private void Method_Close_Click(object sender, RoutedEventArgs e)
@@ -90,7 +94,7 @@ namespace Editor
 
         private void MethodSaver(object item)
         {
-            if (MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(lh.GetName("saveconfirmation"), lh.GetName("save"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 SQLiteHelper.GetSqlHelper.UpdateMethod(item.ToString(), rtbhelper.GetString(methodCommandLine));
             }
@@ -107,7 +111,7 @@ namespace Editor
         {
             if (dataGrid.SelectedItem != null)
             {
-                if (MessageBox.Show("Biztosan törlöd a(z) " + (dataGrid.SelectedItem as Variable).Name + " változót?", "Változó törlése törlés", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+                if (MessageBox.Show(lh.GetName("savetext") + " " + (dataGrid.SelectedItem as Variable).Name + " " + lh.GetName("deletevariable") + "?", lh.GetName("delvar"), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
                     SQLiteHelper.GetSqlHelper.DeleteVariable((dataGrid.SelectedItem as Variable).Name);
                     SetVariables();
@@ -119,7 +123,7 @@ namespace Editor
         {
             if (methodList.SelectedItem != null)
             {
-                if (MessageBox.Show("Biztosan törlöd a(z) " + methodList.SelectedItem.ToString() + " eljárást?", "Eljárás törlés", MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+                if (MessageBox.Show(lh.GetName("savetext") + " " + methodList.SelectedItem.ToString() + lh.GetName("deletemethod") + "?", lh.GetName("delmet"), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
                     SQLiteHelper.GetSqlHelper.DeleteMethod(methodList.SelectedItem.ToString());
                     CommandLineClear();
@@ -157,7 +161,7 @@ namespace Editor
 
         private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (((dataGrid.SelectedItem as Variable).Value != int.Parse((e.EditingElement as TextBox).Text)) && MessageBox.Show("Szeretnéd menteni a változások?", "Mentés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (((dataGrid.SelectedItem as Variable).Value != int.Parse((e.EditingElement as TextBox).Text)) && MessageBox.Show(lh.GetName("delconfirmation") + "?", lh.GetName("save"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
@@ -166,7 +170,7 @@ namespace Editor
                 }
                 catch
                 {
-                    MessageBox.Show("Error: incorrect value");
+                    MessageBox.Show(lh.GetExeption("valueint"));
                 }
                 
             }

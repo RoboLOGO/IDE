@@ -42,34 +42,35 @@ namespace Editor
 
         private void SetLanguage()
         {
-            this.Title = "RoboLOGO";
-            fileMenuItem.Header = "_Fájl";
-            newMenuItem.Header = "Új..";
-            openMenuItem.Header = "Megnyitás..";
-            saveMenuItem.Header = "Mentés";
-            saveAsMenuItem.Header = "Mentés másként..";
-            exitMenuItem.Header = "Kilépés";
-            editMenuItem.Header = "_Szerkesztés";
-            undoMenuItem.Header = "Vissza";
-            redoMenuItem.Header = "Előre";
-            copyMenuItem.Header = "Másolás";
-            cutMenuItem.Header = "Kivágás";
-            pasteMenuItem.Header = "Beillesztés";
-            runMenuMenuItem.Header = "_Futtatás";
-            runMenuItem.Header = "Futtatás";
-            clearMenuItem.Header = "Kép törlése";
-            methodMenu.Header = "Eljárás/Változó";
-            newButton.ToolTip = "Új..";
-            openButton.ToolTip = "Megynitás..";
-            saveButton.ToolTip = "Mentés";
-            cutButton.ToolTip = "Kivágás";
-            copyButton.ToolTip = "Másolás";
-            pasteButton.ToolTip = "Beillesztés";
-            undoButton.ToolTip = "Vissza";
-            redoButton.ToolTip = "Előre";
-            runButton.ToolTip = "Futtatás";
-            clearButton.ToolTip = "Kép törlése";
-            canvassaveButton.ToolTip = "Rajzvászon mentése";
+            LanguageHelper lp = LanguageHelper.GetLanguageHelper();
+            this.Title = lp.GetName("mainheader");
+            fileMenuItem.Header = "_" + lp.GetName("file");
+            newMenuItem.Header = lp.GetName("new") + "..";
+            openMenuItem.Header = lp.GetName("open") + "..";
+            saveMenuItem.Header = lp.GetName("save");
+            saveAsMenuItem.Header = lp.GetName("saveas" + "..");
+            exitMenuItem.Header = lp.GetName("exit");
+            editMenuItem.Header = "_" + lp.GetName("edit");
+            undoMenuItem.Header = lp.GetName("undo");
+            redoMenuItem.Header = lp.GetName("redo");
+            copyMenuItem.Header = lp.GetName("copy");
+            cutMenuItem.Header = lp.GetName("cut");
+            pasteMenuItem.Header = lp.GetName("paste");
+            runMenuMenuItem.Header = "_" + lp.GetName("run");
+            runMenuItem.Header = lp.GetName("run");
+            clearMenuItem.Header = lp.GetName("clean");
+            methodMenu.Header = lp.GetName("methodheader");
+            newButton.ToolTip = lp.GetName("new") + "..";
+            openButton.ToolTip = lp.GetName("open") + "..";
+            saveButton.ToolTip = lp.GetName("save");
+            cutButton.ToolTip = lp.GetName("cut");
+            copyButton.ToolTip = lp.GetName("copy");
+            pasteButton.ToolTip = lp.GetName("paste");
+            undoButton.ToolTip = lp.GetName("undo");
+            redoButton.ToolTip = lp.GetName("redo");
+            runButton.ToolTip = lp.GetName("run"); ;
+            clearButton.ToolTip = lp.GetName("clean");
+            canvassaveButton.ToolTip = lp.GetName("savecanvas");
         }
 
         private void InitializeCanvas()

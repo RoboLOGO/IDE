@@ -98,11 +98,6 @@ namespace Editor
         //futtatás
         public void Run(ref Turtle turtle, Canvas canvas)
         {
-            if (!sqlitehelp.IsOpen)
-            {
-                MessageBox.Show("Nincs projekted");
-                return;
-            }
             if (turtle == null) turtle = new Turtle(canvas);
             turtle.Clean();
             LogoRun run = new LogoRun();

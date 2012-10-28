@@ -32,12 +32,13 @@ namespace Editor
 
         private void SetLanguage()
         {
-            this.Title = "Új Projekt";
-            canvasWidthText.Text = "Vászon szélessége:";
-            canvasHeightText.Text = "Vászon magassága:";
-            saveText.Text = "Mentés helye:";
-            browseButton.Content = "Tallózás..";
-            saveButton.Content = "Mentés";
+            LanguageHelper lh = LanguageHelper.GetLanguageHelper();
+            this.Title = lh.GetName("newprojectheader");
+            canvasWidthText.Text = lh.GetName("canvaswidth");
+            canvasHeightText.Text = lh.GetName("canvasheight");
+            saveText.Text = lh.GetName("savesource");
+            browseButton.Content = lh.GetName("browse") + "..";
+            saveButton.Content = lh.GetName("save");
         }
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
@@ -53,12 +54,11 @@ namespace Editor
                 canvasSize.Width = width;
                 canvasSize.Height = height;
 
-                //sqlitehelp.IsOpen;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: \n" + ex.Message);
+                MessageBox.Show(LanguageHelper.GetLanguageHelper().GetExeption("error") + ": \n" + ex.Message);
             }
         }
 

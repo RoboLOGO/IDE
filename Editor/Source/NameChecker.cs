@@ -38,27 +38,28 @@ namespace Editor
         public bool IsUsable(string name)
         {
             name = name.ToLower();
+            LanguageHelper lp = LanguageHelper.GetLanguageHelper();
 
             if (name == String.Empty)
-                throw new Exception("Nem lehet üres a név");
+                throw new Exception(lp.GetExeption("nameempty"));
 
             if (name.Contains(" "))
-                throw new Exception("Nem lehet szóköz a névben");
+                throw new Exception(lp.GetExeption("namespace"));
 
             if (IsNumber(name[0].ToString()))
-                throw new Exception("Nem kezdődhet számmal a név");
+                throw new Exception(lp.GetExeption("namestartnumber"));
 
             if (IsAlphaNumeric(name))
-                throw new Exception("Nem megengedett karakter a névben");
+                throw new Exception(lp.GetExeption("namenotallowed"));
 
             if (IsCommand(name))
-                throw new Exception("Nem használható a parancs névként");
+                throw new Exception(lp.GetExeption("namecommand"));
 
             if(IsVariableName(name))
-                throw new Exception("Ez már egy változó név");
+                throw new Exception(lp.GetExeption("namevar"));
 
             if(IsMethodName(name))
-                throw new Exception("Ez már egy eljárás név");
+                throw new Exception(lp.GetExeption("namemethod"));
 
             return true;
         }
@@ -72,7 +73,7 @@ namespace Editor
 
         private bool IsAlphaNumeric(string name)
         {
-            Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9éáűőúöüóíÉÁŰŐÚÖÜÓÍ]");
+            Regex objAlphaNumericPattern = new Regex("[^a-z0-9éáűőúöüóí_]");
             return objAlphaNumericPattern.IsMatch(name); 
         }
 

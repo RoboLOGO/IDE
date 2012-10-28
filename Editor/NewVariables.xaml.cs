@@ -26,10 +26,11 @@ namespace Editor
 
         private void SetLanguage()
         {
-            this.Title = "Változó";
-            nameText.Text = "Név:";
-            valueText.Text = "Érték:";
-            addButton.Content = "Hozzáad";
+            LanguageHelper lh = LanguageHelper.GetLanguageHelper();
+            this.Title = lh.GetName("newvarheader");
+            nameText.Text = lh.GetName("name") + ":";
+            valueText.Text = lh.GetName("value") + ":";
+            addButton.Content = lh.GetName("add");
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +42,7 @@ namespace Editor
                 nc.IsUsable(varname);
                 int value;
                 try { value = int.Parse(txtvalueBox.Text); }
-                catch { throw new Exception("Az érték csak egész típusú lehet"); }
+                catch { throw new Exception(LanguageHelper.GetLanguageHelper().GetExeption("valueint")); }
                 SQLiteHelper.GetSqlHelper.NewVariable(varname, value);
                 this.Close();
             }

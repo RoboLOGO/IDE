@@ -26,19 +26,21 @@ namespace Editor
 
         private void SetLanguage()
         {
-            this.Title = "Új eljárás";
-            methodNameText.Text = "Eljárás neve:";
-            addButton.Content = "Hozzáad";
+            LanguageHelper lh = LanguageHelper.GetLanguageHelper();
+            this.Title = lh.GetName("methodnameheader");
+            methodNameText.Text = lh.GetName("methodname");
+            addButton.Content = lh.GetName("add");
         }
 
         private void Method_Name_Add_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                LanguageHelper lh = LanguageHelper.GetLanguageHelper();
                 string methodname = methodnameTextBox.Text.ToLower();
                 NameChecker nc = new NameChecker();
                 nc.IsUsable(methodname);
-                SQLiteHelper.GetSqlHelper.NewMethod(methodname, "eljárás " + methodname + "\r\n\r\nvége");
+                SQLiteHelper.GetSqlHelper.NewMethod(methodname, lh.GetName("method") + " " + methodname + "\r\n\r\n" + lh.GetName("end"));
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
