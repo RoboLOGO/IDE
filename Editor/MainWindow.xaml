@@ -22,13 +22,13 @@
     </Window.CommandBindings>
         <DockPanel>
             <Menu DockPanel.Dock="Top" >
-                <MenuItem Header="_Fájl" Name="fileMenuItem">
+                <MenuItem Header="{DynamicResource file}" Name="fileMenuItem">
                     <MenuItem Header="Új..." Name="newMenuItem" Command="ApplicationCommands.New">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/new.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Megnyitás..." Name="openMenuItem" Command="ApplicationCommands.Open">
+                    <MenuItem Header="{DynamicResource open}" Name="openMenuItem" Command="ApplicationCommands.Open">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/open.png" />
                         </MenuItem.Icon>
@@ -136,6 +136,8 @@
                 <Button Name="canvassaveButton" ToolTip="Rajzvászon mentése" Click="SaveImageClick">
                     <Image Source="Icon_Images/dl_canvas.png" />
                 </Button>
+                <Button Name="LangHu" Content="Hu" Click="LangHu_Click" />
+                <Button Name="LangEn" Content="En" Click="LangEn_Click" />
             </ToolBar>
         </ToolBarTray>
         <Border DockPanel.Dock="Bottom">

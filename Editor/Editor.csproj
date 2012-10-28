@@ -83,6 +83,10 @@
     <Compile Include="Source\Turtle\TurtleImage.cs" />
     <Compile Include="Source\Turtle\Vector2.cs" />
     <Compile Include="Source\Variable.cs" />
+    <Page Include="Languages\English.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Languages\Hungarian.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

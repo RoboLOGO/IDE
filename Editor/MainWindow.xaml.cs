@@ -32,7 +32,7 @@ namespace Editor
         public MainWindow()
         {
             InitializeComponent();
-            SetLanguage();
+            //SetLanguage();
             canvasSize = CanvasSize.GetCanvasSize;
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper;
@@ -248,6 +248,17 @@ namespace Editor
             }
         }
         #endregion
+
+        private void LangHu_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Resources.MergedDictionaries[0].Source = new Uri("Languages/Hungarian.xaml", UriKind.Relative);
+
+        }
+
+        private void LangEn_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Resources.MergedDictionaries[0].Source = new Uri("Languages/English.xaml", UriKind.Relative);
+        }
        
     }
 }

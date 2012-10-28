@@ -35,13 +35,13 @@
     <system:String x:Key="savecanvas">Rajzvászon mentése</system:String>
     <system:String x:Key="method">eljárás</system:String> <!--ez parancs-->
     <system:String x:Key="end">vége</system:String> <!--ez parancs-->
-    <system:String x:Key="saveconfirmation">Szeretnéd menteni a változások?</system:String>
+    <system:String x:Key="saveconfirmation">Szeretnéd menteni a változásokat?</system:String>
     <system:String x:Key="savetext">Biztosan törlöd a(z)</system:String>
     <system:String x:Key="deletevariable">nevű változót</system:String>
     <system:String x:Key="delvar">Változó törlése</system:String>
     <system:String x:Key="deletemethod">nevű eljárást</system:String>
     <system:String x:Key="delmet">Eljárás törlés</system:String>
-    <system:String x:Key="delconfirmation">Szeretnéd menteni a változásokat</system:String>
+    <system:String x:Key="delconfirmation">Szeretnéd menteni a változásokat?</system:String>
     <system:String x:Key="error">Hiba</system:String>
     <system:String x:Key="nameempty">Nem lehet üres a név</system:String>
     <system:String x:Key="namespace">Nem lehet szóköz a névben</system:String>

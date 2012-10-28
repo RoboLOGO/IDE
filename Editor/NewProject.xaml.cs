@@ -27,18 +27,6 @@ namespace Editor
         public NewProject()
         {
             InitializeComponent();
-            SetLanguage();
-        }
-
-        private void SetLanguage()
-        {
-            LanguageHelper lh = LanguageHelper.GetLanguageHelper();
-            this.Title = lh.GetName("newprojectheader");
-            canvasWidthText.Text = lh.GetName("canvaswidth");
-            canvasHeightText.Text = lh.GetName("canvasheight");
-            saveText.Text = lh.GetName("savesource");
-            browseButton.Content = lh.GetName("browse") + "..";
-            saveButton.Content = lh.GetName("save");
         }
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
