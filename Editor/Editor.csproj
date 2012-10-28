@@ -180,6 +180,9 @@
     <Resource Include="Icon_Images\save_image_icon.png" />
     <Resource Include="Icon_Images\undo.png" />
     <Resource Include="Icon_Images\undo_icon.png" />
+    <Resource Include="Icon_Images\brit.jpg" />
+    <Resource Include="Icon_Images\hun.jpg" />
+    <Resource Include="Icon_Images\world.png" />
     <Content Include="Source\SQLite\System.Data.SQLite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

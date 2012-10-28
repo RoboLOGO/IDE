@@ -23,6 +23,9 @@
     <system:String x:Key="new">Új</system:String>
     <system:String x:Key="open">Megnyitás</system:String>
     <system:String x:Key="saveas">Mentés másként</system:String>
+    <system:String x:Key="lang">Nyelv</system:String>
+    <system:String x:Key="langhu">Magyar</system:String>
+    <system:String x:Key="langen">Angol</system:String>
     <system:String x:Key="exit">Kilépés</system:String>
     <system:String x:Key="edit">Szerkesztés</system:String>
     <system:String x:Key="undo">Vissza</system:String>

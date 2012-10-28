@@ -45,7 +45,23 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="{DynamicResource exit}" Name="exitMenuItem" Command="ApplicationCommands.Close">
+                <MenuItem Header="{DynamicResource lang}" Name="langMenuItem" >
+                    <MenuItem.Icon>
+                        <Image Source="Icon_Images/world.png" />
+                    </MenuItem.Icon>
+                    <MenuItem Header="{DynamicResource langhu}" Click="LangHu_Click">
+                        <MenuItem.Icon>
+                            <Image Width="16" Height="16" Source="Icon_Images/hun.jpg" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{DynamicResource langen}" Click="LangEn_Click">
+                        <MenuItem.Icon>
+                            <Image Width="16" Height="16" Source="Icon_Images/brit.jpg" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="{DynamicResource exit}" Name="exitMenuItem" Command="ApplicationCommands.Close">
                         <MenuItem.Icon>
                             <Image Source="Icon_Images/delete.png" />
                         </MenuItem.Icon>
@@ -136,8 +152,6 @@
                 <Button Name="canvassaveButton" ToolTip="{DynamicResource savecanvas}" Click="SaveImageClick">
                     <Image Source="Icon_Images/dl_canvas.png" />
                 </Button>
-                <Button Name="LangHu" Content="Hu" Click="LangHu_Click" />
-                <Button Name="LangEn" Content="En" Click="LangEn_Click" />
             </ToolBar>
         </ToolBarTray>
         <Border DockPanel.Dock="Bottom">
