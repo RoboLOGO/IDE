@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-    <system:String x:Key="newvarheader">Változó</system:String>
+    <system:String x:Key="newvarheader">Új változó</system:String>
     <system:String x:Key="name">Név</system:String>
     <system:String x:Key="value">Érték</system:String>
     <system:String x:Key="add">Hozzáad</system:String>
@@ -12,7 +12,7 @@
     <system:String x:Key="browse">Tallózás</system:String>
     <system:String x:Key="save">Mentés</system:String>
     <system:String x:Key="methodnameheader">Új eljárás</system:String>
-    <system:String x:Key="methodname">Eljárás neve</system:String>
+    <system:String x:Key="methodname">Eljárás neve:</system:String>
     <system:String x:Key="methodheader">Eljárás/Változó</system:String>
     <system:String x:Key="remove">Eltávolítás</system:String>
     <system:String x:Key="ok">OK</system:String>

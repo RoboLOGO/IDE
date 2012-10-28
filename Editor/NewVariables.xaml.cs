@@ -21,16 +21,6 @@ namespace Editor
         public AddVariables()
         {
             InitializeComponent();
-            SetLanguage();
-        }
-
-        private void SetLanguage()
-        {
-            LanguageHelper lh = LanguageHelper.GetLanguageHelper();
-            this.Title = lh.GetName("newvarheader");
-            nameText.Text = lh.GetName("name") + ":";
-            valueText.Text = lh.GetName("value") + ":";
-            addButton.Content = lh.GetName("add");
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

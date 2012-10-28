@@ -20,29 +20,14 @@ namespace Editor
     {
         object prevItem;
         RTextboxHelper rtbhelper;
-        LanguageHelper lh;
 
         public Method()
         {
             rtbhelper = new RTextboxHelper();
-            lh = LanguageHelper.GetLanguageHelper();
             InitializeComponent();
-            SetLanguage();
             SetMethodNames();
             SetVariables();
             MethodCommandLineEnable();
-        }
-
-        private void SetLanguage()
-        {
-            this.Title = lh.GetName("methodheader");
-            addButton.Content = lh.GetName("add");
-            removeButton.Content = lh.GetName("remove");
-            okButton.Content = lh.GetName("ok");
-            methodsHeader.Header = lh.GetName("methods");
-            varHeader.Header = lh.GetName("variables");
-            dataGrid.Columns[0].Header = lh.GetName("name");
-            dataGrid.Columns[1].Header = lh.GetName("value");
         }
 
         private void Method_Close_Click(object sender, RoutedEventArgs e)
@@ -94,7 +79,8 @@ namespace Editor
 
         private void MethodSaver(object item)
         {
-            if (MessageBox.Show(lh.GetName("saveconfirmation"), lh.GetName("save"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(App.Current.TryFindResource("saveconfirmation").ToString(), App.Current.TryFindResource("save").ToString(), 
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 SQLiteHelper.GetSqlHelper.UpdateMethod(item.ToString(), rtbhelper.GetString(methodCommandLine));
             }
@@ -111,7 +97,8 @@ namespace Editor
         {
             if (dataGrid.SelectedItem != null)
             {
-                if (MessageBox.Show(lh.GetName("savetext") + " " + (dataGrid.SelectedItem as Variable).Name + " " + lh.GetName("deletevariable") + "?", lh.GetName("delvar"), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+                if (MessageBox.Show(App.Current.TryFindResource("savetext").ToString() + " " + (dataGrid.SelectedItem as Variable).Name + " " + App.Current.TryFindResource("deletevariable").ToString(),
+                    App.Current.TryFindResource("delvar").ToString(), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
                     SQLiteHelper.GetSqlHelper.DeleteVariable((dataGrid.SelectedItem as Variable).Name);
                     SetVariables();
@@ -123,7 +110,8 @@ namespace Editor
         {
             if (methodList.SelectedItem != null)
             {
-                if (MessageBox.Show(lh.GetName("savetext") + " " + methodList.SelectedItem.ToString() + lh.GetName("deletemethod") + "?", lh.GetName("delmet"), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
+                if (MessageBox.Show(App.Current.TryFindResource("savetext").ToString() + " " + methodList.SelectedItem.ToString() + App.Current.TryFindResource("deletemethod").ToString() + "?", 
+                    App.Current.TryFindResource("delmet").ToString(), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
                     SQLiteHelper.GetSqlHelper.DeleteMethod(methodList.SelectedItem.ToString());
                     CommandLineClear();
@@ -161,7 +149,8 @@ namespace Editor
 
         private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            if (((dataGrid.SelectedItem as Variable).Value != int.Parse((e.EditingElement as TextBox).Text)) && MessageBox.Show(lh.GetName("delconfirmation") + "?", lh.GetName("save"), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (((dataGrid.SelectedItem as Variable).Value != int.Parse((e.EditingElement as TextBox).Text)) && MessageBox.Show(App.Current.TryFindResource("delconfirmation").ToString() + "",
+                App.Current.TryFindResource("save").ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
@@ -170,9 +159,9 @@ namespace Editor
                 }
                 catch
                 {
-                    MessageBox.Show(lh.GetExeption("valueint"));
+                    MessageBox.Show(App.Current.TryFindResource("valueint").ToString());
                 }
-                
+
             }
             SetVariables();
         }

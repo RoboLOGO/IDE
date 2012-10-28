@@ -21,15 +21,6 @@ namespace Editor
         public MethodName()
         {
             InitializeComponent();
-            SetLanguage();
-        }
-
-        private void SetLanguage()
-        {
-            LanguageHelper lh = LanguageHelper.GetLanguageHelper();
-            this.Title = lh.GetName("methodnameheader");
-            methodNameText.Text = lh.GetName("methodname");
-            addButton.Content = lh.GetName("add");
         }
 
         private void Method_Name_Add_Click(object sender, RoutedEventArgs e)

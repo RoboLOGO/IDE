@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Editor.MethodName"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Új eljárás" Height="114" Width="227" ResizeMode="NoResize">
+        Title="{DynamicResource methodnameheader}" Height="114" Width="227" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -9,8 +9,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <TextBlock FontWeight="Bold" Text="Eljárás neve:" Name="methodNameText"/>
+        <TextBlock FontWeight="Bold" Text="{DynamicResource methodname}" Name="methodNameText"/>
         <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Name="methodnameTextBox" Width="125" />
-        <Button HorizontalAlignment="Right" Height="23" Width="70" Grid.Row="2" Click="Method_Name_Add_Click" Content="Hozzáad" Name="addButton" />
+        <Button HorizontalAlignment="Right" Height="23" Width="70" Grid.Row="2" Click="Method_Name_Add_Click" Content="{DynamicResource add}" Name="addButton" />
     </Grid>
 </Window>
