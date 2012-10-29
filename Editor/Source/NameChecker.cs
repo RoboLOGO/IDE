@@ -38,28 +38,27 @@ namespace Editor
         public bool IsUsable(string name)
         {
             name = name.ToLower();
-            LanguageHelper lp = LanguageHelper.GetLanguageHelper();
 
             if (name == String.Empty)
-                throw new Exception(lp.GetExeption("nameempty"));
+                throw new Exception(App.Current.TryFindResource("nameempty").ToString());
 
             if (name.Contains(" "))
-                throw new Exception(lp.GetExeption("namespace"));
+                throw new Exception(App.Current.TryFindResource("namespace").ToString());
 
             if (IsNumber(name[0].ToString()))
-                throw new Exception(lp.GetExeption("namestartnumber"));
+                throw new Exception(App.Current.TryFindResource("namestartnumber").ToString());
 
             if (IsAlphaNumeric(name))
-                throw new Exception(lp.GetExeption("namenotallowed"));
+                throw new Exception(App.Current.TryFindResource("namenotallowed").ToString());
 
             if (IsCommand(name))
-                throw new Exception(lp.GetExeption("namecommand"));
+                throw new Exception(App.Current.TryFindResource("namecommand").ToString());
 
             if(IsVariableName(name))
-                throw new Exception(lp.GetExeption("namevar"));
+                throw new Exception(App.Current.TryFindResource("namevar").ToString());
 
             if(IsMethodName(name))
-                throw new Exception(lp.GetExeption("namemethod"));
+                throw new Exception(App.Current.TryFindResource("namemethod").ToString());
 
             return true;
         }

@@ -32,7 +32,7 @@ namespace Editor
                 nc.IsUsable(varname);
                 int value;
                 try { value = int.Parse(txtvalueBox.Text); }
-                catch { throw new Exception(LanguageHelper.GetLanguageHelper().GetExeption("valueint")); }
+                catch { throw new Exception(App.Current.TryFindResource("valueint").ToString()); }
                 SQLiteHelper.GetSqlHelper.NewVariable(varname, value);
                 this.Close();
             }

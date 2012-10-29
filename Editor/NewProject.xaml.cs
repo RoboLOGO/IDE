@@ -46,7 +46,7 @@ namespace Editor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(LanguageHelper.GetLanguageHelper().GetExeption("error") + ": \n" + ex.Message);
+                MessageBox.Show(App.Current.TryFindResource("error").ToString() + ": \n" + ex.Message);
             }
         }
 

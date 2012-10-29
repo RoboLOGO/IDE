@@ -32,45 +32,11 @@ namespace Editor
         public MainWindow()
         {
             InitializeComponent();
-            //SetLanguage();
             canvasSize = CanvasSize.GetCanvasSize;
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper;
             menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
-        }
-
-        private void SetLanguage()
-        {
-            LanguageHelper lp = LanguageHelper.GetLanguageHelper();
-            this.Title = lp.GetName("mainheader");
-            fileMenuItem.Header = "_" + lp.GetName("file");
-            newMenuItem.Header = lp.GetName("new") + "..";
-            openMenuItem.Header = lp.GetName("open") + "..";
-            saveMenuItem.Header = lp.GetName("save");
-            saveAsMenuItem.Header = lp.GetName("saveas") + "..";
-            exitMenuItem.Header = lp.GetName("exit");
-            editMenuItem.Header = "_" + lp.GetName("edit");
-            undoMenuItem.Header = lp.GetName("undo");
-            redoMenuItem.Header = lp.GetName("redo");
-            copyMenuItem.Header = lp.GetName("copy");
-            cutMenuItem.Header = lp.GetName("cut");
-            pasteMenuItem.Header = lp.GetName("paste");
-            runMenuMenuItem.Header = "_" + lp.GetName("run");
-            runMenuItem.Header = lp.GetName("run");
-            clearMenuItem.Header = lp.GetName("clean");
-            methodMenu.Header = lp.GetName("methodheader");
-            newButton.ToolTip = lp.GetName("new") + "..";
-            openButton.ToolTip = lp.GetName("open") + "..";
-            saveButton.ToolTip = lp.GetName("save");
-            cutButton.ToolTip = lp.GetName("cut");
-            copyButton.ToolTip = lp.GetName("copy");
-            pasteButton.ToolTip = lp.GetName("paste");
-            undoButton.ToolTip = lp.GetName("undo");
-            redoButton.ToolTip = lp.GetName("redo");
-            runButton.ToolTip = lp.GetName("run"); ;
-            clearButton.ToolTip = lp.GetName("clean");
-            canvassaveButton.ToolTip = lp.GetName("savecanvas");
         }
 
         private void InitializeCanvas()

@@ -27,16 +27,13 @@ namespace Editor
         {
             try
             {
-                LanguageHelper lh = LanguageHelper.GetLanguageHelper();
                 string methodname = methodnameTextBox.Text.ToLower();
                 NameChecker nc = new NameChecker();
                 nc.IsUsable(methodname);
-                SQLiteHelper.GetSqlHelper.NewMethod(methodname, lh.GetName("method") + " " + methodname + "\r\n\r\n" + lh.GetName("end"));
+                SQLiteHelper.GetSqlHelper.NewMethod(methodname, App.Current.TryFindResource("method").ToString() + " " + methodname + "\r\n\r\n" + App.Current.TryFindResource("end").ToString());
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
-
     }
 }

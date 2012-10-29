@@ -63,7 +63,6 @@
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\FileDialogs.cs" />
-    <Compile Include="Source\LanguageHelper.cs" />
     <Compile Include="Source\NameChecker.cs" />
     <Compile Include="Source\Turtle\CanvasSize.cs" />
     <Compile Include="Source\LogoRun.cs" />
