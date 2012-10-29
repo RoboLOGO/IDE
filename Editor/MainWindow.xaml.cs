@@ -74,6 +74,8 @@ namespace Editor
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 Format();
                 EnableMenus();
+                SetStatusBar();
+
                 if (turtle != null) turtle.Clean();
             }
         }
@@ -87,6 +89,7 @@ namespace Editor
                 InitializeCanvas();
                 rtbhelper.DeleteString(commandLine,fdtext);
                 EnableMenus();
+                SetStatusBar();
                 if (turtle != null) turtle.Clean();
             }
         }
@@ -102,6 +105,14 @@ namespace Editor
             saveMenuItem.IsEnabled = true;
             saveAsMenuItem.IsEnabled = true;
             methodMenu.IsEnabled = true;
+            projectinfoBar.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void SetStatusBar()
+        {
+            creatorText.Text = App.Current.TryFindResource("username").ToString() + ": " + sqlitehelper.GetName();
+            projectText.Text = App.Current.TryFindResource("projectname").ToString() + ": " + sqlitehelper.GetProjectName();
+            languageText.Text = App.Current.TryFindResource("lang").ToString() + ": " + App.Current.TryFindResource(sqlitehelper.GetLanguage().ToString()).ToString();
         }
         
         //futtatás

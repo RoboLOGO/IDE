@@ -30,7 +30,7 @@
         <TextBlock Text="{DynamicResource projectname}" FontWeight="Bold" Name="projectname" Grid.Row="2" Grid.Column="0" />
         <TextBox Name="projectText" Grid.Column="1" Width="140" HorizontalAlignment="Right" VerticalAlignment="Center" TextAlignment="Left" Grid.Row="2"/>
 
-        <TextBlock Text="{DynamicResource language}" FontWeight="Bold" Name="language" Grid.Row="3" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource lang}" FontWeight="Bold" Name="language" Grid.Row="3" Grid.Column="0" />
         <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Name="languageCombo">
             <ComboBoxItem Content="{DynamicResource langhu}"></ComboBoxItem>
             <ComboBoxItem Content="{DynamicResource langen}"></ComboBoxItem>

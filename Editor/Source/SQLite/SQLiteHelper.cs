@@ -62,19 +62,19 @@ namespace Editor
 
         public string GetName()
         {
-            string nameSQL = "SELECT Method FROM Methods WHERE Name='name'";
+            string nameSQL = "SELECT Value FROM Options WHERE Name='name'";
             return sqlitereader.ExecuteOneReader(nameSQL, "value", sqliteCon);
         }
 
         public string GetProjectName()
         {
-            string projectSQL = "SELECT Method FROM Methods WHERE Name='project'";
+            string projectSQL = "SELECT Value FROM Options WHERE Name='project'";
             return sqlitereader.ExecuteOneReader(projectSQL, "value", sqliteCon);
         }
 
         public string GetLanguage()
         {
-            string langSQL = "SELECT Method FROM Methods WHERE Name='language'";
+            string langSQL = "SELECT Value FROM Options WHERE Name='language'";
             return sqlitereader.ExecuteOneReader(langSQL, "value", sqliteCon);
         }
 

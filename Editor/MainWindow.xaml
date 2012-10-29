@@ -154,6 +154,13 @@
                 </Button>
             </ToolBar>
         </ToolBarTray>
+        <StatusBar DockPanel.Dock="Bottom" Visibility="Hidden" Name="projectinfoBar">
+            <TextBlock Name="creatorText"></TextBlock>
+            <Separator/>
+            <TextBlock Name="projectText"></TextBlock>
+            <Separator/>
+            <TextBlock Name="languageText"></TextBlock>
+        </StatusBar>
         <Border DockPanel.Dock="Bottom">
             <RichTextBox IsEnabled="False"  Height="120" x:Name="commandLine"  VerticalAlignment="Center" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="{DynamicResource type}" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" TextChanged="TextChangedEventHandler">
                 <FlowDocument Name="fdtext">
