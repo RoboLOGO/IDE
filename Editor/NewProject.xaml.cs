@@ -35,8 +35,12 @@ namespace Editor
             {                
                 int height = int.Parse(txtcanvasHeight.Text);
                 int width = int.Parse(txtcanvasWidth.Text);
+                if (nameText.Text == String.Empty)
+                    throw new Exception(App.Current.TryFindResource("nameempty").ToString());
+                if(projectText.Text == String.Empty)
+                    throw new Exception(App.Current.TryFindResource("projectempty").ToString());
                 SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper;
-                sqlitehelp.NewFile(sfd.FileName, height, width);
+                sqlitehelp.NewFile(sfd.FileName, height, width, nameText.Text, projectText.Text, languageCombo.Text);
                 CanvasSize canvasSize = CanvasSize.GetCanvasSize;
 
                 canvasSize.Width = width;

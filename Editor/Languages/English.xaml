@@ -55,4 +55,8 @@
     <system:String x:Key="namevar">There is already a variable named like this</system:String>
     <system:String x:Key="namemethod">There is already a procedure named like this</system:String>
     <system:String x:Key="valueint">Value can only be integer</system:String>
+    <system:String x:Key="username">Creator</system:String>
+    <system:String x:Key="projectname">Project name</system:String>
+    <system:String x:Key="language">Program language</system:String>
+    <system:String x:Key="projectempty">Project name can not be empty</system:String>
 </ResourceDictionary>

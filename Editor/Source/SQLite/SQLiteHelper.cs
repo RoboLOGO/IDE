@@ -33,13 +33,13 @@ namespace Editor
             }
         }
 
-        public void NewFile(string filesource, int canvasHeight, int canvasWidth)
+        public void NewFile(string filesource, int canvasHeight, int canvasWidth, string name, string project, string language)
         {
             this.FileSource = filesource;
             SetConnection(this.FileSource);
             CreateFile(this.FileSource);
             Open();
-            CreateStruct(canvasHeight, canvasWidth);
+            CreateStruct(canvasHeight, canvasWidth, name, project, language);
         }
 
         public string FileSource
@@ -58,6 +58,24 @@ namespace Editor
         {
             string methodSQL = "INSERT INTO Methods (Name, Method) VALUES ('" + name.ToLower() + "','" + code + "')";
             sqlitewriter.ExecuteQuery(methodSQL, sqliteCon);
+        }
+
+        public string GetName()
+        {
+            string nameSQL = "SELECT Method FROM Methods WHERE Name='name'";
+            return sqlitereader.ExecuteOneReader(nameSQL, "value", sqliteCon);
+        }
+
+        public string GetProjectName()
+        {
+            string projectSQL = "SELECT Method FROM Methods WHERE Name='project'";
+            return sqlitereader.ExecuteOneReader(projectSQL, "value", sqliteCon);
+        }
+
+        public string GetLanguage()
+        {
+            string langSQL = "SELECT Method FROM Methods WHERE Name='language'";
+            return sqlitereader.ExecuteOneReader(langSQL, "value", sqliteCon);
         }
 
         public string GetMethod(string name)
@@ -188,10 +206,10 @@ namespace Editor
             sqliteCon = new SQLiteConnection("Data Source=" + filesource + ";Version=3;");
         }  
 
-        private void CreateStruct(int canvasHeight, int canvasWidth)
+        private void CreateStruct(int canvasHeight, int canvasWidth, string name, string project, string language)
         {
             TablesInit();
-            OptionsInit(canvasHeight, canvasWidth);
+            OptionsInit(canvasHeight, canvasWidth, name, project, language);
         }
 
         private void TablesInit()
@@ -204,11 +222,14 @@ namespace Editor
             sqlitewriter.ExecuteQuery(variablesSQL, sqliteCon);
         } 
 
-        private void OptionsInit(int canvasHeight, int canvasWidth)
+        private void OptionsInit(int canvasHeight, int canvasWidth, string name, string project, string language)
         {
             InsertOption("canvasheight", canvasHeight.ToString());
             InsertOption("canvaswidth", canvasWidth.ToString());
             InsertOption("sourcecode", "");
+            InsertOption("name", name);
+            InsertOption("project", project);
+            InsertOption("language", language);
         }
 
         ~SQLiteHelper()
