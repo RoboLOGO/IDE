@@ -40,7 +40,12 @@ namespace Editor
                 if(projectText.Text == String.Empty)
                     throw new Exception(App.Current.TryFindResource("projectempty").ToString());
                 SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper;
-                sqlitehelp.NewFile(sfd.FileName, height, width, nameText.Text, projectText.Text, languageCombo.Text);
+                string lang;
+                if (languageCombo.Text == "Magyar" || languageCombo.Text == "Hungarian")
+                    lang = "Hungarian";
+                else
+                    lang = "English";
+                sqlitehelp.NewFile(sfd.FileName, height, width, nameText.Text, projectText.Text, lang);
                 CanvasSize canvasSize = CanvasSize.GetCanvasSize;
 
                 canvasSize.Width = width;
