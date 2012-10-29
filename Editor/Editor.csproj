@@ -182,6 +182,7 @@
     <Resource Include="Icon_Images\brit.jpg" />
     <Resource Include="Icon_Images\hun.jpg" />
     <Resource Include="Icon_Images\world.png" />
+    <Resource Include="Icon_Images\information.png" />
     <Content Include="Source\SQLite\System.Data.SQLite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

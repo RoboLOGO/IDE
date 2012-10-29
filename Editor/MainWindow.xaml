@@ -155,6 +155,7 @@
             </ToolBar>
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom" Visibility="Hidden" Name="projectinfoBar">
+            <Image Height="16" Width="16" Source="Icon_Images/information.png" />
             <TextBlock Name="creatorText"></TextBlock>
             <Separator/>
             <TextBlock Name="projectText"></TextBlock>

@@ -110,6 +110,7 @@ namespace Editor
 
         private void SetStatusBar()
         {
+
             creatorText.Text = App.Current.TryFindResource("username").ToString() + ": " + sqlitehelper.GetName();
             projectText.Text = App.Current.TryFindResource("projectname").ToString() + ": " + sqlitehelper.GetProjectName();
             languageText.Text = App.Current.TryFindResource("lang").ToString() + ": " + App.Current.TryFindResource(sqlitehelper.GetLanguage().ToString()).ToString();
