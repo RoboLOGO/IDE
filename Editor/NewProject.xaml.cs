@@ -42,9 +42,9 @@ namespace Editor
                 SQLiteHelper sqlitehelp = SQLiteHelper.GetSqlHelper;
                 string lang;
                 if (languageCombo.Text == "Magyar" || languageCombo.Text == "Hungarian")
-                    lang = "Hungarian";
+                    lang = "langhu";
                 else
-                    lang = "English";
+                    lang = "langen";
                 sqlitehelp.NewFile(sfd.FileName, height, width, nameText.Text, projectText.Text, lang);
                 CanvasSize canvasSize = CanvasSize.GetCanvasSize;
 
