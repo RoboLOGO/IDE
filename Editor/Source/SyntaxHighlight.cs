@@ -2,58 +2,114 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Editor
 {
     class SyntaxHighlight
     {
-        static List<string> tags = new List<string>();
-        static List<char> specials = new List<char>();
-        static SyntaxHighlight()
+        public SyntaxHighlight(RichTextBox TextInput, CommonSyntaxProvider Syntax, Color KeyWordColor)
         {
-            string[] strs = {
-                "előre",
-                "hátra",
-                "jobbra",
-                "balra",
-                "haza",
-                "xpoz",
-                "ypoz",
-                "törölkép",
-                "tollatle",
-                "tollatfel",
-                "ha",
-                "ismétlés",
-                "amíg",
-                "eljárás",
-                "vége",
-            };
-            tags = new List<string>(strs);
+            textInput = TextInput;
+            textInput.TextChanged += TextInput_TextChanged;
+            syntax = Syntax;
+            keyWordColor = KeyWordColor;
+        }
+        public SyntaxHighlight(RichTextBox TextInput, CommonSyntaxProvider Syntax) : this(TextInput, Syntax, Colors.Blue) { }
 
-            char[] chrs = {
-                '.',
-                ')',
-                '(',
-                '[',
-                ']',
-            };
-            specials = new List<char>(chrs);
-        }
-        public static List<char> GetSpecials
+        CommonSyntaxProvider syntax;
+        RichTextBox textInput;
+        List<Tag> CurrentKeyWords = new List<Tag>();
+        Color keyWordColor;
+
+        private void TextInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            get { return specials; }
+            if (textInput.Document == null) return;
+
+            TextRange documentRange = new TextRange(textInput.Document.ContentStart, textInput.Document.ContentEnd);
+            documentRange.ClearAllProperties();
+
+            TextPointer navigator = textInput.Document.ContentStart;
+            while (navigator.CompareTo(textInput.Document.ContentEnd) < 0)
+            {
+                TextPointerContext context = navigator.GetPointerContext(LogicalDirection.Backward);
+                if (context == TextPointerContext.ElementStart && navigator.Parent is Run)
+                {
+                    CheckWordsInRun((Run)navigator.Parent);
+
+                }
+                navigator = navigator.GetNextContextPosition(LogicalDirection.Forward);
+            }
+            Format();
         }
-        public static List<string> GetTags
+
+        struct Tag
         {
-            get { return tags; }
+            public TextPointer StartPosition;
+            public TextPointer EndPosition;
+            public string Word;
         }
-        public static bool IsKnownTag(string tag)
+
+        void CheckWordsInRun(Run run)
         {
-            return tags.Exists(delegate(string s) { return s.ToLower().Equals(tag.ToLower()); });
+            string text = run.Text;
+
+            int sIndex = 0;
+            int eIndex = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (Char.IsWhiteSpace(text[i]) | syntax.GetSpecials.Contains(text[i]))
+                {
+                    if (i > 0 && !(Char.IsWhiteSpace(text[i - 1]) | syntax.GetSpecials.Contains(text[i - 1])))
+                    {
+                        eIndex = i - 1;
+                        string word = text.Substring(sIndex, eIndex - sIndex + 1);
+
+                        if (syntax.IsKnownTag(word))
+                        {
+                            Tag t;
+                            t.StartPosition = run.ContentStart.GetPositionAtOffset(sIndex, LogicalDirection.Forward);
+                            t.EndPosition = run.ContentStart.GetPositionAtOffset(eIndex + 1, LogicalDirection.Backward);
+                            t.Word = word;
+                            CurrentKeyWords.Add(t);
+                        }
+                    }
+                    sIndex = i + 1;
+                }
+            }
+            eIndex = text.Length - 1;
+            string lastWord = text.Substring(sIndex, text.Length - sIndex);
+            if (syntax.IsKnownTag(lastWord))
+            {
+                Tag t = new Tag();
+                t.StartPosition = run.ContentStart.GetPositionAtOffset(sIndex, LogicalDirection.Forward);
+                t.EndPosition = run.ContentStart.GetPositionAtOffset(eIndex + 1, LogicalDirection.Backward);
+                t.Word = lastWord;
+                CurrentKeyWords.Add(t);
+            }
         }
-        public static List<string> GetLogoProvider(string tag)
+
+        void Format()
         {
-            return tags.FindAll(delegate(string s) { return s.ToLower().StartsWith(tag.ToLower()); });
+            textInput.TextChanged -= TextInput_TextChanged;
+
+            TextRange r;
+            for (int i = 0; i < CurrentKeyWords.Count; i++)
+            {
+                r = new TextRange(CurrentKeyWords[i].StartPosition, CurrentKeyWords[i].EndPosition);
+                r.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(keyWordColor));
+                r.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
+            }
+            CurrentKeyWords.Clear();
+            textInput.TextChanged += TextInput_TextChanged;
         }
     }
 }

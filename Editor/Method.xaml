@@ -8,7 +8,7 @@
                 <Grid Height="296">
                     <Button Height="25" Width="62" Margin="9,240,0,31" Click="Method_Add_Click" HorizontalAlignment="Left" Content="{DynamicResource add}"  Name="addButton"/>
                     <Button Height="25" Width="59" Margin="77,240,0,0" Click="DeleteMethod_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{DynamicResource remove}" Name="removeButton"/>
-                    <RichTextBox x:Name="methodCommandLine" TextChanged="TextChangedEventHandler" Margin="84,6,6,62" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Width="273">
+                    <RichTextBox x:Name="methodCommandLine" Margin="84,6,6,62" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Width="273">
                         <FlowDocument Name="fdtext">
                             <Paragraph FontSize="10pt" LineHeight="0.1pt"></Paragraph>
                         </FlowDocument>

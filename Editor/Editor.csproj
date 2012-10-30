@@ -62,8 +62,10 @@
     <Compile Include="NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\CommonSyntaxProvider.cs" />
     <Compile Include="Source\FileDialogs.cs" />
     <Compile Include="Source\NameChecker.cs" />
+    <Compile Include="Source\SyntaxHighlight.cs" />
     <Compile Include="Source\Turtle\CanvasSize.cs" />
     <Compile Include="Source\LogoRun.cs" />
     <Compile Include="Source\Menu.cs" />
@@ -77,7 +79,6 @@
     <Compile Include="Source\SQLite\SQLiteHelper.cs" />
     <Compile Include="Source\SQLite\SQLiteReader.cs" />
     <Compile Include="Source\SQLite\SQLiteWriter.cs" />
-    <Compile Include="Source\SyntaxHighlight.cs" />
     <Compile Include="Source\Turtle\Turtle.cs" />
     <Compile Include="Source\Turtle\TurtleImage.cs" />
     <Compile Include="Source\Turtle\Vector2.cs" />
