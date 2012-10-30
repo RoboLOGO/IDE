@@ -63,6 +63,7 @@
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\CommonSyntaxProvider.cs" />
+    <Compile Include="Source\RelativePath.cs" />
     <Compile Include="Source\FileDialogs.cs" />
     <Compile Include="Source\NameChecker.cs" />
     <Compile Include="Source\SyntaxHighlight.cs" />
@@ -184,6 +185,7 @@
     <Resource Include="Icon_Images\hun.jpg" />
     <Resource Include="Icon_Images\world.png" />
     <Resource Include="Icon_Images\information.png" />
+    <Resource Include="Content\logosyntax.txt" />
     <Content Include="Source\SQLite\System.Data.SQLite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

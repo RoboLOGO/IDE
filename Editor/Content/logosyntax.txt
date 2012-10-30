@@ -1,0 +1,16 @@
+elõre
+hátra
+jobbra
+balra
+haza
+xpoz
+ypoz
+törölkép
+tollat
+le
+fel
+ha
+ismétlés
+amíg
+<--->
+[]().

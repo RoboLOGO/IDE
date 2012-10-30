@@ -43,8 +43,11 @@ namespace Editor
                 TextPointerContext context = navigator.GetPointerContext(LogicalDirection.Backward);
                 if (context == TextPointerContext.ElementStart && navigator.Parent is Run)
                 {
-                    CheckWordsInRun((Run)navigator.Parent);
-
+                    try
+                    {
+                        CheckWordsInRun((Run)navigator.Parent);
+                    }
+                    catch { }
                 }
                 navigator = navigator.GetNextContextPosition(LogicalDirection.Forward);
             }
