@@ -163,8 +163,11 @@ namespace Editor
         private void Animate(double X, double Y)
         {
             Storyboard sb = new Storyboard();
-            DoubleAnimation da = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.TopProperty), Y - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
-            DoubleAnimation db = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.LeftProperty), X - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1)));
+            sb.Duration = new Duration(TimeSpan.FromSeconds(3));
+            DoubleAnimation da = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.TopProperty), Y - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1.5)));
+            da.BeginTime = TimeSpan.FromSeconds(0);
+            DoubleAnimation db = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.LeftProperty), X - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1.5)));
+            db.BeginTime = TimeSpan.FromSeconds(1.5);
             Storyboard.SetTargetProperty(db, new PropertyPath("(Canvas.Left)"));
             Storyboard.SetTargetProperty(da, new PropertyPath("(Canvas.Top)")); // EPIC FONTOS A ZAROJELEZES
             sb.Children.Add(da);
