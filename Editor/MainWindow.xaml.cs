@@ -15,6 +15,7 @@ using System.IO;
 using Microsoft.Win32;
 using System.Data.SQLite;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Editor
 {
@@ -116,7 +117,6 @@ namespace Editor
 
         private void SetStatusBar()
         {
-
             creatorText.Text = App.Current.TryFindResource("username").ToString() + ": " + sqlitehelper.GetName();
             projectText.Text = App.Current.TryFindResource("projectname").ToString() + ": " + sqlitehelper.GetProjectName();
             languageText.Text = App.Current.TryFindResource("lang").ToString() + ": " + App.Current.TryFindResource(sqlitehelper.GetLanguage().ToString()).ToString();
@@ -128,30 +128,34 @@ namespace Editor
             menu.Save(rtbhelper.GetString(commandLine));
             turtle.Clean();
             LogoRun run = new LogoRun();
-            string sourceCode = SQLiteHelper.GetSqlHelper.GetSourceCode();        
-            Draw(run.Run(sourceCode));
+            string sourceCode = SQLiteHelper.GetSqlHelper.GetSourceCode();
+            List<Command> com = run.Run(sourceCode);
+            for (int i = 0; i < com.Count; i++)
+            {
+                Draw(com[i]);
+                await Task.Factory.StartNew(() => Wait());
+            }
+
         }
 
 
-        private async void Draw(List<Command> com)
+        private void Draw(Command com)
         {
-            for (int i = 0; i < com.Count; i++)
+
+            switch (com.word)
             {
-                switch (com[i].word)
-                {
-                    case "előre": turtle.Forward((int)com[i].param_value); break;
-                    case "hátra": turtle.Backward((int)com[i].param_value); break;
-                    case "jobbra": turtle.Right((int)com[i].param_value); break;
-                    case "balra": turtle.Left((int)com[i].param_value); break;
-                    case "haza": turtle.Home(); break;
-                    case "xpoz": turtle.XPos(); break;
-                    case "ypoz": turtle.YPos(); break;
-                    case "törölkép": turtle.Clean(); break;
-                    case "tollatle": turtle.PenDown(); break;
-                    case "tollatfel": turtle.PenUp(); break;
-                }
-                
+                case "előre": turtle.Forward((int)com.param_value); break;
+                case "hátra": turtle.Backward((int)com.param_value); break;
+                case "jobbra": turtle.Right((int)com.param_value); break;
+                case "balra": turtle.Left((int)com.param_value); break;
+                case "haza": turtle.Home(); break;
+                case "xpoz": turtle.XPos(); break;
+                case "ypoz": turtle.YPos(); break;
+                case "törölkép": turtle.Clean(); break;
+                case "tollatle": turtle.PenDown(); break;
+                case "tollatfel": turtle.PenUp(); break;
             }
+
         }
 
         private void Wait()
