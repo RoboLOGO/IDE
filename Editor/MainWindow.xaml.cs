@@ -78,6 +78,7 @@ namespace Editor
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 EnableMenus();
                 SetStatusBar();
+                turtle = new Turtle(canvas);
 
                 if (turtle != null) turtle.Clean();
             }
@@ -93,7 +94,8 @@ namespace Editor
                 rtbhelper.DeleteString(commandLine,fdtext);
                 EnableMenus();
                 SetStatusBar();
-                if (turtle != null) turtle.Clean();
+                turtle = new Turtle(canvas);
+                turtle.Clean();
             }
         }
 
@@ -123,7 +125,7 @@ namespace Editor
         private void RunClick(object sender, RoutedEventArgs e)
         {
             menu.Save(rtbhelper.GetString(commandLine));
-            menu.Run(ref turtle, canvas);
+            menu.Run(turtle, canvas);
         }
         //kép mentés
         private void SaveImageClick(object sender, RoutedEventArgs e)

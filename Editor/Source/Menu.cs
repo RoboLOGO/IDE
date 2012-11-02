@@ -96,9 +96,8 @@ namespace Editor
         #endregion
 
         //futtatás
-        public void Run(ref Turtle turtle, Canvas canvas)
+        public void Run(Turtle turtle, Canvas canvas)
         {
-            if (turtle == null) turtle = new Turtle(canvas);
             turtle.Clean();
             LogoRun run = new LogoRun();
             string sourceCode = sqlitehelp.GetSourceCode();
@@ -109,7 +108,7 @@ namespace Editor
         //képernyő törlés
         public void Clear(Turtle turtle)
         {
-            if (turtle != null) turtle.Clean();
+            turtle.Clean();
         }
     }
 }
