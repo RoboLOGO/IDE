@@ -5,8 +5,6 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.Windows.Media.Animation;
-using System.Windows;
 
 namespace Editor
 {
@@ -81,19 +79,22 @@ namespace Editor
 
             if (pen.IsDown)
             {
+
                 Line line = new Line();
                 line.Stroke = new SolidColorBrush(pen.Color);
                 //line.SnapsToDevicePixels = true;
                 //line.SetValue(RenderOptions.EdgeModeProperty, EdgeMode.Aliased);
+
 
                 line.X1 = pos.X;
                 line.X2 = newpos.X;
                 line.Y1 = pos.Y;
                 line.Y2 = newpos.Y;
 
+
                 line.StrokeThickness = pen.Pensize;
                 canvas.Children.Add(line);
-                
+
             }
 
             pos = newpos;
@@ -106,9 +107,8 @@ namespace Editor
         {
             if (turtleimage.Visible)
             {
-                //Canvas.SetTop(canvas.Children[turtleimage.CPos], turtlePos.Y - turtleimage.Size / 2);
-                //Canvas.SetLeft(canvas.Children[turtleimage.CPos], turtlePos.X - turtleimage.Size / 2);
-                Animate(turtlePos.X, turtlePos.Y);
+                Canvas.SetTop(canvas.Children[turtleimage.CPos], turtlePos.Y - turtleimage.Size / 2);
+                Canvas.SetLeft(canvas.Children[turtleimage.CPos], turtlePos.X - turtleimage.Size / 2);
             }
         }
 
@@ -127,14 +127,14 @@ namespace Editor
         {
             this.angle -= angle;
             TurtleRotate(this.angle);
-        } 
+        }
 
         //Jobbra fordítja a tekőst 'angle' fokkal
         public void Right(int angle)
         {
             this.angle += angle;
             TurtleRotate(this.angle);
-        } 
+        }
 
         //törli a Canvast és vissza állítja a teknőst a kezdő pontba
         public void Clean()
@@ -142,7 +142,7 @@ namespace Editor
             canvas.Children.Clear();
             turtleimage.CPos = canvas.Children.Add(turtleimage.GetTurtleImage);
             Home();
-        } 
+        }
 
         //Visszaállítja a teknőst a Canvas közepére, (0,0) pontba
         public void Home()
@@ -150,43 +150,21 @@ namespace Editor
             pos.X = canvas.Width / 2d;
             pos.Y = canvas.Height / 2d;
             angle = 90;
-            //TurtleMove(pos);
-            if (turtleimage.Visible)
-            {
-                Canvas.SetTop(canvas.Children[turtleimage.CPos], pos.Y - turtleimage.Size / 2);
-                Canvas.SetLeft(canvas.Children[turtleimage.CPos], pos.X - turtleimage.Size / 2);
-                Animate(pos.X, pos.Y);
-            }
+            TurtleMove(pos);
             TurtleRotate(angle);
-        }
-
-        private void Animate(double X, double Y)
-        {
-            Storyboard sb = new Storyboard();
-            sb.Duration = new Duration(TimeSpan.FromSeconds(3));
-            DoubleAnimation da = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.TopProperty), Y - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1.5)));
-            da.BeginTime = TimeSpan.FromSeconds(0);
-            DoubleAnimation db = new DoubleAnimation((double)canvas.Children[turtleimage.CPos].GetValue(Canvas.LeftProperty), X - turtleimage.Size / 2, new System.Windows.Duration(TimeSpan.FromSeconds(1.5)));
-            db.BeginTime = TimeSpan.FromSeconds(1.5);
-            Storyboard.SetTargetProperty(db, new PropertyPath("(Canvas.Left)"));
-            Storyboard.SetTargetProperty(da, new PropertyPath("(Canvas.Top)")); // EPIC FONTOS A ZAROJELEZES
-            sb.Children.Add(da);
-            sb.Children.Add(db);
-
-            (canvas.Children[turtleimage.CPos] as Image).BeginStoryboard(sb);
         }
 
         //Vissza adja a teknős X pozicióját az origóhoz(teknős kezdő pontja) képest
         public int XPos()
         {
             return (int)(pos.X - (canvas.Width) / 2);
-        } 
+        }
 
         //Vissza adja a teknős Y pozicióját az origóhoz(teknős kezdő pontja) képest
         public int YPos()
         {
             return (int)(pos.Y - (int)(canvas.Height) / 2);
-        } 
+        }
 
         //fokból radiánt csinál
         private double DegreeToRadian(double angle)
@@ -215,13 +193,15 @@ namespace Editor
         //beállítja a toll színét
         public void PenColor(Color penColor)
         {
-            if(penColor != null) pen.Color = penColor;
+            if (penColor != null)
+                pen.Color = penColor;
         }
 
         //beállítja a toll vastagságát
         public void PenSize(int penSize)
         {
-            if (penSize > 0) pen.Pensize = penSize;
+            if (penSize > 0)
+                pen.Pensize = penSize;
         }
 
         //A teknős láthatóságának kikapcsolása
@@ -244,7 +224,8 @@ namespace Editor
         //Megállítja a teknős
         public void Wait(int millisecundum)
         {
-            if (millisecundum > 0) System.Threading.Thread.Sleep(millisecundum);
+            if (millisecundum > 0)
+                System.Threading.Thread.Sleep(millisecundum);
         }
     }
 }

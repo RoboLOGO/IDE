@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.IO;
 using Microsoft.Win32;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace Editor
 {
@@ -122,10 +123,40 @@ namespace Editor
         }
         
         //futtatás
-        private void RunClick(object sender, RoutedEventArgs e)
+        private async void RunClick(object sender, RoutedEventArgs e)
         {
             menu.Save(rtbhelper.GetString(commandLine));
-            menu.Run(turtle, canvas);
+            turtle.Clean();
+            LogoRun run = new LogoRun();
+            string sourceCode = SQLiteHelper.GetSqlHelper.GetSourceCode();        
+            Draw(run.Run(sourceCode));
+        }
+
+
+        private async void Draw(List<Command> com)
+        {
+            for (int i = 0; i < com.Count; i++)
+            {
+                switch (com[i].word)
+                {
+                    case "előre": turtle.Forward((int)com[i].param_value); break;
+                    case "hátra": turtle.Backward((int)com[i].param_value); break;
+                    case "jobbra": turtle.Right((int)com[i].param_value); break;
+                    case "balra": turtle.Left((int)com[i].param_value); break;
+                    case "haza": turtle.Home(); break;
+                    case "xpoz": turtle.XPos(); break;
+                    case "ypoz": turtle.YPos(); break;
+                    case "törölkép": turtle.Clean(); break;
+                    case "tollatle": turtle.PenDown(); break;
+                    case "tollatfel": turtle.PenUp(); break;
+                }
+                
+            }
+        }
+
+        private void Wait()
+        {
+            Thread.Sleep(1000);
         }
         //kép mentés
         private void SaveImageClick(object sender, RoutedEventArgs e)

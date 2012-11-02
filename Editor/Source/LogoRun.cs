@@ -7,30 +7,21 @@ using System.Text.RegularExpressions;
 
 namespace Editor
 {
-    internal class LogoRun
+    class LogoRun
     {
         public LogoRun() { }
 
         List<string> line = new List<string>();
-        List<Tuple<Command>> comm = new List<Tuple<Command>>();
+        List<Command> com;
 
-        struct Command
-        {
-            public string word;
-            public int? param_value;
-            public bool param;
-            public Command(string _word, int? _param_value, bool _param)
-            {
-                word = _word;
-                param_value = _param_value;
-                param = _param;
-            }
-        }
+       
 
-        public void Run(string source)
+        public List<Command> Run(string source)
         {
+            com = new List<Command>();
             ReadLine(source);
             for (int i = 0; i < line.Count; i++) Separate(i);
+            return com;
         }
 
         private void ReadLine(string sourceCode)
@@ -69,7 +60,7 @@ namespace Editor
                             if (i + 1 > line[sor].Length) break;
                         }
                         cmd.param_value = int.Parse(strparam);
-                        comm.Add(new Tuple<Command>(cmd));
+                        com.Add((Command)cmd.Clone());
                         cmd.param_value = null;
                         cmd.param = true;
                         cmd.word = "";
@@ -82,7 +73,7 @@ namespace Editor
                     {
                         cmd.param = false;
                         cmd.param_value = null;
-                        comm.Add(new Tuple<Command>(cmd));
+                        com.Add((Command)cmd.Clone());
                         cmd.param_value = null;
                         cmd.param = true;
                         cmd.word = "";
@@ -91,6 +82,10 @@ namespace Editor
             }
 
         }
+
+
+
+
         private string[] commands = {
                 "előre",
                 "hátra",
@@ -104,25 +99,5 @@ namespace Editor
                 "tollatfel",
                 "várj"
             };
-        public void Draw(Turtle turtle)
-        {
-            for (int i = 0; i < comm.Count; i++)
-            {
-                switch (comm[i].Item1.word)
-                {
-                    case "előre": turtle.Forward((int)comm[i].Item1.param_value); break;
-                    case "hátra": turtle.Backward((int)comm[i].Item1.param_value); break;
-                    case "jobbra": turtle.Right((int)comm[i].Item1.param_value); break;
-                    case "balra": turtle.Left((int)comm[i].Item1.param_value); break;
-                    case "haza": turtle.Home(); break;
-                    case "xpoz": turtle.XPos(); break;
-                    case "ypoz": turtle.YPos(); break;
-                    case "törölkép": turtle.Clean(); break;
-                    case "tollatle": turtle.PenDown(); break;
-                    case "tollatfel": turtle.PenUp(); break;
-                }
-            }
-        }
-
     }
 }

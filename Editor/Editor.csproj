@@ -65,6 +65,7 @@
     <Compile Include="NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\Command.cs" />
     <Compile Include="Source\CommonSyntaxProvider.cs" />
     <Compile Include="Source\RelativePath.cs" />
     <Compile Include="Source\FileDialogs.cs" />

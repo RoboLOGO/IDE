@@ -96,15 +96,6 @@ namespace Editor
         }
         #endregion
 
-        //futtatás
-        public void Run(Turtle turtle, Canvas canvas)
-        {
-            turtle.Clean();
-            LogoRun run = new LogoRun();
-            string sourceCode = sqlitehelp.GetSourceCode();
-            run.Run(sourceCode);
-            run.Draw(turtle);
-        }
 
         //képernyő törlés
         public void Clear(Turtle turtle)
