@@ -125,6 +125,7 @@ namespace Editor
         //futtatás
         private async void RunClick(object sender, RoutedEventArgs e)
         {
+            runButton.IsEnabled = false;
             menu.Save(rtbhelper.GetString(commandLine));
             turtle.Clean();
             LogoRun run = new LogoRun();
@@ -135,13 +136,11 @@ namespace Editor
                 Draw(com[i]);
                 await Task.Factory.StartNew(() => Wait());
             }
-
+            runButton.IsEnabled = true;
         }
-
 
         private void Draw(Command com)
         {
-
             switch (com.word)
             {
                 case "előre": turtle.Forward((int)com.param_value); break;
@@ -155,7 +154,6 @@ namespace Editor
                 case "tollatle": turtle.PenDown(); break;
                 case "tollatfel": turtle.PenUp(); break;
             }
-
         }
 
         private void Wait()
