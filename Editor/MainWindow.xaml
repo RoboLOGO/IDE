@@ -20,7 +20,7 @@
         <CommandBinding Command="ApplicationCommands.New"
                         Executed="NewClick"/>
     </Window.CommandBindings>
-        <DockPanel>
+        <DockPanel LastChildFill="True">
             <Menu DockPanel.Dock="Top" >
                 <MenuItem Header="{DynamicResource file}" Name="fileMenuItem">
                     <MenuItem Header="{DynamicResource new}" Name="newMenuItem" Command="ApplicationCommands.New">
@@ -162,16 +162,23 @@
             <Separator/>
             <TextBlock Name="languageText"></TextBlock>
         </StatusBar>
-        <Border DockPanel.Dock="Bottom">
-            <RichTextBox IsEnabled="False"  Height="120" x:Name="commandLine"  VerticalAlignment="Center" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="{DynamicResource type}" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC">
-                <FlowDocument Name="fdtext">
-                    <Paragraph FontSize="10pt" LineHeight="1pt" >
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-        </Border>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Canvas HorizontalAlignment="Center" Name="canvas" VerticalAlignment="Center" SnapsToDevicePixels="True"/>
-        </ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Canvas HorizontalAlignment="Center" Name="canvas" VerticalAlignment="Center" SnapsToDevicePixels="True"/>
+            </ScrollViewer>
+            <GridSplitter Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeDirection="Rows" ResizeBehavior="CurrentAndNext" />
+            <Border Grid.Row="1">
+                <RichTextBox MinHeight="120" IsEnabled="False" x:Name="commandLine" VerticalAlignment="Stretch" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="{DynamicResource type}" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" IsManipulationEnabled="True">
+                    <FlowDocument Name="fdtext">
+                        <Paragraph FontSize="10pt" LineHeight="1pt" >
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Border>
+        </Grid>
     </DockPanel>
 </Window>
