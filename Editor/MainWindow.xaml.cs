@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-//using System.Windows.Shapes;
+using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Data.SQLite;
@@ -41,7 +41,7 @@ namespace Editor
             sqlitehelper = SQLiteHelper.GetSqlHelper;
             menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
-            logoSynProvider = new CommonSyntaxProvider(RelativePath.GetPath(@"Content\logosyntax.txt"), false, "<--->");
+            logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetKeywords, LogoKeywords.GetSpecialCharacters, false);
             synHighligt = new SyntaxHighlight(commandLine, logoSynProvider);
         }
 

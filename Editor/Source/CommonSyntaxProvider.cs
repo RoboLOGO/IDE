@@ -14,6 +14,18 @@ namespace Editor
             ReadSyntax(SyntaxFilePath);
         }
         public CommonSyntaxProvider(string SyntaxFilePath) : this(SyntaxFilePath, true, "<--->") { }
+        public CommonSyntaxProvider(List<string> KeyWordList, List<char> SpecialCaracters, bool CaseSensitive)
+        {
+            KeyWords = KeyWordList;
+            specials = SpecialCaracters;
+            caseSens = CaseSensitive;
+        }
+        public CommonSyntaxProvider(KeyWordFunction GetKeyWords, SpecCharsFunction GetSpecChars, bool CaseSensitive)
+        {
+            KeyWords = GetKeyWords();
+            specials = GetSpecChars();
+            caseSens = CaseSensitive;
+        }
 
         List<string> KeyWords;
         List<char> specials;
@@ -61,6 +73,8 @@ namespace Editor
         }
 
         delegate bool CaseSensitivity(string s); // Átláthatóság miatt: a függvény szignatúrája
+        public delegate List<string> KeyWordFunction();
+        public delegate List<char> SpecCharsFunction();
 
         bool CaseSensitive(string s)
         {

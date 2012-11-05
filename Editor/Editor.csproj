@@ -67,7 +67,7 @@
     </Compile>
     <Compile Include="Source\Command.cs" />
     <Compile Include="Source\CommonSyntaxProvider.cs" />
-    <Compile Include="Source\RelativePath.cs" />
+    <Compile Include="Source\LogoKeywords.cs" />
     <Compile Include="Source\FileDialogs.cs" />
     <Compile Include="Source\NameChecker.cs" />
     <Compile Include="Source\SyntaxHighlight.cs" />
@@ -127,6 +127,10 @@
     <Page Include="Style\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SyntaxKeywords\Keywords.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
