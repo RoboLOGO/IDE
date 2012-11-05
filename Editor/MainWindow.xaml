@@ -170,7 +170,7 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Canvas HorizontalAlignment="Center" Name="canvas" VerticalAlignment="Center" SnapsToDevicePixels="True"/>
             </ScrollViewer>
-            <GridSplitter Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeDirection="Rows" ResizeBehavior="CurrentAndNext" />
+            <GridSplitter Height="5" Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeDirection="Rows" ResizeBehavior="CurrentAndNext" />
             <Border Grid.Row="1">
                 <RichTextBox MinHeight="120" IsEnabled="False" x:Name="commandLine" VerticalAlignment="Stretch" Background="#FFDFEBDF" ClipToBounds="True" ToolTip="{DynamicResource type}" VerticalContentAlignment="Bottom" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalContentAlignment="Center" IsHitTestVisible="True" OverridesDefaultStyle="True" UseLayoutRounding="True" FontFamily="Kristen ITC" IsManipulationEnabled="True">
                     <FlowDocument Name="fdtext">
