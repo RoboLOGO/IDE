@@ -34,4 +34,6 @@
     <system:String x:Key="kw_intveletlen">intrandom</system:String>
     <system:String x:Key="kw_veletlen">randomize</system:String>
     <system:String x:Key="kw_stop">stop</system:String>
+    <system:String x:Key="kw_igaz">true</system:String>
+    <system:String x:Key="kw_hamis">false</system:String>
 </ResourceDictionary>
