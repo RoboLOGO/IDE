@@ -9,32 +9,6 @@ namespace Editor
     class NameChecker
     {
 
-        string[] commands;
-
-        public NameChecker()
-        {
-            commands = new string[]{
-                "előre",
-                "hátra",
-                "jobbra",
-                "balra",
-                "haza",
-                "xpoz",
-                "ypoz",
-                "törölkép",
-                "tollatle",
-                "tollatfel",
-                "várj",
-                "eljárás",
-                "vége",
-            };
-        }
-
-        public NameChecker(string[] commands)
-        {
-            this.commands = commands;
-        }
-
         public bool IsUsable(string name)
         {
             name = name.ToLower();
@@ -78,7 +52,7 @@ namespace Editor
 
         private bool IsCommand(string name)
         {
-            return commands.Contains(name);
+            return LogoKeywords.GetLogoKeywords().GetKeywords().Contains(name);
         }
 
         private bool IsVariableName(string name)

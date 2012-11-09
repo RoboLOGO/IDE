@@ -2,13 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="kw_elore">forward</system:String>
-    <system:String x:Key="kw_elorer">f</system:String>
+    <system:String x:Key="kw_elorer">fd</system:String>
     <system:String x:Key="kw_hatra">back</system:String>
-    <system:String x:Key="kw_hatrar">b</system:String>
+    <system:String x:Key="kw_hatrar">bk</system:String>
     <system:String x:Key="kw_jobbra">right</system:String>
-    <system:String x:Key="kw_jobbrar">r</system:String>
+    <system:String x:Key="kw_jobbrar">rt</system:String>
     <system:String x:Key="kw_balra">left</system:String>
-    <system:String x:Key="kw_balrar">l</system:String>
+    <system:String x:Key="kw_balrar">lt</system:String>
     <system:String x:Key="kw_haza">home</system:String>
     <system:String x:Key="kw_xpoz">xposition</system:String>
     <system:String x:Key="kw_xpozr">xpos</system:String>
@@ -25,5 +25,13 @@
     <system:String x:Key="kw_ismetlesr">rep</system:String>
     <system:String x:Key="kw_amig">while</system:String>
     <system:String x:Key="kw_spec">()[].</system:String>
-    <system:String x:Key="kw_absz">abs</system:String>    
+    <system:String x:Key="kw_absz">abs</system:String>
+    <system:String x:Key="kw_eljaras">to</system:String>
+    <system:String x:Key="kw_eljarasr">to</system:String>
+    <system:String x:Key="kw_vege">end</system:String>
+    <system:String x:Key="kw_keszit">make</system:String>
+    <system:String x:Key="kw_orokke">forever</system:String>
+    <system:String x:Key="kw_intveletlen">intrandom</system:String>
+    <system:String x:Key="kw_veletlen">randomize</system:String>
+    <system:String x:Key="kw_stop">stop</system:String>
 </ResourceDictionary>

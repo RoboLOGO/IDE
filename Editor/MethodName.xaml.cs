@@ -30,7 +30,7 @@ namespace Editor
                 string methodname = methodnameTextBox.Text.ToLower();
                 NameChecker nc = new NameChecker();
                 nc.IsUsable(methodname);
-                SQLiteHelper.GetSqlHelper.NewMethod(methodname, App.Current.TryFindResource("method").ToString() + " " + methodname + "\r\n\r\n" + App.Current.TryFindResource("end").ToString());
+                SQLiteHelper.GetSqlHelper.NewMethod(methodname, App.Current.TryFindResource("kw_eljaras").ToString() + " " + methodname + "\r\n\r\n" + App.Current.TryFindResource("kw_vege").ToString());
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }

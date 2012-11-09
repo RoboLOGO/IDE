@@ -66,11 +66,11 @@
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Command.cs" />
-    <Compile Include="Source\CommonSyntaxProvider.cs" />
-    <Compile Include="Source\LogoKeywords.cs" />
+    <Compile Include="Source\Syntax\CommonSyntaxProvider.cs" />
+    <Compile Include="Source\Syntax\LogoKeywords.cs" />
     <Compile Include="Source\FileDialogs.cs" />
     <Compile Include="Source\NameChecker.cs" />
-    <Compile Include="Source\SyntaxHighlight.cs" />
+    <Compile Include="Source\Syntax\SyntaxHighlight.cs" />
     <Compile Include="Source\Turtle\CanvasSize.cs" />
     <Compile Include="Source\LogoRun.cs" />
     <Compile Include="Source\Menu.cs" />

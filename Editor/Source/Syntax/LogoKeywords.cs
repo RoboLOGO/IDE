@@ -42,6 +42,13 @@ namespace Editor
                 "kw_amig",
                 "kw_spec",
                 "kw_absz",
+                "kw_eljaras",
+                "kw_vege",
+                "kw_keszit",
+                "kw_orokke",
+                "kw_intveletlen",
+                "kw_veletlen",
+                "kw_stop",
             };
             kw_spec = "kw_spec";
             keyWords = new List<string>();

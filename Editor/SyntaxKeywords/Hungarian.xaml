@@ -26,4 +26,12 @@
     <system:String x:Key="kw_amig">amíg</system:String>
     <system:String x:Key="kw_spec">()[].</system:String>
     <system:String x:Key="kw_absz">absz</system:String>
+    <system:String x:Key="kw_eljaras">eljárás</system:String>
+    <system:String x:Key="kw_eljarasr">elj</system:String>
+    <system:String x:Key="kw_vege">vége</system:String>
+    <system:String x:Key="kw_keszit">név</system:String>
+    <system:String x:Key="kw_orokke">örökké</system:String>
+    <system:String x:Key="kw_intveletlen">véletlen</system:String>
+    <system:String x:Key="kw_veletlen">véletlenszám</system:String>
+    <system:String x:Key="kw_stop">stop</system:String>
 </ResourceDictionary>
