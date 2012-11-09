@@ -30,7 +30,7 @@ namespace Editor
             SetMethodNames();
             SetVariables();
             MethodCommandLineEnable();
-            logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetKeywords, LogoKeywords.GetSpecialCharacters, false);
+            logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetLogoKeywords().GetKeywords, LogoKeywords.GetLogoKeywords().GetSpecialCharacters, false);
             synHighligt = new SyntaxHighlight(methodCommandLine, logoSynProvider);
         }
 

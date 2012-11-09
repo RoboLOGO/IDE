@@ -6,7 +6,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Languages/Hungarian.xaml" />
-                <ResourceDictionary Source="SyntaxKeywords/Keywords.xaml" />
+                <ResourceDictionary Source="SyntaxKeywords/Hungarian.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

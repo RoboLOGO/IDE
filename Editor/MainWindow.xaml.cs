@@ -41,7 +41,7 @@ namespace Editor
             sqlitehelper = SQLiteHelper.GetSqlHelper;
             menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
-            logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetKeywords, LogoKeywords.GetSpecialCharacters, false);
+            logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetLogoKeywords().GetKeywords, LogoKeywords.GetLogoKeywords().GetSpecialCharacters, false);
             synHighligt = new SyntaxHighlight(commandLine, logoSynProvider);
         }
 
@@ -75,15 +75,20 @@ namespace Editor
             if (menu.Open() == true)
             {
                 sqlitehelper.SetCanvasSize();
-                InitializeCanvas();
-                rtbhelper.DeleteString(commandLine,fdtext);
                 rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
-                EnableMenus();
-                SetStatusBar();
+                SetMain();
                 turtle = new Turtle(canvas);
-
-                if (turtle != null) turtle.Clean();
+                turtle.Clean();
             }
+        }
+
+        private void SetMain()
+        {
+            InitializeCanvas();
+            rtbhelper.DeleteString(commandLine, fdtext);
+            EnableMenus();
+            SetStatusBar();
+            SetLogoLang();
         }
         //új
         private void NewClick(object sender, ExecutedRoutedEventArgs e)
@@ -92,10 +97,7 @@ namespace Editor
             np.ShowDialog();
             if (np.IsSuccess)
             {
-                InitializeCanvas();
-                rtbhelper.DeleteString(commandLine,fdtext);
-                EnableMenus();
-                SetStatusBar();
+                SetMain();
                 turtle = new Turtle(canvas);
                 turtle.Clean();
             }
@@ -175,6 +177,23 @@ namespace Editor
         {
             Method method = new Method();
             method.ShowDialog();
+        }
+
+        private void SetLogoLang()
+        {
+            string logolang = sqlitehelper.GetLanguage();
+
+            switch (logolang)
+            {
+                case "langhu":
+                    App.Current.Resources.MergedDictionaries[1].Source = new Uri("SyntaxKeywords/Hungarian.xaml", UriKind.Relative);
+                    break;
+                case "langen":
+                    App.Current.Resources.MergedDictionaries[1].Source = new Uri("SyntaxKeywords/English.xaml", UriKind.Relative);
+                    break;
+            }
+            LogoKeywords.GetLogoKeywords().UpdateKeywords();
+
         }
        
         private void LangHu_Click(object sender, RoutedEventArgs e)

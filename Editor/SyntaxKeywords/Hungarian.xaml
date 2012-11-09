@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="kw_elore">előre</system:String>
+    <system:String x:Key="kw_elorer">e</system:String>
+    <system:String x:Key="kw_hatra">hátra</system:String>
+    <system:String x:Key="kw_hatrar">h</system:String>
+    <system:String x:Key="kw_jobbra">jobbra</system:String>
+    <system:String x:Key="kw_jobbrar">j</system:String>
+    <system:String x:Key="kw_balra">balra</system:String>
+    <system:String x:Key="kw_balrar">b</system:String>
+    <system:String x:Key="kw_haza">haza</system:String>
+    <system:String x:Key="kw_xpoz">xpozicíó</system:String>
+    <system:String x:Key="kw_xpozr">xpoz</system:String>
+    <system:String x:Key="kw_ypoz">ypozicíó</system:String>
+    <system:String x:Key="kw_ypozr">ypoz</system:String>
+    <system:String x:Key="kw_torolkep">törölképernyő</system:String>
+    <system:String x:Key="kw_torolkepr">törölkép</system:String>
+    <system:String x:Key="kw_tollatfel">tollatfel</system:String>
+    <system:String x:Key="kw_tollatfelr">tf</system:String>
+    <system:String x:Key="kw_tollatle">tollatle</system:String>
+    <system:String x:Key="kw_tollatler">tl</system:String>
+    <system:String x:Key="kw_ha">ha</system:String>
+    <system:String x:Key="kw_ismetles">ismétlés</system:String>
+    <system:String x:Key="kw_ismetlesr">ism</system:String>
+    <system:String x:Key="kw_amig">amíg</system:String>
+    <system:String x:Key="kw_spec">()[].</system:String>
+    <system:String x:Key="kw_absz">absz</system:String>
+</ResourceDictionary>
