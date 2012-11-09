@@ -38,6 +38,10 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -207,6 +211,7 @@
     <Resource Include="Icon_Images\world.png" />
     <Resource Include="Icon_Images\information.png" />
     <Resource Include="Content\logosyntax.txt" />
+    <Resource Include="icon.ico" />
     <Content Include="Source\SQLite\System.Data.SQLite.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
