@@ -16,6 +16,7 @@ using Microsoft.Win32;
 using System.Data.SQLite;
 using System.Threading;
 using System.Threading.Tasks;
+using Robopreter;
 
 namespace Editor
 {
@@ -75,8 +76,8 @@ namespace Editor
             if (menu.Open() == true)
             {
                 sqlitehelper.SetCanvasSize();
-                rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 SetMain();
+                rtbhelper.SetString(sqlitehelper.GetSourceCode(), commandLine);
                 turtle = new Turtle(canvas);
                 turtle.Clean();
             }
@@ -130,31 +131,40 @@ namespace Editor
             runButton.IsEnabled = false;
             menu.Save(rtbhelper.GetString(commandLine));
             turtle.Clean();
-            LogoRun run = new LogoRun();
-            string sourceCode = SQLiteHelper.GetSqlHelper.GetSourceCode();
-            List<Command> com = run.Run(sourceCode);
+            RoboPreter rp = new RoboPreter();
+            List<Robopreter.Parancs> com = rp.Run(rtbhelper.GetString(commandLine));
             for (int i = 0; i < com.Count; i++)
             {
                 Draw(com[i]);
                 await Task.Factory.StartNew(() => Wait());
             }
             runButton.IsEnabled = true;
+            //runButton.IsEnabled = false;
+            //menu.Save(rtbhelper.GetString(commandLine));
+            //turtle.Clean();
+            //LogoRun run = new LogoRun();
+            //string sourceCode = SQLiteHelper.GetSqlHelper.GetSourceCode();
+            //List<Command> com = run.Run(sourceCode);
+            //for (int i = 0; i < com.Count; i++)
+            //{
+            //    Draw(com[i]);
+            //    await Task.Factory.StartNew(() => Wait());
+            //}
+            //runButton.IsEnabled = true;
         }
 
-        private void Draw(Command com)
+        private void Draw(Parancs com)
         {
-            switch (com.word)
+            switch (com.parancs)
             {
-                case "előre": turtle.Forward((int)com.param_value); break;
-                case "hátra": turtle.Backward((int)com.param_value); break;
-                case "jobbra": turtle.Right((int)com.param_value); break;
-                case "balra": turtle.Left((int)com.param_value); break;
-                case "haza": turtle.Home(); break;
-                case "xpoz": turtle.XPos(); break;
-                case "ypoz": turtle.YPos(); break;
-                case "törölkép": turtle.Clean(); break;
-                case "tollatle": turtle.PenDown(); break;
-                case "tollatfel": turtle.PenUp(); break;
+                case Parancsok.elore: turtle.Forward((int)com.ertek); break;
+                case Parancsok.hatra: turtle.Backward((int)com.ertek); break;
+                case Parancsok.jobbra: turtle.Right((int)com.ertek); break;
+                case Parancsok.balra: turtle.Left((int)com.ertek); break;
+                //case Parancsok.haza: turtle.Home(); break;
+                //case Parancsok.torol: turtle.Clean(); break;
+                case Parancsok.tollatle: turtle.PenDown(); break;
+                case Parancsok.tollatfel: turtle.PenUp(); break;
             }
         }
 

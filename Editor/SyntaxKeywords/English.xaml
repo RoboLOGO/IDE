@@ -36,4 +36,7 @@
     <system:String x:Key="kw_stop">stop</system:String>
     <system:String x:Key="kw_igaz">true</system:String>
     <system:String x:Key="kw_hamis">false</system:String>
+    <system:String x:Key="kw_eredmeny">output</system:String>
+    <system:String x:Key="kw_kiir">print</system:String>    
+    <system:String x:Key="kw_decimal">.</system:String>
 </ResourceDictionary>

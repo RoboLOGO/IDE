@@ -66,6 +66,15 @@
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Command.cs" />
+    <Compile Include="Source\RoboPreter.cs" />
+    <Compile Include="Source\RoboPRETER\AST.cs" />
+    <Compile Include="Source\RoboPRETER\Config.cs" />
+    <Compile Include="Source\RoboPRETER\Interpreter.cs" />
+    <Compile Include="Source\RoboPRETER\Operator.cs" />
+    <Compile Include="Source\RoboPRETER\Parancs.cs" />
+    <Compile Include="Source\RoboPRETER\Parser.cs" />
+    <Compile Include="Source\RoboPRETER\Scanner.cs" />
+    <Compile Include="Source\RoboPRETER\Token.cs" />
     <Compile Include="Source\Syntax\CommonSyntaxProvider.cs" />
     <Compile Include="Source\Syntax\LogoKeywords.cs" />
     <Compile Include="Source\FileDialogs.cs" />
