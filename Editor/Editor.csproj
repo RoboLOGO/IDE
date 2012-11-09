@@ -65,7 +65,6 @@
     <Compile Include="NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\Command.cs" />
     <Compile Include="Source\RoboPreter.cs" />
     <Compile Include="Source\RoboPRETER\AST.cs" />
     <Compile Include="Source\RoboPRETER\Config.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="Source\NameChecker.cs" />
     <Compile Include="Source\Syntax\SyntaxHighlight.cs" />
     <Compile Include="Source\Turtle\CanvasSize.cs" />
-    <Compile Include="Source\LogoRun.cs" />
     <Compile Include="Source\Menu.cs" />
     <Compile Include="Method.xaml.cs">
       <DependentUpon>Method.xaml</DependentUpon>

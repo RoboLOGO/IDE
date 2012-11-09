@@ -136,21 +136,12 @@ namespace Editor
             for (int i = 0; i < com.Count; i++)
             {
                 Draw(com[i]);
-                await Task.Factory.StartNew(() => Wait());
+                int time = 800;
+                if (com[i].parancs == Parancsok.balra || com[i].parancs == Parancsok.jobbra || com[i].parancs == Parancsok.elore || com[i].parancs == Parancsok.hatra)
+                    time = (int)com[i].parancs * 10;
+                await Task.Factory.StartNew(() => Wait(time));
             }
             runButton.IsEnabled = true;
-            //runButton.IsEnabled = false;
-            //menu.Save(rtbhelper.GetString(commandLine));
-            //turtle.Clean();
-            //LogoRun run = new LogoRun();
-            //string sourceCode = SQLiteHelper.GetSqlHelper.GetSourceCode();
-            //List<Command> com = run.Run(sourceCode);
-            //for (int i = 0; i < com.Count; i++)
-            //{
-            //    Draw(com[i]);
-            //    await Task.Factory.StartNew(() => Wait());
-            //}
-            //runButton.IsEnabled = true;
         }
 
         private void Draw(Parancs com)
@@ -168,9 +159,9 @@ namespace Editor
             }
         }
 
-        private void Wait()
+        private void Wait(int time)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(time);
         }
         //kép mentés
         private void SaveImageClick(object sender, RoutedEventArgs e)
