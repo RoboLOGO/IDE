@@ -17,6 +17,15 @@ namespace Robopreter {
         public Expr Expression;     // How much?
     }
 
+    public class Home : Stmt    {   
+        public Expr Expression;    
+    }
+
+    public class Clear : Stmt
+    {
+        public Expr Expression;
+    }
+
     public class Backward : Stmt {  // Put the turtle in reverse
         public Expr Expression;     // How much?
     }

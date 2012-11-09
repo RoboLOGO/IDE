@@ -138,7 +138,7 @@ namespace Editor
                 Draw(com[i]);
                 int time = 800;
                 if (com[i].parancs == Parancsok.balra || com[i].parancs == Parancsok.jobbra || com[i].parancs == Parancsok.elore || com[i].parancs == Parancsok.hatra)
-                    time = (int)com[i].parancs * 10;
+                    time = (int)com[i].parancs * 50;
                 await Task.Factory.StartNew(() => Wait(time));
             }
             runButton.IsEnabled = true;
@@ -152,8 +152,8 @@ namespace Editor
                 case Parancsok.hatra: turtle.Backward((int)com.ertek); break;
                 case Parancsok.jobbra: turtle.Right((int)com.ertek); break;
                 case Parancsok.balra: turtle.Left((int)com.ertek); break;
-                //case Parancsok.haza: turtle.Home(); break;
-                //case Parancsok.torol: turtle.Clean(); break;
+                case Parancsok.haza: turtle.Home(); break;
+                case Parancsok.torol: turtle.Clean(); break;
                 case Parancsok.tollatle: turtle.PenDown(); break;
                 case Parancsok.tollatfel: turtle.PenUp(); break;
             }
@@ -163,6 +163,7 @@ namespace Editor
         {
             Thread.Sleep(time);
         }
+
         //kép mentés
         private void SaveImageClick(object sender, RoutedEventArgs e)
         {

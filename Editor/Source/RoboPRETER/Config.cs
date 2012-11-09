@@ -40,13 +40,13 @@ namespace Robopreter {
             IDs.Add(new ID(App.Current.TryFindResource("kw_jobbrar").ToString(), Type.GetType("Robopreter.Right")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_balra").ToString(), Type.GetType("Robopreter.Left")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_balrar").ToString(), Type.GetType("Robopreter.Left")));
-            //IDs.Add(new ID(App.Current.TryFindResource("kw_haza").ToString(), Type.GetType("Robopreter.Home")));
+            IDs.Add(new ID(App.Current.TryFindResource("kw_haza").ToString(), Type.GetType("Robopreter.Home")));
             //IDs.Add(new ID(App.Current.TryFindResource("kw_xpoz").ToString(), Type.GetType("Robopreter.Xpos")));
             //IDs.Add(new ID(App.Current.TryFindResource("kw_xpozr").ToString(), Type.GetType("Robopreter.YPos")));
             //IDs.Add(new ID(App.Current.TryFindResource("kw_ypoz").ToString(), Type.GetType("Robopreter.YPos")));
             //IDs.Add(new ID(App.Current.TryFindResource("kw_ypozr").ToString(), Type.GetType("Robopreter.YPos")));
-            //IDs.Add(new ID(App.Current.TryFindResource("kw_torolkep").ToString(), Type.GetType("Robopreter.Clear")));
-            //IDs.Add(new ID(App.Current.TryFindResource("kw_torolkepr").ToString(), Type.GetType("Robopreter.Clear")));
+            IDs.Add(new ID(App.Current.TryFindResource("kw_torolkep").ToString(), Type.GetType("Robopreter.Clear")));
+            IDs.Add(new ID(App.Current.TryFindResource("kw_torolkepr").ToString(), Type.GetType("Robopreter.Clear")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_tollatfel").ToString(), Type.GetType("Robopreter.PenUp")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_tollatfelr").ToString(), Type.GetType("Robopreter.PenUp")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_tollatle").ToString(), Type.GetType("Robopreter.PenDown")));

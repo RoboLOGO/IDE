@@ -16,7 +16,6 @@ namespace Editor
 
         public List<Parancs> Run(string input)
         {
-
             Scanner scanner = new Scanner(new StringReader(input));
             Parser parser = new Parser(scanner.Tokens);
             Interpreter interpreter = new Interpreter(parser.Result, false);

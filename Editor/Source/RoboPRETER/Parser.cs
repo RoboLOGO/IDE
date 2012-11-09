@@ -98,6 +98,14 @@ namespace Robopreter {
                     Index++;
                     stmt = new PenDown();
                     break;
+                case "Home":
+                    Index++;
+                    stmt = new Home();
+                    break;
+                case "Clear":
+                    Index++;
+                    stmt = new Clear();
+                    break;
                 case "DeclareFunction":
                     if(in_dec) {        // Are we already declarating a function?
                         App.StopError(21, "Can't declare function in function", Line, Column, File);

@@ -8,7 +8,7 @@ namespace Robopreter
 {
     public enum Parancsok
     {
-        balra, jobbra, elore, hatra, tollatfel, tollatle
+        balra, jobbra, elore, hatra, tollatfel, tollatle, haza, torol
     }
     public class Parancs
     {

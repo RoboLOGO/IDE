@@ -46,12 +46,6 @@ namespace Robopreter
                             P.ertek = ((Left)currStmt).Expression.Return;
                             Out.Add(P);
                         }
-                        /*
-                    Console.Write("left;v=");
-                    writeExp(((Left)currStmt).Expression);
-                    Console.WriteLine(";");
-                    wait();
-                         */
                         break;
                     case "Right":
                         {
@@ -60,13 +54,7 @@ namespace Robopreter
                             ((Right)currStmt).Expression.Calc();
                             P.ertek = ((Right)currStmt).Expression.Return;
                             Out.Add(P);
-                        }
-                        /*
-                    Console.Write("right;v=");
-                    writeExp(((Right)currStmt).Expression);
-                    Console.WriteLine(";");
-                    wait();
-                         */
+                        }                        
                         break;
                     case "Forward":
                         {
@@ -76,11 +64,6 @@ namespace Robopreter
                             P.ertek = ((Forward)currStmt).Expression.Return;
                             Out.Add(P);
                         }
-                        /*
-                    Console.Write("forward;v=");
-                    writeExp(((Forward)currStmt).Expression);
-                    Console.WriteLine(";");
-                    wait();*/
                         break;
                     case "Backward":
                         {
@@ -90,10 +73,6 @@ namespace Robopreter
                             P.ertek = ((Backward)currStmt).Expression.Return;
                             Out.Add(P);
                         }
-                        /*
-                    Console.Write("backward;v=");
-                    writeExp(((Backward)currStmt).Expression);
-                    Console.WriteLine(";");*/
                         wait();
                         break;
                     case "PenUp":
@@ -102,21 +81,27 @@ namespace Robopreter
                             P.parancs = Parancsok.tollatfel;
                             Out.Add(P);
                         }
-                        /*
-                    Console.WriteLine("penup;");
-                    wait();
-                         */
                         break;
                     case "PenDown":
                         {
                             var P = new Parancs();
                             P.parancs = Parancsok.tollatle;
+                            Out.Add(P);
                         }
-                        /*
-                                            Out.Add(P);
-                                            Console.WriteLine("pendown;");
-                                            wait();
-                         */
+                        break;
+                    case "Clear":
+                        {
+                            var P = new Parancs();
+                            P.parancs = Parancsok.torol;
+                            Out.Add(P);
+                        }
+                        break;
+                    case "Home":
+                        {
+                            var P = new Parancs();
+                            P.parancs = Parancsok.haza;
+                            Out.Add(P);
+                        }
                         break;
                     case "DeclareFunction":
                         var stmtDeclareFunction = (DeclareFunction)currStmt;
@@ -138,10 +123,7 @@ namespace Robopreter
                         var stmtCallFunction = (CallFunction)currStmt;
                         Call(stmtCallFunction.Identity, stmtCallFunction.Parameters);
                         break;
-                    case "Print":/*
-                        writeExp(((Print)currStmt).Text);
-                        wait();
-                                  * */
+                    case "Print":
                         break;
                     case "IfElse":
                         var stmtIfElse = (IfElse)currStmt;
@@ -251,17 +233,7 @@ namespace Robopreter
             }
             return null;
         }
-        /*
-        static object writeExp(Expr expr) {
-            try {
-                expr.Calc();
-               // Console.Write(expr.Return);
-                
-            } catch {
-                Console.Write("<<nem működik még>>");
-            }
-        }
-        */
+
         static void wait()
         {
             if (response) Console.ReadLine();
