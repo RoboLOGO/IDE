@@ -6,7 +6,7 @@ using Editor.Exeptions;
 
 namespace Robopreter {
     public sealed class Parser {
-        static Dictionary<string, DeclareFunction> FuncDef = new Dictionary<string, DeclareFunction>();
+        Dictionary<string, DeclareFunction> FuncDef = new Dictionary<string, DeclareFunction>();
 
         int Index;
         IList<Token> Tokens;

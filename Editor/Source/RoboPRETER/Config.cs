@@ -11,7 +11,6 @@ using Editor;
 namespace Robopreter {
     public sealed class Config
     {
-        //public static List<Error> Errors = new List<Error>();
         public static List<ID> IDs = new List<ID>();
         public static Dictionary<string, string> Primitives = new Dictionary<string, string>();
         public static char DecimalPoint = '.';
@@ -27,7 +26,6 @@ namespace Robopreter {
 
         public static void Load()
         {
-            //Errors.Clear();
             IDs.Clear();
             Primitives.Clear();
 
@@ -67,21 +65,12 @@ namespace Robopreter {
             IDs.Add(new ID(App.Current.TryFindResource("kw_eredmeny").ToString(), Type.GetType("Robopreter.Output")));
 
             //primitívek
-            Primitives.Add(App.Current.TryFindResource("kw_igaz").ToString(), "True");
-            Primitives.Add(App.Current.TryFindResource("kw_hamis").ToString(), "False");
-            Primitives.Add(App.Current.TryFindResource("kw_vege").ToString(), "End");
+            Primitives.Add("True", App.Current.TryFindResource("kw_igaz").ToString());
+            Primitives.Add("False", App.Current.TryFindResource("kw_hamis").ToString());
+            Primitives.Add("End", App.Current.TryFindResource("kw_vege").ToString());
 
             //tizedespont
             DecimalPoint = App.Current.TryFindResource("kw_decimal").ToString()[0];
-
-            //Xmlconfig conf = new Xmlconfig( confxml + ".xml", false);
-            //foreach(var s in conf.Settings["Names"].Children()) {
-            //    foreach(var cs in s.Children()) {
-            //        try {
-            //            IDs.Add(new ID(cs.Name, Type.GetType("Robopreter." + s.Name)));
-            //        } catch { }
-            //    }
-            //}
 
         }
     }

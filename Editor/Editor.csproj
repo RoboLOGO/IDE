@@ -74,7 +74,7 @@
     <Compile Include="Source\RoboPRETER\Config.cs" />
     <Compile Include="Source\RoboPRETER\Interpreter.cs" />
     <Compile Include="Source\RoboPRETER\Operator.cs" />
-    <Compile Include="Source\RoboPRETER\Parancs.cs" />
+    <Compile Include="Source\RoboPRETER\Command.cs" />
     <Compile Include="Source\RoboPRETER\Parser.cs" />
     <Compile Include="Source\RoboPRETER\Scanner.cs" />
     <Compile Include="Source\RoboPRETER\Token.cs" />

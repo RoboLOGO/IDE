@@ -26,6 +26,8 @@ namespace Robopreter
         public static List<Command> Out = new List<Command>();
         public static void Run()
         {
+            FuncDecl.Clear();
+            VarDecl.Clear();
             while (stmtQueue.Count > 0)
             {
                 var currStmt = stmtQueue.Dequeue();
