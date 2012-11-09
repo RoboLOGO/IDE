@@ -28,6 +28,7 @@
     <system:String x:Key="kw_absz">abs</system:String>
     <system:String x:Key="kw_eljaras">to</system:String>
     <system:String x:Key="kw_eljarasr">to</system:String>
+    <system:String x:Key="kw_tanuld">to</system:String>
     <system:String x:Key="kw_vege">end</system:String>
     <system:String x:Key="kw_keszit">make</system:String>
     <system:String x:Key="kw_orokke">forever</system:String>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Editor;
+using Editor.Exeptions;
 
 namespace Robopreter
 {
@@ -19,11 +19,11 @@ namespace Robopreter
         public Interpreter(Stmt stmt, bool response = true)
         {
             stmtQueue.Enqueue(stmt);
-            Interpreter.Out = new List<Parancs>();
+            Interpreter.Out = new List<Command>();
             Interpreter.response = response;
         }
 
-        public static List<Parancs> Out = new List<Parancs>();
+        public static List<Command> Out = new List<Command>();
         public static void Run()
         {
             while (stmtQueue.Count > 0)
@@ -40,66 +40,66 @@ namespace Robopreter
                         break;
                     case "Left":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.balra;
+                            var P = new Command();
+                            P.comm = Commands.balra;
                             ((Left)currStmt).Expression.Calc();
-                            P.ertek = ((Left)currStmt).Expression.Return;
+                            P.value = ((Left)currStmt).Expression.Return;
                             Out.Add(P);
                         }
                         break;
                     case "Right":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.jobbra;
+                            var P = new Command();
+                            P.comm = Commands.jobbra;
                             ((Right)currStmt).Expression.Calc();
-                            P.ertek = ((Right)currStmt).Expression.Return;
+                            P.value = ((Right)currStmt).Expression.Return;
                             Out.Add(P);
                         }                        
                         break;
                     case "Forward":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.elore;
+                            var P = new Command();
+                            P.comm = Commands.elore;
                             ((Forward)currStmt).Expression.Calc();
-                            P.ertek = ((Forward)currStmt).Expression.Return;
+                            P.value = ((Forward)currStmt).Expression.Return;
                             Out.Add(P);
                         }
                         break;
                     case "Backward":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.hatra;
+                            var P = new Command();
+                            P.comm = Commands.hatra;
                             ((Backward)currStmt).Expression.Calc();
-                            P.ertek = ((Backward)currStmt).Expression.Return;
+                            P.value = ((Backward)currStmt).Expression.Return;
                             Out.Add(P);
                         }
                         wait();
                         break;
                     case "PenUp":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.tollatfel;
+                            var P = new Command();
+                            P.comm = Commands.tollatfel;
                             Out.Add(P);
                         }
                         break;
                     case "PenDown":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.tollatle;
+                            var P = new Command();
+                            P.comm = Commands.tollatle;
                             Out.Add(P);
                         }
                         break;
                     case "Clear":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.torol;
+                            var P = new Command();
+                            P.comm = Commands.torol;
                             Out.Add(P);
                         }
                         break;
                     case "Home":
                         {
-                            var P = new Parancs();
-                            P.parancs = Parancsok.haza;
+                            var P = new Command();
+                            P.comm = Commands.haza;
                             Out.Add(P);
                         }
                         break;
@@ -141,7 +141,7 @@ namespace Robopreter
                         }
                         catch
                         {
-                            App.StopError(101, "No logic expression found");
+                            throw new RPExeption(101, "No logic expression found");
                         }
                         break;
                     case "Loop":

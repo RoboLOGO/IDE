@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Editor;
+using Editor.Exeptions;
+
 namespace Robopreter {
     public sealed class Parser {
         static Dictionary<string, DeclareFunction> FuncDef = new Dictionary<string, DeclareFunction>();
@@ -53,7 +54,7 @@ namespace Robopreter {
             result = this.ParseStmt();
 
             if(Index != Tokens.Count) {     // Parser exited before EOF
-                App.StopError(20, "Unexpected end", Line, Column, File);
+                throw new RPExeption(20, "Unexpected end", Line, Column);
             }
         }
 
@@ -62,7 +63,7 @@ namespace Robopreter {
             Stmt stmt = new Nop();
             bool breaked = false;
             if(Index == Tokens.Count) {     // Already got EOF?
-                App.StopError(20, "Unexpected end", Line, Column, File);
+                throw new RPExeption(20, "Unexpected end", Line, Column);
             }
             while(Index < Tokens.Count && !breaked) {
                 switch(Config.In(Tokens[Index]).Name) {
@@ -108,7 +109,7 @@ namespace Robopreter {
                     break;
                 case "DeclareFunction":
                     if(in_dec) {        // Are we already declarating a function?
-                        App.StopError(21, "Can't declare function in function", Line, Column, File);
+                        throw new RPExeption(21, "Can't declare function in function", Line, Column);
                     }
                     var stmtDeclareFunction = new DeclareFunction();
                     // Read function name
@@ -116,7 +117,7 @@ namespace Robopreter {
                     if(Index < Tokens.Count && Tokens[Index].isStr) {
                         stmtDeclareFunction.Identity = (string)Tokens[Index];
                     } else {
-                        App.StopError(22, "Expected function name after `to'", Line, Column, File);
+                        throw new RPExeption(22, "Expected function name after `to'", Line, Column);
                     }
                     // Read parameters if any
                     Index++;
@@ -125,7 +126,7 @@ namespace Robopreter {
                         Index += 2;
                     }
                     if(Index == Tokens.Count) {
-                        App.StopError(23, "Expected function body", Line, Column, File);
+                        throw new RPExeption(23, "Expected function body", Line, Column);
                     }
                     // Add function to the functions list
                     FuncDef.Add(stmtDeclareFunction.Identity, stmtDeclareFunction);
@@ -133,7 +134,7 @@ namespace Robopreter {
                     stmtDeclareFunction.Body = ParseStmt(true);
                     // End of function
                     if(Index == Tokens.Count || Tokens[Index].isStr && Config.Primitives.ContainsKey((string)Tokens[Index]) && Config.Primitives[(string)Tokens[Index]] == "End") {
-                        App.StopError(24, "Expected `end' to terminate declaration", Line, Column, File);
+                        throw new RPExeption(24, "Expected `end' to terminate declaration", Line, Column);
                     }
                     Index++;
                     stmt = stmtDeclareFunction;
@@ -155,12 +156,12 @@ namespace Robopreter {
                     stmtIfElse.Condition = ParseExpr();
                     // Parse the true branch
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyStart)) {
-                        App.StopError(25, "Expected `[' before body", Line, Column, File);
+                        throw new RPExeption(25, "Expected `[' before body", Line, Column);
                     }
                     Index++;
                     stmtIfElse.True = ParseStmt(in_dec);
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyEnd)) {
-                        App.StopError(26, "Expected `]' after body", Line, Column, File);
+                        throw new RPExeption(26, "Expected `]' after body", Line, Column);
                     }
                     // Parse the false branch if any
                     Index++;
@@ -168,7 +169,7 @@ namespace Robopreter {
                         Index++;
                         stmtIfElse.False = ParseStmt(in_dec);
                         if(Index == Tokens.Count || !Tokens[Index].Contains.Equals(Scanner.BodyEnd)) {
-                            App.StopError(26, "Expected `]' after body", Line, Column, File);
+                            throw new RPExeption(26, "Expected `]' after body", Line, Column);
                         }
                         Index++;
                     } else {
@@ -183,12 +184,12 @@ namespace Robopreter {
                     stmtLoop.Repeat = ParseExpr();
                     // Parse the body
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyStart)) {
-                        App.StopError(25, "Expected `[' before body", Line, Column, File);
+                        throw new RPExeption(25, "Expected `[' before body", Line, Column);
                     }
                     Index++;
                     stmtLoop.Body = ParseStmt(in_dec);
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyEnd)) {
-                        App.StopError(26, "Expected `]' after body", Line, Column, File);
+                        throw new RPExeption(26, "Expected `]' after body", Line, Column);
                     }
                     Index++;
                     stmt = stmtLoop;
@@ -197,22 +198,22 @@ namespace Robopreter {
                     var stmtWhile = new While();
                     Index++;
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyStart)) {
-                        App.StopError(30, "Expected `[' before the condition expression", Line, Column, File);
+                        throw new RPExeption(30, "Expected `[' before the condition expression", Line, Column);
                     }
                     Index++;
                     stmtWhile.Condition = ParseExpr();
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyEnd)) {
-                        App.StopError(31, "Expected `]' after the condition expression", Line, Column, File);
+                        throw new RPExeption(31, "Expected `]' after the condition expression", Line, Column);
                     }
                     Index++;
                     // Parse the body
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyStart)) {
-                        App.StopError(25, "Expected `[' before body", Line, Column, File);
+                        throw new RPExeption(25, "Expected `[' before body", Line, Column);
                     }
                     Index++;
                     stmtWhile.Body = ParseStmt(in_dec);
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyEnd)) {
-                        App.StopError(26, "Expected `]' after body", Line, Column, File);
+                        throw new RPExeption(26, "Expected `]' after body", Line, Column);
                     }
                     Index++;
                     stmt = stmtWhile;
@@ -222,12 +223,12 @@ namespace Robopreter {
                     Index++;
                     // Parse the body
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyStart)) {
-                        App.StopError(25, "Expected `[' before body", Line, Column, File);
+                        throw new RPExeption(25, "Expected `[' before body", Line, Column);
                     }
                     Index++;
                     stmtForever.Body = ParseStmt(in_dec);
                     if(Index == Tokens.Count || !Tokens[Index].Equals(Scanner.BodyEnd)) {
-                        App.StopError(26, "Expected `]' after body", Line, Column, File);
+                        throw new RPExeption(26, "Expected `]' after body", Line, Column);
                     }
                     Index++;
                     stmt = stmtForever;
@@ -244,7 +245,7 @@ namespace Robopreter {
                     if(Index < Tokens.Count && Tokens[Index - 1].Equals(Scanner.AsIs)) {
                         stmtDeclareVariable.Identity = (string)Tokens[Index];
                     } else {
-                        App.StopError(27, "Variable name expected", Line, Column, File);
+                        throw new RPExeption(27, "Variable name expected", Line, Column);
                     }
                     // Do the math
                     Index++;
@@ -263,11 +264,11 @@ namespace Robopreter {
                             continue;
                         } else if(Tokens[Index].Equals(Config.Primitives["End"])) {
                             if(!in_dec)
-                                App.StopError(23, "Expected function body", Line, Column, File);
+                                throw new RPExeption(23, "Expected function body", Line, Column);
                             else breaked = true;
                             continue;
                         } else if(!FuncDef.ContainsKey((string)Tokens[Index])) {
-                            App.StopError(28, "Unknown identifier `" + (string)Tokens[Index] + "'", Line, Column, File);
+                            throw new RPExeption(28, "Unknown identifier `" + (string)Tokens[Index] + "'", Line, Column);
                         } else {
                             var stmtCallFunction = new CallFunction();
                             stmtCallFunction.Identity = (string)Tokens[Index];
@@ -279,12 +280,12 @@ namespace Robopreter {
                                 i++;
                             }
                             if(Index == Tokens.Count && i < P) {
-                                App.StopError(29, "Function parameters count does not match", Line, Column, File);
+                                throw new RPExeption(29, "Function parameters count does not match", Line, Column);
                             }
                             stmt = stmtCallFunction;
                         }
                     } else {
-                        App.StopError(99, "Unknown command", Line, Column, File);
+                        throw new RPExeption(99, "Unknown command", Line, Column);
                     }
                     break;
                 }
@@ -340,7 +341,7 @@ namespace Robopreter {
                             i++;
                         }
                         if(Index == Tokens.Count && i < P) {
-                            App.StopError(29, "Function parameters count does not match", Line, Column, File);
+                            throw new RPExeption(29, "Function parameters count does not match", Line, Column);
                         }
                         CStack.Push(function);
                         NextCanBe = ExprNext.BExpr;

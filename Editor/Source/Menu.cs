@@ -21,6 +21,37 @@ namespace Editor
         {
             sqlitehelp = SQLiteHelper.GetSqlHelper;
         }
+
+        public string GetFullSource()
+        {
+            string full = "";
+            full += GetAllVar(sqlitehelp.GetAllVariablesName());
+            full += GetAllMethod(sqlitehelp.GetAllMethodName());
+            full += sqlitehelp.GetSourceCode();
+            return full;
+        }
+
+        private string GetAllMethod(List<string> list)
+        {
+            string all = "";
+            foreach (string name in list)
+            {
+                all += sqlitehelp.GetMethod(name);
+            }
+            return all;
+        }
+
+        private string GetAllVar(List<string> list)
+        {
+            string all = "";
+            string mname = App.Current.TryFindResource("kw_keszit").ToString();
+            foreach (string name in list)
+            {
+                all += mname + " \"" + name + " " + sqlitehelp.GetVariable(name) + "\r\n";
+            }
+            return all;
+        }
+
         public static Menu GetMenu
         {
             get

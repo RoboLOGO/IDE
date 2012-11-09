@@ -74,6 +74,7 @@
     <Compile Include="Source\RoboPRETER\Parser.cs" />
     <Compile Include="Source\RoboPRETER\Scanner.cs" />
     <Compile Include="Source\RoboPRETER\Token.cs" />
+    <Compile Include="Source\RPExeption.cs" />
     <Compile Include="Source\Syntax\CommonSyntaxProvider.cs" />
     <Compile Include="Source\Syntax\LogoKeywords.cs" />
     <Compile Include="Source\FileDialogs.cs" />

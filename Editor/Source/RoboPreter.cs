@@ -14,7 +14,7 @@ namespace Editor
             Config.Load();
         }
 
-        public List<Parancs> Run(string input)
+        public List<Command> Run(string input)
         {
             Scanner scanner = new Scanner(new StringReader(input));
             Parser parser = new Parser(scanner.Tokens);

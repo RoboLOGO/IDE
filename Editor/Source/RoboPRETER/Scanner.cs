@@ -89,7 +89,7 @@ namespace Robopreter {
                                 Scanner sc = new Scanner(new StreamReader(pre_val), pre_val);  // opens an include file
                                 Result = sc.Tokens.Concat(Result).ToList();
                             } catch {
-                                App.StopError(2, "File not found", Line, Column + 3, file);
+                                throw new Exception(2 + " File not found " +  Line + " " + Column + 3);
                             }
                         } else if(pre_name == "language") {
                             Tokens.Add(new Token("language", Line, currentCol, file));

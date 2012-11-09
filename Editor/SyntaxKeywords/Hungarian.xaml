@@ -27,6 +27,7 @@
     <system:String x:Key="kw_spec">()[].</system:String>
     <system:String x:Key="kw_absz">absz</system:String>
     <system:String x:Key="kw_eljaras">eljárás</system:String>
+    <system:String x:Key="kw_tanuld">tanuld</system:String>
     <system:String x:Key="kw_eljarasr">elj</system:String>
     <system:String x:Key="kw_vege">vége</system:String>
     <system:String x:Key="kw_keszit">név</system:String>

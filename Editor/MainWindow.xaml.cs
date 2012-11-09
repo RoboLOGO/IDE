@@ -17,6 +17,7 @@ using System.Data.SQLite;
 using System.Threading;
 using System.Threading.Tasks;
 using Robopreter;
+using Editor.Exeptions;
 
 namespace Editor
 {
@@ -132,30 +133,43 @@ namespace Editor
             menu.Save(rtbhelper.GetString(commandLine));
             turtle.Clean();
             RoboPreter rp = new RoboPreter();
-            List<Robopreter.Parancs> com = rp.Run(rtbhelper.GetString(commandLine));
-            for (int i = 0; i < com.Count; i++)
+            try
             {
-                Draw(com[i]);
-                int time = 800;
-                if (com[i].parancs == Parancsok.balra || com[i].parancs == Parancsok.jobbra || com[i].parancs == Parancsok.elore || com[i].parancs == Parancsok.hatra)
-                    time = (int)com[i].parancs * 50;
-                await Task.Factory.StartNew(() => Wait(time));
+                string fullsource = menu.GetFullSource();
+                List<Robopreter.Command> com = rp.Run(fullsource);
+                for (int i = 0; i < com.Count; i++)
+                {
+                    Draw(com[i]);
+                    int time = 800;
+                    if (com[i].comm == Commands.balra || com[i].comm == Commands.jobbra || com[i].comm == Commands.elore || com[i].comm == Commands.hatra)
+                        time = (int)com[i].comm * 50;
+                    await Task.Factory.StartNew(() => Wait(time));
+                }
+            }
+            catch (RPExeption rpe)
+            {
+                MessageBox.Show(rpe.NewMessage);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(App.Current.TryFindResource("error").ToString());
+                MessageBox.Show(ex.Message);
             }
             runButton.IsEnabled = true;
         }
 
-        private void Draw(Parancs com)
+        private void Draw(Command com)
         {
-            switch (com.parancs)
+            switch (com.comm)
             {
-                case Parancsok.elore: turtle.Forward((int)com.ertek); break;
-                case Parancsok.hatra: turtle.Backward((int)com.ertek); break;
-                case Parancsok.jobbra: turtle.Right((int)com.ertek); break;
-                case Parancsok.balra: turtle.Left((int)com.ertek); break;
-                case Parancsok.haza: turtle.Home(); break;
-                case Parancsok.torol: turtle.Clean(); break;
-                case Parancsok.tollatle: turtle.PenDown(); break;
-                case Parancsok.tollatfel: turtle.PenUp(); break;
+                case Commands.elore: turtle.Forward((int)com.value); break;
+                case Commands.hatra: turtle.Backward((int)com.value); break;
+                case Commands.jobbra: turtle.Right((int)com.value); break;
+                case Commands.balra: turtle.Left((int)com.value); break;
+                case Commands.haza: turtle.Home(); break;
+                case Commands.torol: turtle.Clean(); break;
+                case Commands.tollatle: turtle.PenDown(); break;
+                case Commands.tollatfel: turtle.PenUp(); break;
             }
         }
 

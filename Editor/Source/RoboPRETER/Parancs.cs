@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Robopreter
 {
-    public enum Parancsok
+    public enum Commands
     {
         balra, jobbra, elore, hatra, tollatfel, tollatle, haza, torol
     }
-    public class Parancs
+    public class Command
     {
-        public Parancsok parancs;
-        public object ertek;
+        public Commands comm;
+        public object value;
     }
 }

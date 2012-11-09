@@ -56,6 +56,8 @@ namespace Robopreter {
             IDs.Add(new ID(App.Current.TryFindResource("kw_ismetlesr").ToString(), Type.GetType("Robopreter.Loop")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_amig").ToString(), Type.GetType("Robopreter.While")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_eljaras").ToString(), Type.GetType("Robopreter.DeclareFunction")));
+            IDs.Add(new ID(App.Current.TryFindResource("kw_eljarasr").ToString(), Type.GetType("Robopreter.DeclareFunction")));
+            IDs.Add(new ID(App.Current.TryFindResource("kw_tanuld").ToString(), Type.GetType("Robopreter.DeclareFunction")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_keszit").ToString(), Type.GetType("Robopreter.DeclareVariable")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_orokke").ToString(), Type.GetType("Robopreter.Forever")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_kiir").ToString(), Type.GetType("Robopreter.Print")));
