@@ -181,7 +181,7 @@ namespace Editor
         //kép mentés
         private void SaveImageClick(object sender, RoutedEventArgs e)
         {
-            menu.Image_Save(canvas, this);
+            menu.Image_Save(canvas);
         }
         //képernyő törlés
         private void ClearClick(object sender, RoutedEventArgs e)

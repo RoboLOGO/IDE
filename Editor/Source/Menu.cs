@@ -91,22 +91,22 @@ namespace Editor
         }
 
         #region --Kép Mentés--
-        public void Image_Save(Canvas canvas, Window window)
+        public void Image_Save(Canvas canvas)
         {
             SaveFileDialog sfd = FileDialogs.SavePngDialog();
             sfd.ShowDialog();
 
-            SaveCanvas(window, canvas, 96, sfd.FileName);
+            SaveCanvas(canvas, 96, sfd.FileName);
         }
-        private static void SaveCanvas(Window window, Canvas canvas, int dpi, string filename)
+        private static void SaveCanvas(Canvas canvas, int dpi, string filename)
         {
-            Size size = new Size(canvas.RenderSize.Width, canvas.RenderSize.Height);
-            canvas.Measure(size);
-            canvas.Arrange(new Rect(size));
+            //Size size = new Size(window.ActualWidth, window.ActualHeight);
+            //canvas.Measure(size);
+            //canvas.Arrange(new Rect(size));
 
             var rtb = new RenderTargetBitmap(
-                (int)canvas.RenderSize.Width, //width 
-                (int)canvas.RenderSize.Height, //height 
+                (int)canvas.ActualWidth, //width 
+                (int)canvas.ActualHeight, //height 
                 dpi, //dpi x 
                 dpi, //dpi y 
                 PixelFormats.Pbgra32 // pixelformat 
