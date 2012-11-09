@@ -49,6 +49,8 @@ namespace Editor
                 "kw_intveletlen",
                 "kw_veletlen",
                 "kw_stop",
+                "kw_igaz",
+                "kw_hamis",
             };
             kw_spec = "kw_spec";
             keyWords = new List<string>();
