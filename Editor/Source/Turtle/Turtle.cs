@@ -77,6 +77,8 @@ namespace Editor
             newpos.X = pos.X + (distance * Math.Cos(DegreeToRadian(angle)));
             newpos.Y = pos.Y + (distance * Math.Sin(DegreeToRadian(angle)));
 
+            outOfCanvas(newpos);
+
             if (pen.IsDown)
             {
 
@@ -226,6 +228,14 @@ namespace Editor
         {
             if (millisecundum > 0)
                 System.Threading.Thread.Sleep(millisecundum);
+        }
+
+        void outOfCanvas(Vector2 pos)
+        {
+            if (pos.X < 0) pos.X = 0;
+            else if (pos.X > canvas.ActualWidth) pos.X = canvas.ActualWidth;
+            if (pos.Y < 0) pos.Y = 0;
+            else if (pos.Y > canvas.ActualHeight) pos.Y = canvas.ActualHeight;
         }
     }
 }
