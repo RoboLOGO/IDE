@@ -33,13 +33,21 @@ namespace Editor
 
         public BluetoothDeviceInfo[] Search()
         {
-            bluetoothDeviceInfo = bluetoothClient.DiscoverDevices(10);
+            bluetoothSupport.ChangeDeviceMode("Discoverable");
+            bluetoothDeviceInfo = bluetoothClient.DiscoverDevices(5);
             return bluetoothDeviceInfo;
         }
 
-        public void Connect(BluetoothAddress device)
+        public void Connect(BluetoothDeviceInfo btDevice)
         {
-            bluetoothClient.Connect(new BluetoothEndPoint(device, bluetoothSupport.Service));
+            bluetoothSupport.ChangeDeviceMode("Connectable");
+            BluetoothAddress btAddress = BluetoothAddress.Parse(btDevice.DeviceAddress.ToString());
+
+            if (btDevice.Authenticated || BluetoothSecurity.PairRequest(btAddress, "0000"))
+            {
+                bluetoothClient.Connect(new BluetoothEndPoint(btAddress, BluetoothService.GenericFileTransfer));
+            }
+            
         }
 
         public void Send(string text)

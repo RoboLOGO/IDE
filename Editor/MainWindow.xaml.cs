@@ -159,7 +159,7 @@ namespace Editor
             {
                 MessageBox.Show(rpe.NewMessage);
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show(App.Current.TryFindResource("error").ToString());
                 //MessageBox.Show(ex.Message);
@@ -241,10 +241,11 @@ namespace Editor
             {
 
                 await Task.Factory.StartNew(() => (devices = bluehelp.Search()));
-                bluetoothList.Items.Clear();
                 bluetoothList.ItemsSource = devices;
                 bluetoothList.DisplayMemberPath = "DeviceName";
-                bluetoothList.SelectedValuePath = "DeviceAddress";
+                //bluetoothList.SelectedValuePath = "DeviceAddress";
+                if (bluetoothList.Items.Count != 0)
+                    bluetoothList.SelectedIndex = 0;
             }
             catch(Exception ex)
             {
@@ -260,7 +261,7 @@ namespace Editor
             {
                 try
                 {
-                    bluehelp.Connect((BluetoothAddress)bluetoothList.SelectedValue);
+                    bluehelp.Connect((BluetoothDeviceInfo)bluetoothList.SelectedValue);
                     MessageBox.Show("Csatlakozva");
                 }
                 catch (Exception ex)
