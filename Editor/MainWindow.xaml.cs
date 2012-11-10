@@ -18,6 +18,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Robopreter;
 using Editor.Exeptions;
+using InTheHand.Net.Sockets;
+using InTheHand.Net;
 
 namespace Editor
 {
@@ -34,6 +36,7 @@ namespace Editor
         Turtle turtle;
         CommonSyntaxProvider logoSynProvider;
         SyntaxHighlight synHighligt;
+        BluetoothHelper bluehelp;
 
         public MainWindow()
         {
@@ -41,6 +44,12 @@ namespace Editor
             canvasSize = CanvasSize.GetCanvasSize;
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper;
+            try { bluehelp = BluetoothHelper.GetBluetoothHelper(); }
+            catch 
+            { 
+                bluetoothupdate.IsEnabled = false;
+                bluetoothList.IsEnabled = false;
+            }
             menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
             logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetLogoKeywords().GetKeywords, LogoKeywords.GetLogoKeywords().GetSpecialCharacters, false);
@@ -152,8 +161,8 @@ namespace Editor
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(App.Current.TryFindResource("error").ToString());
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(App.Current.TryFindResource("error").ToString());
+                //MessageBox.Show(ex.Message);
             }
             runButton.IsEnabled = true;
         }
@@ -222,6 +231,45 @@ namespace Editor
         {
             App.Current.Resources.MergedDictionaries[0].Source = new Uri("Languages/English.xaml", UriKind.Relative);
         }
+
+        private async void BluetoothUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            BluetoothDeviceInfo[] devices = null;
+            bluetoothList.IsEnabled = false;
+            bluetoothupdate.IsEnabled = false;
+            try
+            {
+
+                await Task.Factory.StartNew(() => (devices = bluehelp.Search()));
+                bluetoothList.Items.Clear();
+                bluetoothList.ItemsSource = devices;
+                bluetoothList.DisplayMemberPath = "DeviceName";
+                bluetoothList.SelectedValuePath = "DeviceAddress";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            bluetoothList.IsEnabled = true;
+            bluetoothupdate.IsEnabled = true;
+        }
+
+        private void BluetoothConnect_Click(object sender, RoutedEventArgs e)
+        {
+            if (bluetoothList.SelectedItem != null)
+            {
+                try
+                {
+                    bluehelp.Connect((BluetoothAddress)bluetoothList.SelectedValue);
+                    MessageBox.Show("Csatlakozva");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
        
     }
 }

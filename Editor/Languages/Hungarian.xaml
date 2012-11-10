@@ -58,4 +58,7 @@
     <system:String x:Key="username">Készítő</system:String>
     <system:String x:Key="projectname">Projekt neve</system:String>
     <system:String x:Key="projectempty">Nem lehet üres a projekt név</system:String>
+    <system:String x:Key="bluetoothupdate">BT frissítése</system:String>
+    <system:String x:Key="bluetoothconnect">BT csatlakozás</system:String>
+    <system:String x:Key="simulator">Szimulátor</system:String>
 </ResourceDictionary>
