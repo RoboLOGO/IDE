@@ -20,7 +20,6 @@ namespace Editor.Bluetooth
         RadioMode radioMode;
         string localAddress;
         string mode;
-        string name;
 
         bool isBluetoothSupported;
         public bool IsBluetoothSupported
@@ -30,12 +29,11 @@ namespace Editor.Bluetooth
 
         public BluetoothSupport()
         {
-            service = BluetoothService.SerialPort;
+            service = BluetoothService.RFCommProtocol;
             br = BluetoothRadio.PrimaryRadio;
             this.localAddress = br.LocalAddress.ToString();
             this.mode = br.Mode.ToString();
-            this.name = br.Name;
-
+            br.Name = "RoboLOGO_IDE";
             SetSettings();
         }
 
