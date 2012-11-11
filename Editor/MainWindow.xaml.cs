@@ -144,14 +144,12 @@ namespace Editor
             RoboPreter rp = new RoboPreter();
             try
             {
-                string fullsource = menu.GetFullSource();
-                List<Robopreter.Command> com = rp.Run(fullsource);
+
+                List<Robopreter.Command> com = rp.Run(menu.GetFullSource());
                 for (int i = 0; i < com.Count; i++)
                 {
                     Draw(com[i]);
-                    int time = 800;
-                    if (com[i].comm == Commands.balra || com[i].comm == Commands.jobbra || com[i].comm == Commands.elore || com[i].comm == Commands.hatra)
-                        time = (int)com[i].comm * 50;
+                    int time = GetTime(com[i]);
                     await Task.Factory.StartNew(() => Wait(time));
                 }
             }
@@ -159,12 +157,21 @@ namespace Editor
             {
                 MessageBox.Show(rpe.NewMessage);
             }
-            catch 
+            catch
             {
                 MessageBox.Show(App.Current.TryFindResource("error").ToString());
                 //MessageBox.Show(ex.Message);
             }
             runButton.IsEnabled = true;
+
+        }
+
+        private static int GetTime(Robopreter.Command com)
+        {
+            int time = 800;
+            if (com.comm == Commands.balra || com.comm == Commands.jobbra || com.comm == Commands.elore || com.comm == Commands.hatra)
+                time = (int)com.comm * 50;
+            return time;
         }
 
         private void Draw(Command com)
