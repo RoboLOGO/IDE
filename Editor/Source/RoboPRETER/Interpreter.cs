@@ -23,11 +23,15 @@ namespace Robopreter
             Interpreter.response = response;
         }
 
-        public static List<Command> Out = new List<Command>();
-        public static void Run()
+        public static void Clear()
         {
             FuncDecl.Clear();
             VarDecl.Clear();
+        }
+
+        public static List<Command> Out = new List<Command>();
+        public static void Run()
+        {
             while (stmtQueue.Count > 0)
             {
                 var currStmt = stmtQueue.Dequeue();

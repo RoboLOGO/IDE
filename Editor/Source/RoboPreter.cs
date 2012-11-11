@@ -19,6 +19,7 @@ namespace Editor
             Scanner scanner = new Scanner(new StringReader(input));
             Parser parser = new Parser(scanner.Tokens);
             Interpreter interpreter = new Interpreter(parser.Result, false);
+            Interpreter.Clear();
             Interpreter.Run();
             return Interpreter.Out;
         }
