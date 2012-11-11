@@ -83,7 +83,7 @@ namespace Editor
 
         private void MethodSaver(object item)
         {
-            if (MessageBox.Show(App.Current.TryFindResource("saveconfirmation").ToString(), App.Current.TryFindResource("save").ToString(), 
+            if (MessageBox.Show(App.Current.TryFindResource("saveconfirmation").ToString(), App.Current.TryFindResource("save").ToString(),
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 SQLiteHelper.GetSqlHelper.UpdateMethod(item.ToString(), rtbhelper.GetString(methodCommandLine));
@@ -101,7 +101,7 @@ namespace Editor
         {
             if (dataGrid.SelectedItem != null)
             {
-                if (MessageBox.Show(App.Current.TryFindResource("savetext").ToString() + " " + (dataGrid.SelectedItem as Variable).Name + " " + App.Current.TryFindResource("deletevariable").ToString(),
+                if (MessageBox.Show(App.Current.TryFindResource("savetext").ToString() + " " + (dataGrid.SelectedItem as Variable).Name + " " + App.Current.TryFindResource("deletevariable").ToString() + "?",
                     App.Current.TryFindResource("delvar").ToString(), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
                     SQLiteHelper.GetSqlHelper.DeleteVariable((dataGrid.SelectedItem as Variable).Name);
@@ -114,7 +114,7 @@ namespace Editor
         {
             if (methodList.SelectedItem != null)
             {
-                if (MessageBox.Show(App.Current.TryFindResource("savetext").ToString() + " " + methodList.SelectedItem.ToString() + App.Current.TryFindResource("deletemethod").ToString() + "?", 
+                if (MessageBox.Show(App.Current.TryFindResource("savetext").ToString() + " " + methodList.SelectedItem.ToString() + " " + App.Current.TryFindResource("deletemethod").ToString() + "?",
                     App.Current.TryFindResource("delmet").ToString(), MessageBoxButton.YesNo, MessageBoxImage.Asterisk) == MessageBoxResult.Yes)
                 {
                     SQLiteHelper.GetSqlHelper.DeleteMethod(methodList.SelectedItem.ToString());
@@ -135,7 +135,7 @@ namespace Editor
 
         private void CommandLineClear()
         {
-            rtbhelper.DeleteString(methodCommandLine,fdtext);
+            rtbhelper.DeleteString(methodCommandLine, fdtext);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -24,6 +24,7 @@
     <system:String x:Key="open">Open</system:String>
     <system:String x:Key="saveas">Save As</system:String>
     <system:String x:Key="lang">Language</system:String>
+    <system:String x:Key="synlang">Syntax language</system:String>
     <system:String x:Key="langhu">Hungarian</system:String>
     <system:String x:Key="langen">English</system:String>
     <system:String x:Key="exit">Exit</system:String>
