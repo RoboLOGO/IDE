@@ -35,6 +35,7 @@
     <system:String x:Key="cut">Cut</system:String>
     <system:String x:Key="paste">Paste</system:String>
     <system:String x:Key="run">Run</system:String>
+    <system:String x:Key="runbt">Run in Robot</system:String>
     <system:String x:Key="clean">Clear screen</system:String>
     <system:String x:Key="savecanvas">Save Canvas as Image</system:String>
     <system:String x:Key="method">Procedure</system:String>

@@ -146,6 +146,9 @@
                 <Button  Name="runButton" IsEnabled="False" ToolTip="{DynamicResource run}" Click="RunClick">
                     <Image Source="Icon_Images/run.png" />
                 </Button>
+                <Button  Name="runbtButton" IsEnabled="False" ToolTip="{DynamicResource runbt}" Click="runbtButton_Click">
+                    <Image Source="Icon_Images/runbt.png" Height="16"/>
+                </Button>
                 <Button  Name="clearButton" IsEnabled="False" ToolTip="{DynamicResource clean}" Click="ClearClick" >
                     <Image Source="Icon_Images/clear.png" />
                 </Button>
@@ -153,15 +156,13 @@
                     <Image Source="Icon_Images/dl_canvas.png" />
                 </Button>
                 <Separator/>
-                <Button Name="bluetoothconnect" ToolTip="{DynamicResource bluetoothconnect}" Click="BluetoothConnect_Click">
+                <Button Name="bluetoothconnect" ToolTip="{DynamicResource bluetoothconnect}" IsEnabled="False" Click="BluetoothConnect_Click">
                     <Image Source="Icon_Images/icon-bluetooth.jpg" Width="16"></Image>
                 </Button>
                 <Button Name="bluetoothupdate" ToolTip="{DynamicResource bluetoothupdate}" Click="BluetoothUpdate_Click">
                     <Image Source="Icon_Images/update.png" Width="16"></Image>
                 </Button>                
-                <ComboBox Name="bluetoothList" Width="150" SelectedIndex="0">
-                    <!--<ComboBoxItem Name="simulatorItem" Content="{DynamicResource simulator}"></ComboBoxItem>-->
-                </ComboBox>
+                <ComboBox Name="bluetoothList" Width="150" SelectedIndex="0" IsEnabled="False"/>
             </ToolBar>
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom" Visibility="Hidden" Name="projectinfoBar">

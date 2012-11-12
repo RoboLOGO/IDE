@@ -35,10 +35,9 @@
     <system:String x:Key="cut">Kivágás</system:String>
     <system:String x:Key="paste">Beillesztés</system:String>
     <system:String x:Key="run">Futtatás</system:String>
+    <system:String x:Key="runbt">Futtatás a Roboton</system:String>
     <system:String x:Key="clean">Rajzvászon törlése</system:String>
     <system:String x:Key="savecanvas">Rajzvászon mentése</system:String>
-    <system:String x:Key="method">eljárás</system:String> <!--ez parancs-->
-    <system:String x:Key="end">vége</system:String> <!--ez parancs-->
     <system:String x:Key="saveconfirmation">Szeretnéd menteni a változásokat?</system:String>
     <system:String x:Key="savetext">Biztosan törlöd a(z)</system:String>
     <system:String x:Key="deletevariable">nevű változót</system:String>

@@ -220,6 +220,7 @@
     <Resource Include="icon.ico" />
     <Resource Include="Icon_Images\icon-bluetooth.jpg" />
     <Resource Include="Icon_Images\update.png" />
+    <Resource Include="Icon_Images\runbt.png" />
     <Content Include="Source\Bluetooth\InTheHand.Net.Personal.dll" />
     <Resource Include="Source\Bluetooth\InTheHand.Net.Personal.XML" />
     <Content Include="Source\SQLite\System.Data.SQLite.dll" />

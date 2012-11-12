@@ -45,7 +45,6 @@ namespace Editor
             if (BluetoothSecurity.PairRequest(btAddress, "1234"))
             {
                 bluetoothClient.Connect(new BluetoothEndPoint(btAddress, bluetoothSupport.Service));
-                Send("a");
             }            
         }
 
@@ -54,6 +53,7 @@ namespace Editor
             Stream sendStream = bluetoothClient.GetStream();
             Byte[] buffer = Encoding.ASCII.GetBytes(text);
             sendStream.Write(buffer, 0, buffer.Length);
+            sendStream.Flush();
         }
 
         public string Read()
@@ -61,8 +61,20 @@ namespace Editor
             Stream readStream = bluetoothClient.GetStream();
             Byte[] buffer = new Byte[1000];
             readStream.Read(buffer, 0, buffer.Length);
-            return Encoding.ASCII.GetChars(buffer).ToString();
+            string s = Encoding.ASCII.GetString(buffer).Replace("\0", "").Replace("\r\n", "");
+            return s;
         }
+
+        public bool IsConnected()
+        {
+            return bluetoothClient.Connected;
+        }
+
+        //~BluetoothHelper()
+        //{
+        //    if (bluetoothClient != null && bluetoothClient.Connected)                
+        //        bluetoothClient.Close();
+        //}
 
     }
 }

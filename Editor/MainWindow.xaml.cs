@@ -44,16 +44,23 @@ namespace Editor
             canvasSize = CanvasSize.GetCanvasSize;
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper;
-            try { bluehelp = BluetoothHelper.GetBluetoothHelper(); }
-            catch 
-            { 
-                bluetoothupdate.IsEnabled = false;
-                bluetoothList.IsEnabled = false;
-            }
+            InitBT();
             menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
             logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetLogoKeywords().GetKeywords, LogoKeywords.GetLogoKeywords().GetSpecialCharacters, false);
             synHighligt = new SyntaxHighlight(commandLine, logoSynProvider);
+        }
+
+        private void InitBT()
+        {
+            try 
+            { 
+                bluehelp = BluetoothHelper.GetBluetoothHelper();
+            }
+            catch
+            {
+
+            }
         }
 
         private void InitializeCanvas()
@@ -141,6 +148,7 @@ namespace Editor
             runButton.IsEnabled = false;
             menu.Save(rtbhelper.GetString(commandLine));
             turtle.Clean();
+            turtle.PenDown();
             RoboPreter rp = new RoboPreter();
             try
             {
@@ -160,7 +168,6 @@ namespace Editor
             catch
             {
                 MessageBox.Show(App.Current.TryFindResource("error").ToString());
-                //MessageBox.Show(ex.Message);
             }
             runButton.IsEnabled = true;
 
@@ -170,7 +177,7 @@ namespace Editor
         {
             int time = 800;
             if (com.comm == Commands.balra || com.comm == Commands.jobbra || com.comm == Commands.elore || com.comm == Commands.hatra)
-                time = (int)com.comm * 50;
+                time = (int)com.comm * 10;
             return time;
         }
 
@@ -242,24 +249,39 @@ namespace Editor
         private async void BluetoothUpdate_Click(object sender, RoutedEventArgs e)
         {
             BluetoothDeviceInfo[] devices = null;
-            bluetoothList.IsEnabled = false;
-            bluetoothupdate.IsEnabled = false;
             try
             {
+                if (bluehelp == null)
+                    bluehelp = bluehelp = BluetoothHelper.GetBluetoothHelper();
+                bluetoothList.IsEnabled = false;
+                bluetoothupdate.IsEnabled = false;
+                bluetoothconnect.IsEnabled = false;
+                runbtButton.IsEnabled = false;
+                try
+                {
 
-                await Task.Factory.StartNew(() => (devices = bluehelp.Search()));
-                bluetoothList.ItemsSource = devices;
-                bluetoothList.DisplayMemberPath = "DeviceName";
-                //bluetoothList.SelectedValuePath = "DeviceAddress";
-                if (bluetoothList.Items.Count != 0)
-                    bluetoothList.SelectedIndex = 0;
+                    await Task.Factory.StartNew(() => (devices = bluehelp.Search()));
+                    bluetoothList.ItemsSource = devices;
+                    bluetoothList.DisplayMemberPath = "DeviceName";
+                    bluetoothList.SelectedValuePath = "DeviceAddress";
+                    bluetoothList.SelectedValue = "";
+                    if (bluetoothList.Items.Count != 0)
+                        bluetoothList.SelectedIndex = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                bluetoothList.IsEnabled = true;
+                bluetoothupdate.IsEnabled = true;
+                bluetoothconnect.IsEnabled = true;
+                if(sqlitehelper.FileSource != null && bluehelp.IsConnected())
+                    runbtButton.IsEnabled = true;
             }
-            catch(Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+
             }
-            bluetoothList.IsEnabled = true;
-            bluetoothupdate.IsEnabled = true;
         }
 
         private void BluetoothConnect_Click(object sender, RoutedEventArgs e)
@@ -270,6 +292,7 @@ namespace Editor
                 {
                     bluehelp.Connect((BluetoothDeviceInfo)bluetoothList.SelectedValue);
                     MessageBox.Show("Csatlakozva");
+
                 }
                 catch (Exception ex)
                 {
@@ -278,6 +301,73 @@ namespace Editor
             }
         }
 
-       
+        private async void runbtButton_Click(object sender, RoutedEventArgs e)
+        {
+            runbtButton.IsEnabled = false;
+            menu.Save(rtbhelper.GetString(commandLine));
+            turtle.Clean();
+            RoboPreter rp = new RoboPreter();
+            try
+            {
+
+                List<Robopreter.Command> com = rp.Run(menu.GetFullSource());
+                await Task.Factory.StartNew(() => BTRun(com));
+            }
+            catch (RPExeption rpe)
+            {
+                MessageBox.Show(rpe.NewMessage);
+            }
+            catch
+            {
+                MessageBox.Show(App.Current.TryFindResource("error").ToString());
+                //MessageBox.Show(ex.Message);
+            }
+            runbtButton.IsEnabled = true;
+        }
+
+        private void BTRun(List<Robopreter.Command> coms)
+        {
+            try
+            {
+                //bluehelp.Send("0");
+                //if (bluehelp.Read() == "ready;")
+                //{
+                    foreach (var x in coms)
+                    {
+                        BTDo(x);
+                        bluehelp.Read();
+                    }
+                //}
+            }
+            catch
+            {
+                MessageBox.Show(App.Current.TryFindResource("error").ToString());
+            }
+        }
+
+        private void BTDo(Command com)
+        {
+            switch (com.comm)
+            {
+                case Commands.elore:
+                    bluehelp.Send("1" + (int)com.value + "\n");
+                    break;
+                case Commands.hatra: 
+                    bluehelp.Send("2" + (int)com.value + "\n");
+                    break;
+                case Commands.balra:
+                    bluehelp.Send("3" + (int)com.value + "\n");
+                    break;
+                case Commands.jobbra:
+                    bluehelp.Send("4" + (int)com.value + "\n");
+                    break;                
+                case Commands.tollatle:
+                    bluehelp.Send("5");
+                    break;
+                case Commands.tollatfel:
+                    bluehelp.Send("6");
+                    break;
+            }
+        }
     }
 }
