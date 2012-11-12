@@ -50,18 +50,24 @@ namespace Editor
 
         public void Send(string text)
         {
-            Stream sendStream = bluetoothClient.GetStream();
-            Byte[] buffer = Encoding.ASCII.GetBytes(text);
-            sendStream.Write(buffer, 0, buffer.Length);
-            sendStream.Flush();
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                Stream sendStream = bluetoothClient.GetStream();
+                Byte[] buffer = Encoding.ASCII.GetBytes(text);
+                sendStream.Write(buffer, 0, buffer.Length);
+            }
         }
 
         public string Read()
         {
-            Stream readStream = bluetoothClient.GetStream();
-            Byte[] buffer = new Byte[1000];
-            readStream.Read(buffer, 0, buffer.Length);
-            string s = Encoding.ASCII.GetString(buffer).Replace("\0", "").Replace("\r\n", "");
+            string s = "";
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                Stream readStream = bluetoothClient.GetStream();
+                Byte[] buffer = new Byte[1000];
+                readStream.Read(buffer, 0, buffer.Length);
+                s = Encoding.ASCII.GetString(buffer).Replace("\0", "").Replace("\r\n", "");
+            }
             return s;
         }
 
