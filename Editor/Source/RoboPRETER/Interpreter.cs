@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using Editor.Exeptions;
+using Editor;
 
 namespace Robopreter
 {
@@ -147,7 +148,7 @@ namespace Robopreter
                         }
                         catch
                         {
-                            throw new RPExeption(101, "No logic expression found");
+                            throw new RPExeption(101, App.Current.TryFindResource("x_nologexp").ToString());
                         }
                         break;
                     case "Loop":

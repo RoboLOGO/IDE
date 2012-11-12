@@ -62,4 +62,21 @@
     <system:String x:Key="bluetoothupdate">BT frissítése</system:String>
     <system:String x:Key="bluetoothconnect">BT csatlakozás</system:String>
     <system:String x:Key="simulator">Szimulátor</system:String>
+    <system:String x:Key="descript">Leírás</system:String>
+    <system:String x:Key="line">Sor</system:String>
+    <system:String x:Key="col">Oszlop</system:String>
+    <system:String x:Key="x_nologexp">Nincs logikai kifejezés</system:String>
+    <system:String x:Key="x_nexpend">Nem várt végződés </system:String>
+    <system:String x:Key="x_cdfif">Függvényben nem deklarálhatsz függvényt</system:String>
+    <system:String x:Key="x_expfn">Függvénynév szükséges az `eljárás' után</system:String>
+    <system:String x:Key="x_expfb">Függvény törzs szükséges</system:String>
+    <system:String x:Key="x_expendttd">`vége' szükséges a deklaráció befejezéséhez</system:String>
+    <system:String x:Key="x_expzbb">`[' szükséges a törzs előtt</system:String>
+    <system:String x:Key="x_expzab">`]' szükséges a törzs után</system:String>
+    <system:String x:Key="x_expzbtce">`[' szükséges a feltételes kifejezés előtt</system:String>
+    <system:String x:Key="x_expzatce">`]' szükséges a feltételes kifejezés után</system:String>
+    <system:String x:Key="x_expvarname">Hiányzik a változó neve</system:String>
+    <system:String x:Key="x_unknid">Ismeretlen azonosító `</system:String>
+    <system:String x:Key="x_fparnm">A függvény paramétereinek száma nem egyezik</system:String>
+    <system:String x:Key="x_unkncomm">Ismeretlen parancs</system:String>
 </ResourceDictionary>

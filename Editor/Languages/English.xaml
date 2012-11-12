@@ -63,4 +63,22 @@
     <system:String x:Key="bluetoothupdate">BT update</system:String>
     <system:String x:Key="bluetoothconnect">BT connect</system:String>
     <system:String x:Key="simulator">Simulator</system:String>
+    <system:String x:Key="descript">Description</system:String>
+    <system:String x:Key="line">Line</system:String>
+    <system:String x:Key="col">Column</system:String>    
+    <system:String x:Key="x_nologexp">No logic expression found</system:String>
+    <system:String x:Key="x_nexpend">Not expected end</system:String>
+    <system:String x:Key="x_cdfif">Can't declare function in function</system:String>
+    <system:String x:Key="x_expfn">Expected function name after `to'</system:String>
+    <system:String x:Key="x_expfb">Expected function body</system:String>
+    <system:String x:Key="x_expendttd">Expected `end' to terminate declaration</system:String>
+    <system:String x:Key="x_expzbb">Expected `[' before body</system:String>
+    <system:String x:Key="x_expzab">Expected `]' after body</system:String>
+    <system:String x:Key="x_expzbtce">Expected `[' before the condition expression</system:String>
+    <system:String x:Key="x_expzatce">Expected `]' after the condition expression</system:String>
+    <system:String x:Key="x_expvarname">Variable name expected</system:String>
+    <system:String x:Key="x_unknid">Unknown identifier `</system:String>
+    <system:String x:Key="x_fparnm">Function parameters count does not match</system:String>
+    <system:String x:Key="x_unkncomm">Unknown command</system:String>
+   
 </ResourceDictionary>
