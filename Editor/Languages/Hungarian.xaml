@@ -78,4 +78,6 @@
     <system:String x:Key="x_unknid">Ismeretlen azonosító `</system:String>
     <system:String x:Key="x_fparnm">A függvény paramétereinek száma nem egyezik</system:String>
     <system:String x:Key="x_unkncomm">Ismeretlen parancs</system:String>
+    <system:String x:Key="connect">Csatlakozva</system:String>
+    <system:String x:Key="notconenct">Csatlakozás sikertelen</system:String>
 </ResourceDictionary>

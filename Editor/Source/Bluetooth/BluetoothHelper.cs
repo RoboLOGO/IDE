@@ -13,23 +13,16 @@ namespace Editor
 {
     class BluetoothHelper
     {
-        static BluetoothHelper self;
         BluetoothClient bluetoothClient;
         BluetoothSupport bluetoothSupport;
         BluetoothDeviceInfo[] bluetoothDeviceInfo;
 
-        private BluetoothHelper()
+        public BluetoothHelper()
         {
             this.bluetoothClient = new BluetoothClient();
             this.bluetoothSupport = new BluetoothSupport();
         }
 
-        public static BluetoothHelper GetBluetoothHelper()
-        {
-            if (self == null)
-                self = new BluetoothHelper();
-            return self;
-        }
 
         public BluetoothDeviceInfo[] Search()
         {
@@ -45,7 +38,16 @@ namespace Editor
             if (BluetoothSecurity.PairRequest(btAddress, "1234"))
             {
                 bluetoothClient.Connect(new BluetoothEndPoint(btAddress, bluetoothSupport.Service));
-            }            
+            }
+            else
+            {
+                throw new Exception(App.Current.TryFindResource("notconnect").ToString());
+            }
+        }
+
+        public void Disconnect()
+        {
+            bluetoothClient.Close();
         }
 
         public void Send(string text)
@@ -74,11 +76,6 @@ namespace Editor
         public bool IsConnected()
         {
             return bluetoothClient.Connected;
-        }
-
-        public void ReInit()
-        {
-            self = new BluetoothHelper();
         }
 
     }

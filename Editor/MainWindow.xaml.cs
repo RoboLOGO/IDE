@@ -44,25 +44,13 @@ namespace Editor
             canvasSize = CanvasSize.GetCanvasSize;
             InitializeCanvas();
             sqlitehelper = SQLiteHelper.GetSqlHelper;
-            InitBT();
             menu = Menu.GetMenu;
             rtbhelper = new RTextboxHelper();
             logoSynProvider = new CommonSyntaxProvider(LogoKeywords.GetLogoKeywords().GetKeywords, LogoKeywords.GetLogoKeywords().GetSpecialCharacters, false);
             synHighligt = new SyntaxHighlight(commandLine, logoSynProvider);
         }
 
-        private void InitBT()
-        {
-            try 
-            { 
-                bluehelp = BluetoothHelper.GetBluetoothHelper();
-            }
-            catch
-            {
-
-            }
-        }
-
+        //beállítja a canvast
         private void InitializeCanvas()
         {
             canvas.Height = canvasSize.Height;
@@ -70,8 +58,7 @@ namespace Editor
             this.Height = canvas.Height + 75;
             this.Width = canvas.Width + 50;
             canvas.Background = new SolidColorBrush(Colors.White); 
-        }
-      
+        }      
         //bezárás
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -99,7 +86,7 @@ namespace Editor
                 turtle.Clean();
             }
         }
-
+        //beáálítja a mainwindowt
         private void SetMain()
         {
             InitializeCanvas();
@@ -120,7 +107,7 @@ namespace Editor
                 turtle.Clean();
             }
         }
-
+        //bekapcsolja a projethez szükséges gombokat
         private void EnableMenus()
         {
             commandLine.IsEnabled = true;
@@ -136,14 +123,13 @@ namespace Editor
             if (bluehelp != null && bluehelp.IsConnected())
                 runbtButton.IsEnabled = true;
         }
-
+        //beállítja a statusbart
         private void SetStatusBar()
         {
             creatorText.Text = App.Current.TryFindResource("username").ToString() + ": " + sqlitehelper.GetName();
             projectText.Text = App.Current.TryFindResource("projectname").ToString() + ": " + sqlitehelper.GetProjectName();
             languageText.Text = App.Current.TryFindResource("lang").ToString() + ": " + App.Current.TryFindResource(sqlitehelper.GetLanguage().ToString()).ToString();
         }
-        
         //futtatás
         private async void RunClick(object sender, RoutedEventArgs e)
         {
@@ -174,7 +160,7 @@ namespace Editor
             runButton.IsEnabled = true;
 
         }
-
+        //kiszámolja az animtime-t
         private static int GetTime(Robopreter.Command com)
         {
             int time = 800;
@@ -182,7 +168,7 @@ namespace Editor
                 time = (int)com.comm * 10;
             return time;
         }
-
+        //kirajzolja a teknőst
         private void Draw(Command com)
         {
             switch (com.comm)
@@ -197,12 +183,11 @@ namespace Editor
                 case Commands.tollatfel: turtle.PenUp(); break;
             }
         }
-
+        //várakozik
         private void Wait(int time)
         {
             Thread.Sleep(time);
         }
-
         //kép mentés
         private void SaveImageClick(object sender, RoutedEventArgs e)
         {
@@ -213,13 +198,13 @@ namespace Editor
         {
             menu.Clear(turtle);
         }
-
+        //megnyitja a metódus szerkesztőt
         private void Method_Click(object sender, RoutedEventArgs e)
         {
             Method method = new Method();
             method.ShowDialog();
         }
-
+        //beállítja az program nyelvét
         private void SetLogoLang()
         {
             string logolang = sqlitehelper.GetLanguage();
@@ -236,13 +221,13 @@ namespace Editor
             LogoKeywords.GetLogoKeywords().UpdateKeywords();
 
         }
-       
+        //magyarra állítja az IDE-t
         private void LangHu_Click(object sender, RoutedEventArgs e)
         {
             App.Current.Resources.MergedDictionaries[0].Source = new Uri("Languages/Hungarian.xaml", UriKind.Relative);
 
         }
-
+        //angolra állítja az IDE-t
         private void LangEn_Click(object sender, RoutedEventArgs e)
         {
             App.Current.Resources.MergedDictionaries[0].Source = new Uri("Languages/English.xaml", UriKind.Relative);
@@ -250,26 +235,18 @@ namespace Editor
 
         private async void BluetoothUpdate_Click(object sender, RoutedEventArgs e)
         {
+            await BTUpdate();
+        }
+
+        private async Task BTUpdate()
+        {
             BluetoothDeviceInfo[] devices = null;
             try
             {
-                bluetoothList.IsEnabled = false;
-                bluetoothupdate.IsEnabled = false;
-                bluetoothconnect.IsEnabled = false;
-                runbtButton.IsEnabled = false;
-                if (bluehelp == null)
-                    bluehelp = BluetoothHelper.GetBluetoothHelper();
-                bluetoothList.IsEnabled = false;
-                bluetoothupdate.IsEnabled = false;
-                bluetoothconnect.IsEnabled = false;
-                runbtButton.IsEnabled = false;
+                SetBTButtons(false);
+                bluehelp = new BluetoothHelper();
                 await Task.Factory.StartNew(() => (devices = bluehelp.Search()));
-                bluetoothList.ItemsSource = devices;
-                bluetoothList.DisplayMemberPath = "DeviceName";
-                bluetoothList.SelectedValuePath = "DeviceAddress";
-                bluetoothList.SelectedValue = "";
-                if (bluetoothList.Items.Count != 0)
-                    bluetoothList.SelectedIndex = 0;
+                SetBTDevList(devices);
                 bluetoothList.IsEnabled = true;
                 bluetoothconnect.IsEnabled = true;
                 if (sqlitehelper.FileSource != null && bluehelp.IsConnected())
@@ -283,6 +260,16 @@ namespace Editor
             bluetoothupdate.IsEnabled = true;
         }
 
+        private void SetBTDevList(BluetoothDeviceInfo[] devices)
+        {
+            bluetoothList.ItemsSource = devices;
+            bluetoothList.DisplayMemberPath = "DeviceName";
+            bluetoothList.SelectedValuePath = "DeviceAddress";
+            bluetoothList.SelectedValue = "";
+            if (bluetoothList.Items.Count != 0)
+                bluetoothList.SelectedIndex = 0;
+        }
+
         private void BluetoothConnect_Click(object sender, RoutedEventArgs e)
         {
             if (bluetoothList.SelectedItem != null)
@@ -292,12 +279,14 @@ namespace Editor
                     bluehelp.Connect((BluetoothDeviceInfo)bluetoothList.SelectedItem);
                     if (sqlitehelper.FileSource != null)
                         runbtButton.IsEnabled = true;
-                    MessageBox.Show("Csatlakozva");
-
+                    MessageBox.Show(App.Current.TryFindResource("connect").ToString());
+                    bluetoothconnect.IsEnabled = false;
+                    bluetoothList.IsEnabled = false;
+                    bluetoothupdate.IsEnabled = false;
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(App.Current.TryFindResource("error").ToString());
                 }
             }
         }
@@ -306,13 +295,12 @@ namespace Editor
         {
             runbtButton.IsEnabled = false;
             menu.Save(rtbhelper.GetString(commandLine));
-            turtle.Clean();
             RoboPreter rp = new RoboPreter();
             try
             {
-
                 List<Robopreter.Command> com = rp.Run(menu.GetFullSource());
                 await Task.Factory.StartNew(() => BTRun(com));
+                runbtButton.IsEnabled = true;
             }
             catch (RPExeption rpe)
             {
@@ -321,28 +309,34 @@ namespace Editor
             catch
             {
                 MessageBox.Show(App.Current.TryFindResource("error").ToString());
-                //MessageBox.Show(ex.Message);
+                BTUpdate();
             }
-            runbtButton.IsEnabled = true;
+        }
+
+        private void SetBTButtons(bool state)
+        {
+            bluetoothList.IsEnabled = state;
+            bluetoothupdate.IsEnabled = state;
+            bluetoothconnect.IsEnabled = state;
+            runbtButton.IsEnabled = state;
         }
 
         private void BTRun(List<Robopreter.Command> coms)
         {
             try
             {
+
                 foreach (var x in coms)
                 {
                     BTDo(x);
-                    //if (x.value != null && (int)x.value < 30)
-                    Thread.Sleep(250);
+                    Thread.Sleep(200);
                     bluehelp.Read();
                 }
             }
             catch
             {
-                //if (!bluehelp.IsConnected())
-                //    bluehelp.ReInit();
-                MessageBox.Show(App.Current.TryFindResource("error").ToString());
+                bluehelp.Disconnect();
+                throw new Exception();
             }
         }
 

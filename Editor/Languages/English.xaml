@@ -81,5 +81,6 @@
     <system:String x:Key="x_unknid">Unknown identifier `</system:String>
     <system:String x:Key="x_fparnm">Function parameters count does not match</system:String>
     <system:String x:Key="x_unkncomm">Unknown command</system:String>
-   
+    <system:String x:Key="connect">Connected</system:String>
+    <system:String x:Key="notconenct">Not Connected</system:String>
 </ResourceDictionary>
