@@ -37,7 +37,11 @@ namespace Editor
             BluetoothAddress btAddress = BluetoothAddress.Parse(btDevice.DeviceAddress.ToString());
             if (BluetoothSecurity.PairRequest(btAddress, "1234"))
             {
-                bluetoothClient.Connect(new BluetoothEndPoint(btAddress, bluetoothSupport.Service));
+                try
+                {
+                    bluetoothClient.Connect(new BluetoothEndPoint(btAddress, bluetoothSupport.Service));
+                }
+                catch { }
             }
             else
             {

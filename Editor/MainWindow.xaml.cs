@@ -251,7 +251,6 @@ namespace Editor
                 bluetoothconnect.IsEnabled = true;
                 if (sqlitehelper.FileSource != null && bluehelp.IsConnected())
                     runbtButton.IsEnabled = true;
-
             }
             catch (Exception ex)
             {
@@ -330,7 +329,7 @@ namespace Editor
                 {
                     BTDo(x);
                     Thread.Sleep(200);
-                    bluehelp.Read();
+                    //bluehelp.Read();
                 }
             }
             catch
