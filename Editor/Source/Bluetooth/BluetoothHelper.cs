@@ -76,11 +76,10 @@ namespace Editor
             return bluetoothClient.Connected;
         }
 
-        //~BluetoothHelper()
-        //{
-        //    if (bluetoothClient != null && bluetoothClient.Connected)                
-        //        bluetoothClient.Close();
-        //}
+        public void ReInit()
+        {
+            self = new BluetoothHelper();
+        }
 
     }
 }

@@ -133,6 +133,8 @@ namespace Editor
             saveAsMenuItem.IsEnabled = true;
             methodMenu.IsEnabled = true;
             projectinfoBar.Visibility = System.Windows.Visibility.Visible;
+            if (bluehelp != null && bluehelp.IsConnected())
+                runbtButton.IsEnabled = true;
         }
 
         private void SetStatusBar()
@@ -251,37 +253,34 @@ namespace Editor
             BluetoothDeviceInfo[] devices = null;
             try
             {
-                if (bluehelp == null)
-                    bluehelp = bluehelp = BluetoothHelper.GetBluetoothHelper();
                 bluetoothList.IsEnabled = false;
                 bluetoothupdate.IsEnabled = false;
                 bluetoothconnect.IsEnabled = false;
                 runbtButton.IsEnabled = false;
-                try
-                {
-
-                    await Task.Factory.StartNew(() => (devices = bluehelp.Search()));
-                    bluetoothList.ItemsSource = devices;
-                    bluetoothList.DisplayMemberPath = "DeviceName";
-                    bluetoothList.SelectedValuePath = "DeviceAddress";
-                    bluetoothList.SelectedValue = "";
-                    if (bluetoothList.Items.Count != 0)
-                        bluetoothList.SelectedIndex = 0;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                if (bluehelp == null)
+                    bluehelp = BluetoothHelper.GetBluetoothHelper();
+                bluetoothList.IsEnabled = false;
+                bluetoothupdate.IsEnabled = false;
+                bluetoothconnect.IsEnabled = false;
+                runbtButton.IsEnabled = false;
+                await Task.Factory.StartNew(() => (devices = bluehelp.Search()));
+                bluetoothList.ItemsSource = devices;
+                bluetoothList.DisplayMemberPath = "DeviceName";
+                bluetoothList.SelectedValuePath = "DeviceAddress";
+                bluetoothList.SelectedValue = "";
+                if (bluetoothList.Items.Count != 0)
+                    bluetoothList.SelectedIndex = 0;
                 bluetoothList.IsEnabled = true;
-                bluetoothupdate.IsEnabled = true;
                 bluetoothconnect.IsEnabled = true;
-                if(sqlitehelper.FileSource != null && bluehelp.IsConnected())
+                if (sqlitehelper.FileSource != null && bluehelp.IsConnected())
                     runbtButton.IsEnabled = true;
-            }
-            catch
-            {
 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            bluetoothupdate.IsEnabled = true;
         }
 
         private void BluetoothConnect_Click(object sender, RoutedEventArgs e)
@@ -290,7 +289,9 @@ namespace Editor
             {
                 try
                 {
-                    bluehelp.Connect((BluetoothDeviceInfo)bluetoothList.SelectedValue);
+                    bluehelp.Connect((BluetoothDeviceInfo)bluetoothList.SelectedItem);
+                    if (sqlitehelper.FileSource != null)
+                        runbtButton.IsEnabled = true;
                     MessageBox.Show("Csatlakozva");
 
                 }
@@ -329,18 +330,18 @@ namespace Editor
         {
             try
             {
-                //bluehelp.Send("0");
-                //if (bluehelp.Read() == "ready;")
-                //{
-                    foreach (var x in coms)
-                    {
-                        BTDo(x);
-                        bluehelp.Read();
-                    }
-                //}
+                foreach (var x in coms)
+                {
+                    BTDo(x);
+                    //if (x.value != null && (int)x.value < 30)
+                    Thread.Sleep(250);
+                    bluehelp.Read();
+                }
             }
             catch
             {
+                //if (!bluehelp.IsConnected())
+                //    bluehelp.ReInit();
                 MessageBox.Show(App.Current.TryFindResource("error").ToString());
             }
         }
