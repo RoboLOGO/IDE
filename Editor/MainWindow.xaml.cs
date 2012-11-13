@@ -329,7 +329,7 @@ namespace Editor
                 {
                     BTDo(x);
                     Thread.Sleep(200);
-                    //bluehelp.Read();
+                    bluehelp.Read();
                 }
             }
             catch
