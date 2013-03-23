@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +12,13 @@ namespace Robopreter {
         public abstract double? Calc();
     }
 
+// ************* Circle drawing ***************
+
+    public class Circle : Stmt {
+        public Expr Expression;
+    }
+    
+// ******************************
 
     public class Forward : Stmt {   // Move our turtle forward
         public Expr Expression;     // How much?
