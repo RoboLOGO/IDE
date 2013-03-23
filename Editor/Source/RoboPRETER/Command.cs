@@ -8,7 +8,7 @@ namespace Robopreter
 {
     public enum Commands
     {
-        balra, jobbra, elore, hatra, tollatfel, tollatle, haza, torol
+        balra, jobbra, elore, hatra, tollatfel, tollatle, haza, torol, kor
     }
     public class Command
     {
