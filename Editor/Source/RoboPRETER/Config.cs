@@ -30,6 +30,8 @@ namespace Robopreter {
             Primitives.Clear();
 
             //Parancsok
+            IDs.Add(new ID(App.Current.TryFindResource("kw_kor").ToString(), Type.GetType("Robopreter.Circle")));
+            IDs.Add(new ID(App.Current.TryFindResource("kw_korr").ToString(), Type.GetType("Robopreter.Circle")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_elore").ToString(), Type.GetType("Robopreter.Forward")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_elorer").ToString(), Type.GetType("Robopreter.Forward")));
             IDs.Add(new ID(App.Current.TryFindResource("kw_hatra").ToString(), Type.GetType("Robopreter.Backward")));
