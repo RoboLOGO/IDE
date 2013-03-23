@@ -110,6 +110,15 @@ namespace Robopreter
                             Out.Add(P);
                         }
                         break;
+                    case "Circle":
+                        {
+                            var P = new Command();
+                            P.comm = Commands.kor;
+                            ((Circle)currStmt).Expression.Calc();
+                            P.value = ((Circle)currStmt).Expression.Return;
+                            Out.Add(P);
+                        }
+                        break;
                     case "DeclareFunction":
                         var stmtDeclareFunction = (DeclareFunction)currStmt;
                         FuncDecl.Add(stmtDeclareFunction.Identity, stmtDeclareFunction);
